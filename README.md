@@ -1,4 +1,4 @@
 # SEI42-Group-Project-3
 SEI42 3rd project (group)
 
-Elliott Martyn Chick 
+Elliott Martyn Chick
