@@ -1,0 +1,12 @@
+const mongoose = require('mongoose')
+mongoose.Promise = require('bluebird')
+const Dish = require('../models/Dish')
+const dishData = require('./data/dishData')
+const { dbURI } = require('../confid/environment')
+
+mongoose.connect(dbURI, {useNewUrlParser: true})
+  .then(() => mongoose.connection.db.dropDatabase())
+  .then(() => Dish.create(dishData))
+  .then(() =>console.log('The seeds are here!'))
+  .catch((err) => console.log(err))
+  .finally(() => mongoose.connection.close())
