@@ -1,4 +1,6 @@
 # SEI42-Group-Project-3
 SEI42 3rd project (group)
 
-Prab Singh (Lifearoundhere)
+### We are making a food social network ###
+- Elliott Martyn Chick
+- Prab Singh (Lifearoundhere)
