@@ -7,7 +7,9 @@ class Index extends React.Component {
 
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      dishes: []
+    }
   }
 
   componentDidMount() {
