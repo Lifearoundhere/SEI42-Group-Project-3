@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 const Dish = require('../models/Dish')
 const dishData = require('./data/dishData')
-const { dbURI } = require('../confid/environment')
+const { dbURI } = require('../config/environment')
 
 mongoose.connect(dbURI, {useNewUrlParser: true})
   .then(() => mongoose.connection.db.dropDatabase())
