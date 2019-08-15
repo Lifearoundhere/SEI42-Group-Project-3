@@ -56,44 +56,45 @@ function deleteRoute(req, res, next) {
 }
 
 // POST /dishes/:id/comments
-function commentCreateRoute(req, res, next) {
-
-  req.body.user = req.currentUser._id
-
-  Dish.findById(req.params.id)
-    .then(dish => {
-      if(!dish) return res.sendStatus(404)
-      dish.comments.push(req.body)
-      return dish.save()
-    })
-    .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
-    .then(dish => res.json(dish))
-    .catch(next)
-}
-
-// DELETE /dishes/:id/comments/:commentId
-function commentDeleteRoute(req, res, next) {
-  Dish.findById(req.params.id)
-    .then(dish => {
-      if(!dish) return res.sendStatus(404)
-
-      // Find the comment by its ID
-      const comment = dish.comments.id(req.params.commentId)
-      if(!comment) return res.sendStatus(404)
-
-      comment.remove() // remove the comment
-      return dish.save() // save the dish
-    })
-    .then(dish => res.json(dish))
-    .catch(next)
-}
+// function commentCreateRoute(req, res, next) {
+//
+//   req.body.user = req.currentUser._id
+//
+//   Dish.findById(req.params.id)
+//     .then(dish => {
+//       if(!dish) return res.sendStatus(404)
+//       dish.comments.push(req.body)
+//       return dish.save()
+//     })
+//     .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
+//     .then(dish => res.json(dish))
+//     .catch(next)
+// }
+//
+// // DELETE /dishes/:id/comments/:commentId
+// function commentDeleteRoute(req, res, next) {
+//   Dish.findById(req.params.id)
+//     .then(dish => {
+//       if(!dish) return res.sendStatus(404)
+//
+//       // Find the comment by its ID
+//       const comment = dish.comments.id(req.params.commentId)
+//       if(!comment) return res.sendStatus(404)
+//
+//       comment.remove() // remove the comment
+//       return dish.save() // save the dish
+//     })
+//     .then(dish => res.json(dish))
+//     .catch(next)
+// }
+// Features for comments if we need it ...
+// commentCreate: commentCreateRoute,
+// commentDelete: commentDeleteRoute
 
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
   update: updateRoute,
-  delete: deleteRoute,
-  commentCreate: commentCreateRoute,
-  commentDelete: commentDeleteRoute
+  delete: deleteRoute
 }
