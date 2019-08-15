@@ -20,15 +20,14 @@ class Register extends React.Component {
     const errors = { ...this.state.errors, [e.target.name]: '' }
     this.setState({ formData, errors })
   }
-  // need to add it for login in feature
-  // this.props.history.push('/login')
+
   handleSubmit(e) {
     e.preventDefault()
 
     axios.post('/api/register', this.state.formData)
       .then(res => {
         toast.success(res.data.message)
-
+        this.props.history.push('/login')
       })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }

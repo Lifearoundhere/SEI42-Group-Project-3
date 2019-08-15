@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const dishesController = require('../controllers/dishes')
 const authController = require('../controllers/auth')
-// const secureRoute = require('../lib/secureRoute')
+const secureRoute = require('../lib/secureRoute')
 // Don't forget to add...
 
 
@@ -12,17 +12,18 @@ router.get('/', (req, res) => {
 })
 
 // Dishes index and show
-// Need to add secureRoute feature to create
 router.route('/dishes')
   .get(dishesController.index)
-  .post(dishesController.create)
+  .post(secureRoute, dishesController.create)
 
 // Dishes SHOW, UPDATE & DELETE
-// Need to add secureRoute features to update and delete
 router.route('/dishes/:id')
   .get(dishesController.show)
-  .put(dishesController.update)
-  .delete(dishesController.delete)
+  .put(secureRoute, dishesController.update)
+  .delete(secureRoute, dishesController.delete)
+
+// We need to add comments and secureRoute inside comments
+
 
 // REGISTER & LOGIN
 router.post('/register', authController.register)
