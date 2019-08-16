@@ -10,8 +10,9 @@ const testData = {
   price: 5,
   latitude: 51.515794,
   longitude: -0.073482,
-  cuisineType: 'American',
+  cuisineType: ['American'],
   tags: ['Deliciuse', 'Great extras'],
+  image: 'https://i.imgur.com/0VgsdXi.jpg',
   rating: 4
 }
 
@@ -76,8 +77,10 @@ describe('POST /dishes', () => {
           'longitude',
           'cuisineType',
           'tags',
+          'image',
           'comments',
-          'rating'
+          'rating',
+          '__v'
         ])
         done()
       })
@@ -95,8 +98,8 @@ describe('POST /dishes', () => {
         expect(res.body.longitude).to.eq(testData.longitude)
         expect(res.body.cuisineType).to.deep.eq(testData.cuisineType)
         expect(res.body.tags).to.deep.eq(testData.tags)
-        expect(res.body.comments).to.deep.eq(testData.comments)
         expect(res.body.rating).to.eq(testData.rating)
+        //add comment test!
         done()
       })
   })
