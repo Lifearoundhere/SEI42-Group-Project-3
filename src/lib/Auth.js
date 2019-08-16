@@ -1,16 +1,21 @@
-import jwt from  'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 class Auth {
-  static setToken(token) {
+  static setToken(token, message = '') {
     localStorage.setItem('token', token)
+    localStorage.setItem('message', message)
   }
 
   static getToken() {
     return localStorage.getItem('token')
   }
+  static getUserInfo() {
+    return localStorage.getItem('message')
+  }
 
   static removeToken() {
     localStorage.removeItem('token')
+    localStorage.removeItem('message')
   }
 
   static getPayload() {

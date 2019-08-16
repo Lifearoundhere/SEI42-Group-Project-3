@@ -27,7 +27,7 @@ class Login extends React.Component {
 
     axios.post('/api/login', this.state.formData)
       .then(res => {
-        Auth.setToken(res.data.token) // store the token in localStorage
+        Auth.setToken(res.data.token, res.data.message) // store the token in localStorage
         toast.success(res.data.message)
         this.props.history.push('/dishes') // redirect to the dishes INDEX page
       })
