@@ -3,7 +3,8 @@ const requireInSchema = 'Please provide a {PATH} of your dish.'
 const requireInSchemaAEIOU = 'Please provide an {PATH} of your dish.'
 
 const commentSchema = new mongoose.Schema({
-  content: { type: String , required: 'Please tell us a bit more.', minlength: 20}
+  content: { type: String , required: 'Please tell us a bit more.', minlength: 20},
+  mostHelpful: { type: Number }
 })
 
 

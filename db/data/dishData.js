@@ -8,7 +8,8 @@ module.exports = [{
   tags: ['Deliciuse', 'Great extras'],
   image: 'https://i.imgur.com/mr1pbCi.jpg',
   comments: [{
-    content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.'
+    content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
+    mostHelpful: 3
   } ],
   rating: 4
 }, {
@@ -21,7 +22,8 @@ module.exports = [{
   tags: ['Cheap', 'Great value for money'],
   image: 'https://i.imgur.com/0VgsdXi.jpg',
   comments: [{
-    content: 'The falafel is a great cheap option for me when I am not in the craving for meet'
+    content: 'The falafel is a great cheap option for me when I am not in the craving for meet',
+    mostHelpful: 1
   }],
   rating: 3
 }, {
@@ -34,7 +36,8 @@ module.exports = [{
   tags: ['Tasty', 'Just like a Shnizchel'],
   image: 'https://i.imgur.com/y72gx4T.jpg',
   comments: [{
-    content: 'I love my Chicken Katsu!!'}
-  ],
+    content: 'I love my Chicken Katsu!!',
+    mostHelpful: 7
+  }],
   rating: 2
 }]
