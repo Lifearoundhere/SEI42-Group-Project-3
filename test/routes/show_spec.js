@@ -47,8 +47,9 @@ describe('GET /dishes/:id', () => {
           'longitude',
           'cuisineType',
           'tags',
-          'comments',
-          'rating'
+          'image',
+          'rating',
+          '__v'
         ])
         done()
       })
@@ -57,13 +58,13 @@ describe('GET /dishes/:id', () => {
   it('should return the correct data types', done => {
     api.get(`/api/dishes/${dish._id}`)
       .end((err, res) => {
-        // expect(res._id).to.be.a('string')
+        expect(res.body._id).to.be.a('string')
         expect(res.body.name).to.be.a('string')
         expect(res.body.nativeName).to.be.an('string')
         expect(res.body.price).to.be.an('number')
         expect(res.body.latitude).to.be.a('number')
         expect(res.body.longitude).to.be.a('number')
-        expect(res.body.cuisineType).to.be.a('string')
+        expect(res.body.cuisineType).to.be.a('array')
         expect(res.body.tags).to.be.a('array')
         expect(res.body.comments).to.be.a('array')
         expect(res.body.rating).to.be.a('number')

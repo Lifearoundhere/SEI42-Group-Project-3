@@ -31,7 +31,6 @@ describe('DELETE /dishes/:id', () => {
   })
 
   it('should return a 401 response without a token', done => {
-    console.log(dish)
     api.delete(`/api/dishes/${dish._id}`)
       .end((err, res) => {
         expect(res.status).to.eq(401)

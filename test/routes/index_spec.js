@@ -54,8 +54,9 @@ describe('GET /dishes', () => {
             'longitude',
             'cuisineType',
             'tags',
-            'comments',
-            'rating'
+            'image',
+            'rating',
+            '__v'
           ])
         })
         done()
@@ -66,16 +67,15 @@ describe('GET /dishes', () => {
     api.get('/api/dishes')
       .end((err, res) => {
         res.body.forEach(dish => {
-          expect(dish.body._id).to.be.a('string')
-          expect(dish.body.name).to.be.a('string')
-          expect(dish.body.nativeName).to.be.an('string')
-          expect(dish.body.price).to.be.an('number')
-          expect(dish.body.latitude).to.be.a('number')
-          expect(dish.body.longitude).to.be.a('number')
-          expect(dish.body.cuisineType).to.be.a('string')
-          expect(dish.body.tags).to.be.a('array')
-          expect(dish.body.comments).to.be.a('array')
-          expect(dish.body.rating).to.be.a('number')
+          expect(dish._id).to.be.a('string')
+          expect(dish.name).to.be.a('string')
+          expect(dish.nativeName).to.be.an('string')
+          expect(dish.price).to.be.an('number')
+          expect(dish.latitude).to.be.a('number')
+          expect(dish.longitude).to.be.a('number')
+          expect(dish.cuisineType).to.be.a('array')
+          expect(dish.tags).to.be.a('array')
+          expect(dish.rating).to.be.a('number')
         })
         done()
       })
