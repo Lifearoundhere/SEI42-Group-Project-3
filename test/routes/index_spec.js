@@ -67,7 +67,6 @@ describe('GET /dishes', () => {
     api.get('/api/dishes')
       .end((err, res) => {
         res.body.forEach(dish => {
-          console.log(dish._id)
           expect(dish._id).to.be.a('string')
           expect(dish.name).to.be.a('string')
           expect(dish.nativeName).to.be.an('string')
