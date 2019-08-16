@@ -11,7 +11,11 @@ module.exports = [{
     content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
     mostHelpful: 3
   } ],
-  rating: 4
+  rating: [{
+    rating: 4,
+    fullness: 3,
+    healthiness: 5
+  }]
 }, {
   name: 'Falafel',
   nativeName: 'פלאפל',
@@ -25,7 +29,11 @@ module.exports = [{
     content: 'The falafel is a great cheap option for me when I am not in the craving for meet',
     mostHelpful: 1
   }],
-  rating: 3
+  rating: [{
+    rating: 5,
+    fullness: 2,
+    healthiness: 1
+  }]
 }, {
   name: 'Chicken Katsu wrap',
   nativeName: 'チキンカツ',
@@ -39,5 +47,9 @@ module.exports = [{
     content: 'I love my Chicken Katsu!!',
     mostHelpful: 7
   }],
-  rating: 2
+  rating: [{
+    rating: 3,
+    fullness: 2,
+    healthiness: 4
+  }]
 }]

@@ -12,8 +12,7 @@ const testData = {
   longitude: -0.073482,
   cuisineType: ['American'],
   tags: ['Deliciuse', 'Great extras'],
-  image: 'https://i.imgur.com/0VgsdXi.jpg',
-  rating: 4
+  image: 'https://i.imgur.com/0VgsdXi.jpg'
 }
 
 describe('POST /dishes', () => {
@@ -79,7 +78,7 @@ describe('POST /dishes', () => {
           'tags',
           'image',
           'comments',
-          'rating',
+          'ratings',
           '__v'
         ])
         done()
@@ -91,6 +90,7 @@ describe('POST /dishes', () => {
       .set('Authorization', `Bearer ${token}`)
       .send(testData)
       .end((err, res) => {
+        console.log(res.body.ratings[0])
         expect(res.body.name).to.eq(testData.name)
         expect(res.body.nativeName).to.deep.eq(testData.nativeName)
         expect(res.body.price).to.eq(testData.price)
@@ -98,8 +98,7 @@ describe('POST /dishes', () => {
         expect(res.body.longitude).to.eq(testData.longitude)
         expect(res.body.cuisineType).to.deep.eq(testData.cuisineType)
         expect(res.body.tags).to.deep.eq(testData.tags)
-        expect(res.body.rating).to.eq(testData.rating)
-        //add comment test!
+
         done()
       })
   })
