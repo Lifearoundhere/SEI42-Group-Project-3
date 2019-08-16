@@ -3,7 +3,8 @@ const requireInSchema = 'Please provide a {PATH} of your dish.'
 const requireInSchemaAEIOU = 'Please provide an {PATH} of your dish.'
 
 const commentSchema = new mongoose.Schema({
-  content: { type: [ String ], required: 'Please tell us a bit more.', minlength: 20}
+  content: { type: String , required: 'Please tell us a bit more.', minlength: 20},
+  mostHelpful: { type: Number }
 })
 
 
@@ -15,8 +16,12 @@ const dishSchema = new mongoose.Schema({
   longitude: { type: Number, required: requireInSchema },
   cuisineType: {type: [ String ], required: requireInSchema },
   tags: [ String ],
+<<<<<<< HEAD
   image: {type: String, required: requireInSchemaAEIOU},
   comments: {commentSchema},
+=======
+  comments: [commentSchema],
+>>>>>>> development
   rating: { type: Number, min: 1, max: 5, required: requireInSchema}
 })
 
