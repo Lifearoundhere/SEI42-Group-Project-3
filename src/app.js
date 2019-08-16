@@ -4,7 +4,8 @@ import Navbar from './components/common/Navbar'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import DishesIndex from './components/dishes/Index'
-
+import Register from './components/auth/register'
+import Login from './components/auth/login'
 
 import 'bulma'
 import './style.scss'
@@ -18,6 +19,8 @@ class App extends React.Component {
 
 
           <Route path='/dishes' component={DishesIndex} />
+          <Route path='/register' component={Register} />
+          <Route path='/login' component={Login} />
 
         </Switch>
       </HashRouter>
