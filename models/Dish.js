@@ -15,13 +15,9 @@ const dishSchema = new mongoose.Schema({
   latitude: { type: Number, required: requireInSchema },
   longitude: { type: Number, required: requireInSchema },
   cuisineType: {type: [ String ], required: requireInSchema },
-  tags: [ String ],
-<<<<<<< HEAD
   image: {type: String, required: requireInSchemaAEIOU},
-  comments: {commentSchema},
-=======
+  tags: [ String ],
   comments: [commentSchema],
->>>>>>> development
   rating: { type: Number, min: 1, max: 5, required: requireInSchema}
 })
 
