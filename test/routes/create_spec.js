@@ -12,6 +12,7 @@ const testData = {
   longitude: -0.073482,
   cuisineType: 'American',
   tags: ['Deliciuse', 'Great extras'],
+  comments: [],
   rating: 4
 }
 

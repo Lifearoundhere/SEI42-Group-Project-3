@@ -6,6 +6,8 @@ module.exports = [{
   longitude: -0.073482,
   cuisineType: 'American',
   tags: ['Deliciuse', 'Great extras'],
+  image: 'https://i.imgur.com/mr1pbCi.jpg',
+  comments: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
   rating: 4
 }, {
   name: 'Falafel',
@@ -15,6 +17,8 @@ module.exports = [{
   longitude: -0.073185,
   cuisineType: 'Egypt',
   tags: ['Cheap', 'Great value for money'],
+  image: 'https://i.imgur.com/0VgsdXi.jpg',
+  comments: 'The falafel is a great cheap option for me when I am not in the craving for meet',
   rating: 3
 }, {
   name: 'Chicken Katsu wrap',
@@ -24,5 +28,7 @@ module.exports = [{
   longitude: -0.073649,
   cuisineType: 'Japan',
   tags: ['Tasty', 'Just like a Shnizchel'],
+  image: 'https://i.imgur.com/y72gx4T.jpg',
+  comments: 'I love my Chicken Katsu!!',
   rating: 2
 }]
