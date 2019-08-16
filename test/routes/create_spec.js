@@ -10,10 +10,8 @@ const testData = {
   price: 5,
   latitude: 51.515794,
   longitude: -0.073482,
-  cuisineType: ['American'],
+  cuisineType: 'American',
   tags: ['Deliciuse', 'Great extras'],
-  image: 'https://i.imgur.com/mr1pbCi.jpg',
-  comments: ['This is a great Burger with some extras as egg or bacon. I enjoy it.'],
   rating: 4
 }
 
@@ -71,7 +69,6 @@ describe('POST /dishes', () => {
       .end((err, res) => {
         expect(res.body).to.contains.keys([
           '_id',
-          '__v',
           'name',
           'nativeName',
           'price',
@@ -80,8 +77,7 @@ describe('POST /dishes', () => {
           'cuisineType',
           'tags',
           'comments',
-          'rating',
-          'image'
+          'rating'
         ])
         done()
       })
@@ -93,7 +89,7 @@ describe('POST /dishes', () => {
       .send(testData)
       .end((err, res) => {
         expect(res.body.name).to.eq(testData.name)
-        expect(res.body.nativeName).to.eq(testData.nativeName)
+        expect(res.body.nativeName).to.deep.eq(testData.nativeName)
         expect(res.body.price).to.eq(testData.price)
         expect(res.body.latitude).to.eq(testData.latitude)
         expect(res.body.longitude).to.eq(testData.longitude)
@@ -101,7 +97,6 @@ describe('POST /dishes', () => {
         expect(res.body.tags).to.deep.eq(testData.tags)
         expect(res.body.comments).to.deep.eq(testData.comments)
         expect(res.body.rating).to.eq(testData.rating)
-        expect(res.body.image).to.eq(testData.image)
         done()
       })
   })

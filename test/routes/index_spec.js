@@ -3,7 +3,7 @@
 const Dish = require('../../models/Dish')
 const dishData = require('../../db/data/dishData')
 
-xdescribe('GET /dishes', () => {
+describe('GET /dishes', () => {
 
   beforeEach(done => {
     Dish.create(dishData)
