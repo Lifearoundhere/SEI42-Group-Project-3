@@ -4,6 +4,7 @@ import Navbar from './components/common/Navbar'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import DishesIndex from './components/dishes/Index'
+import DishShow from './components/dishes/Show'
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 
@@ -18,6 +19,7 @@ class App extends React.Component {
         <Switch>
 
 
+          <Route path='/dishes/:id' component={DishShow} />
           <Route path='/dishes' component={DishesIndex} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />

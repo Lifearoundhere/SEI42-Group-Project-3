@@ -55,7 +55,7 @@ describe('GET /dishes', () => {
             'cuisineType',
             'tags',
             'image',
-            'rating',
+            'ratings',
             '__v'
           ])
         })
@@ -75,7 +75,7 @@ describe('GET /dishes', () => {
           expect(dish.longitude).to.be.a('number')
           expect(dish.cuisineType).to.be.a('array')
           expect(dish.tags).to.be.a('array')
-          expect(dish.rating).to.be.a('number')
+          expect(dish.ratings).to.be.a('array')
         })
         done()
       })

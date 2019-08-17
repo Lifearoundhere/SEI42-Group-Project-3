@@ -48,7 +48,7 @@ describe('GET /dishes/:id', () => {
           'cuisineType',
           'tags',
           'image',
-          'rating',
+          'ratings',
           '__v'
         ])
         done()
@@ -67,7 +67,7 @@ describe('GET /dishes/:id', () => {
         expect(res.body.cuisineType).to.be.a('array')
         expect(res.body.tags).to.be.a('array')
         expect(res.body.comments).to.be.a('array')
-        expect(res.body.rating).to.be.a('number')
+        expect(res.body.ratings).to.be.a('array')
         done()
       })
   })
