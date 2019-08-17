@@ -24,7 +24,7 @@ function showRoute(req, res, next) {
   // the ID is now on req.params.id
   Dish.findById(req.params.id) // get the dish from the database: MONGOOSE
     .populate({ path: 'user', select: '-email' }) // replace the user ID with the actual user object, and DON'T send the email address...
-    .populate({ path: 'comments.user', select: '-email' }) // replace the user ID with the actual user object
+    .populate({ path: 'comments.user', select: '-email' })
     .then(dish => {
       if(!dish) return res.sendStatus(404) // return a 404: EXPRESS
 
