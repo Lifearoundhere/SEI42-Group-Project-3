@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import MapComp from '../common/Map'
 
 class DishShow extends React.Component {
 
@@ -10,13 +11,13 @@ class DishShow extends React.Component {
 
   componentDidMount() {
     axios.get(`/api/dishes/${this.props.match.params.id}`)
-      .then(res => this.setState( {dish: res.data }))
+      .then(res => this.setState({ dish: res.data }))
   }
 
 
 
   render() {
-    if(!this.state.dish) return null
+    if (!this.state.dish) return null
     return (
       <section className="section ">
         <div className="container">
@@ -39,6 +40,7 @@ class DishShow extends React.Component {
             </div>
             <div className="column is-half-desktop">
               <h1>Here we will have a map</h1>
+              <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
             <div className="column is-half-desktop">
               <p className="title is-3">Native Name: {this.state.dish.nativeName}</p>

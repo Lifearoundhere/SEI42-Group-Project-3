@@ -12,7 +12,15 @@ module.exports = {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
-      { test: /\.s(a|c)ss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] }
+      { test: /\.s(a|c)ss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
+      {
+        test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader',
+        options: {
+          outputPath: 'webpack-assets/', // Output location for assets. Final: `app/assets/webpack/webpack-assets/`
+          publicPath: 'webpack-assets/' // Endpoint asset can be found at on Rails server
+        }
+      }
+
     ]
   },
   devServer: {

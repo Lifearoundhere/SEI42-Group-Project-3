@@ -7,6 +7,7 @@ import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
 import Register from './components/auth/register'
 import Login from './components/auth/login'
+import Home from './components/pages/Home'
 
 import 'bulma'
 import './style.scss'
@@ -15,7 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <HashRouter>
-        <Navbar/>
+        <Navbar />
         <Switch>
 
 
@@ -23,6 +24,7 @@ class App extends React.Component {
           <Route path='/dishes' component={DishesIndex} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
+          <Route path='/' component={Home} />
 
         </Switch>
       </HashRouter>
