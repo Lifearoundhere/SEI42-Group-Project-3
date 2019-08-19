@@ -25,7 +25,9 @@ module.exports = {
           outputPath: 'webpack-assets/', // Output location for assets.
           publicPath: 'webpack-assets/' // Endpoint asset
         }
-      }
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' }
 
     ]
   },

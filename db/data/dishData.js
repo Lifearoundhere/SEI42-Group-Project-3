@@ -6,7 +6,7 @@ module.exports = [{
   longitude: -0.073482,
   cuisineType: ['American'],
   tags: ['Deliciuse', 'Great extras'],
-  image: 'https://i.imgur.com/mr1pbCi.jpg',
+  image: ['https://i.imgur.com/mr1pbCi.jpg', 'https://i.imgur.com/OK1u0FO.jpg'],
   comments: [{
     content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
     mostHelpful: 3
