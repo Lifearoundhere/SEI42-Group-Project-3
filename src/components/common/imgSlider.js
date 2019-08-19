@@ -2,6 +2,15 @@ import React from 'react'
 import Slider from 'react-slick'
 
 class ImgSlider extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+
+    }
+
+  }
+
   render() {
     const settings = {
       dots: true,
@@ -11,12 +20,15 @@ class ImgSlider extends React.Component {
       slidesToScroll: 1
 
     }
+    console.log(this.props.images)
     return (
       <div>
         <h2>IMAGE SLIDER</h2>
         <Slider {...settings}>
           <div>
-            <h3>1</h3>
+            <h3>
+              <img src={this.props.images} />
+            </h3>
           </div>
           <div>
             <h3>2</h3>
