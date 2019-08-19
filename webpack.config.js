@@ -2,10 +2,10 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
-const env = process.env.NODE_ENV === 'development' ? (
-  new Dotenv()
-) : (
+const env = process.env.NODE_ENV === 'production' ? (
   new webpack.EnvironmentPlugin({ ...process.env })
+) : (
+  new Dotenv()
 )
 
 module.exports = {

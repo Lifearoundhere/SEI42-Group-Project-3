@@ -5,6 +5,7 @@ import ReactMapboxGL, { Popup, Feature, Layer, ScaleControl } from 'react-mapbox
 import icon from '../../assets/icons8cutlery64.png'
 
 
+
 const Map = ReactMapboxGL({ accessToken: process.env.MAPBOX_TOKEN })
 
 const image = new Image()
@@ -50,6 +51,7 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(process.env)
     if (this.state.loading) return <p>loading...</p>
     return (
       <Map
