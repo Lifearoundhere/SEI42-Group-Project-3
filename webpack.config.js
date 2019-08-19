@@ -22,8 +22,8 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader',
         options: {
-          outputPath: 'webpack-assets/', // Output location for assets. Final: `app/assets/webpack/webpack-assets/`
-          publicPath: 'webpack-assets/' // Endpoint asset can be found at on Rails server
+          outputPath: 'webpack-assets/', // Output location for assets.
+          publicPath: 'webpack-assets/' // Endpoint asset
         }
       }
 
