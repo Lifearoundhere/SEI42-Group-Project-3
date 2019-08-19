@@ -2,6 +2,12 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
+const env = process.env.NODE_ENV === 'development' ? (
+  new Dotenv()
+) : (
+  new webpack.EnvironmentPlugin({ ...process.env })
+)
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -11,12 +17,18 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      // { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
+      { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
       { test: /\.s(a|c)ss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
-      { test: /\.css$/, loader: ['style-loader', 'css-loader', 'file-loader'] },
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: ['file-loader'] },
+      {
+        test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader',
+        options: {
+          outputPath: 'webpack-assets/', // Output location for assets.
+          publicPath: 'webpack-assets/' // Endpoint asset
+        }
+      },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' }
+
     ]
   },
   devServer: {
@@ -36,6 +48,6 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     }),
-    new Dotenv()
+    env
   ]
 }
