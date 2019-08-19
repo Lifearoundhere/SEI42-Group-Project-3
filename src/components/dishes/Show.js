@@ -1,6 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+
 import StarRatings from 'react-star-ratings'
+
+
+import MapComp from '../common/Map'
 
 
 class DishShow extends React.Component {
@@ -66,6 +70,7 @@ class DishShow extends React.Component {
             </div>
             <div className="column is-half-desktop">
               <h1>Here we will have a map</h1>
+              <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
             <div className="column is-half-desktop">
               <p className="title is-3">Native Name: {this.state.dish.nativeName}</p>
