@@ -6,6 +6,7 @@ mongoose.plugin(require('mongoose-unique-validator'), {
 const router = require('./config/routes')
 const { port, dbURI } = require('./config/environment')
 
+
 const app = express()
 
 mongoose.connect(dbURI, { useNewUrlParser: true })
@@ -19,6 +20,6 @@ app.use(express.static(`${__dirname}/dist`))
 app.use('/api', router)
 
 
-app.listen(port, () => console.log('Mind the gap on port 4000'))
+app.listen(port, () => console.log('Mind the food-baby on port 4000'))
 
 module.exports = app

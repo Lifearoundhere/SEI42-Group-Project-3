@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import ImgSlider from '../common/imgSlider'
 
 import StarRatings from 'react-star-ratings'
 
@@ -31,12 +32,9 @@ class DishShow extends React.Component {
         <div className="container">
           <div className="columns is-multiline">
             <div className="column is-half-desktop">
-              <figure className="image is-square">
-                <img
-                  src={this.state.dish.image}
-                  alt={this.state.dish.name}
-                />
-              </figure>
+
+              <ImgSlider images={this.state.dish.image} />
+
             </div>
             <div className="column is-half-desktop">
               <div className="columns is-multiline">
@@ -71,7 +69,6 @@ class DishShow extends React.Component {
 
             </div>
             <div className="column is-half-desktop">
-              <h1>Here we will have a map</h1>
               <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
             <div className="column is-half-desktop">

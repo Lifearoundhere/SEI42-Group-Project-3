@@ -3,7 +3,10 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 import StarRatings from 'react-star-ratings'
 
-//
+
+import Select from 'react-select'
+import tags from '../../../db/data/TagData'
+
 class DishNew extends React.Component {
 
 
@@ -26,6 +29,11 @@ class DishNew extends React.Component {
     this.handleOverallChange = this.handleOverallChange.bind(this)
     this.handleFullnessChange = this.handleFullnessChange.bind(this)
     this.handleHealthinessChange = this.handleHealthinessChange.bind(this)
+    this.handleTagChange = this.handleTagChange.bind(this)
+  }
+  handleTagChange(selectedTags) {
+    const formData = { ...this.state.formData, tags: (selectedTags || []).map(option => option.value) }
+    this.setState({ formData })
   }
 
   handleChange(e) {
@@ -55,10 +63,10 @@ class DishNew extends React.Component {
 
     const token = Auth.getToken()
     axios.post(('/api/dishes'), this.state.formData, {
-      headers: {Authorization: `Bearer ${token}`}
+      headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/dishes'))
-      .catch(err => this.setState( {errors: err.response.data.errors}))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
 
@@ -181,6 +189,15 @@ class DishNew extends React.Component {
             </div>
             <button className="button">Add your dish</button>
           </form>
+
+          <Select
+            isMulti
+            name="cuisine"
+            options={tags}
+            onChange={this.handleTagChange}
+            className="basic-multi-select"
+            classNamePrefix="select"
+          />
         </div>
       </section>
 
