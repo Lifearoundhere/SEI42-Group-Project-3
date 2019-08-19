@@ -17,34 +17,22 @@ class ImgSlider extends React.Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      lazyLoad: true
 
     }
     console.log(this.props.images)
     return (
       <div>
-        <h2>IMAGE SLIDER</h2>
         <Slider {...settings}>
-          <div>
-            <h3>
-              <img src={this.props.images} />
-            </h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+
+          {this.props.images.map( (image, i) =>
+            <div key = {i} >
+              <img src={image}/>
+            </div>
+          )
+          }
+
         </Slider>
       </div>
     )
