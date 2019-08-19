@@ -21,7 +21,6 @@ class ImgSlider extends React.Component {
       lazyLoad: true
 
     }
-    console.log(this.props.images)
     return (
       <div>
         <Slider {...settings}>
@@ -30,8 +29,7 @@ class ImgSlider extends React.Component {
             <div key = {i} >
               <img src={image}/>
             </div>
-          )
-          }
+          )}
 
         </Slider>
       </div>

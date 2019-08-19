@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import ImgSlider from '../common/imgSlider'
 
+
 // import StarRatings from 'react-star-ratings'
 
 
@@ -12,7 +13,8 @@ class DishShow extends React.Component {
 
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+    }
   }
 
   componentDidMount() {
@@ -50,6 +52,7 @@ class DishShow extends React.Component {
   // </div>
   // const {fullness, overall, healthiness} = this.state.ratings
   render() {
+    console.log(this.state)
     if(!this.state.dish) return null
     return (
       <section className="section ">
@@ -67,7 +70,6 @@ class DishShow extends React.Component {
               </div>
             </div>
             <div className="column is-half-desktop">
-              <h1>Here we will have a map</h1>
               <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
             <div className="column is-half-desktop">
