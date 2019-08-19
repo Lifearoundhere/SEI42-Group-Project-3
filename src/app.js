@@ -9,7 +9,6 @@ import SecureRoute from './components/common/SecureRoute'
 import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
 import DishNew from './components/dishes/New'
-import Ratings from './components/common/Ratings'
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 import Home from './components/pages/Home'
@@ -25,7 +24,6 @@ class App extends React.Component {
         <Switch>
 
           <SecureRoute path='/dishes/new' component={DishNew} />
-          <Route path='/dishes/:id/ratings' component={Ratings} />
           <Route path='/dishes/:id' component={DishShow} />
           <Route path='/dishes' component={DishesIndex} />
           <Route path='/register' component={Register} />
