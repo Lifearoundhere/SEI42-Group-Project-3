@@ -27,7 +27,7 @@ class Ratings extends React.Component {
   componentDidMount() {
 
 
-    axios.get(`/api/stations/${this.props.match.params.id}`)
+    axios.get(`/api/dishes/${this.props.match.params.id}`)
       .then(res => this.setState({ dish: res.data }))
 
   }
@@ -46,11 +46,12 @@ class Ratings extends React.Component {
 
   render (){
     if(!this.state.dish) return <h1>Loadins...</h1>
+    console.log(this.state)
     return (
       <div className="container">
         <h3 className="title is-5">Overall Rating</h3>
         <StarRatings
-          rating={this.state.overall}
+          rating={this.state.dish.ratings}
           starRatedColor="blue"
           changeRating={this.changeRating}
           numberOfStars={5}

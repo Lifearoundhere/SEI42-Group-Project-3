@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import Auth from '../../lib/Auth';
+import Auth from '../../lib/Auth'
 
 class Navbar extends React.Component {
   constructor() {
@@ -38,6 +38,9 @@ class Navbar extends React.Component {
             <Link to="/dishes" className="navbar-item">
               Index
             </Link>
+            {Auth.isAuthenticated() && <Link to="/dishes/new" className="navbar-item">
+              Add a Dish
+            </Link>}
           </div>
         </div>
         <div className="navbar-end">

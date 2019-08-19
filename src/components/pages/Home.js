@@ -83,7 +83,7 @@ class Home extends React.Component {
             />
           ))}
         </Layer>
-        {this.state.dish && this.state.dishes.map((dish, index) => (
+        {!this.state.dish && this.state.dishes.map((dish, index) => (
           <Popup
             key={dish._id}
             coordinates={[dish.longitude, dish.latitude]}
