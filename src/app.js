@@ -18,7 +18,6 @@ class App extends React.Component {
         <Navbar/>
         <Switch>
 
-
           <Route path='/dishes/:id' component={DishShow} />
           <Route path='/dishes' component={DishesIndex} />
           <Route path='/register' component={Register} />

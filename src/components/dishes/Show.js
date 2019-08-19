@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import StarRatings from 'react-star-ratings'
+
 
 class DishShow extends React.Component {
 
@@ -10,13 +12,17 @@ class DishShow extends React.Component {
 
   componentDidMount() {
     axios.get(`/api/dishes/${this.props.match.params.id}`)
-      .then(res => this.setState( {dish: res.data }))
+      .then(res => {
+        this.setState( {dish: res.data, ratings: res.data.ratings[0] } )
+      })
+
   }
 
 
 
   render() {
     if(!this.state.dish) return null
+    const {fullness, overall, healthiness} = this.state.ratings
     return (
       <section className="section ">
         <div className="container">
@@ -34,8 +40,29 @@ class DishShow extends React.Component {
                 <h2 className="column is-half-desktop title is-2">{this.state.dish.name}</h2>
                 <h2 className="column is-half-desktop title is-2">£ {this.state.dish.price}</h2>
               </div>
-
-              <h1>Rating</h1>
+              <div>
+                <h3 className="title is-5">Overall Rating</h3>
+                <StarRatings
+                  rating={overall}
+                  starDimension="40px"
+                  starSpacing="15px"
+                  starRatedColor="orange"
+                />
+                <h3 className="title is-5">Fullness</h3>
+                <StarRatings
+                  rating={fullness}
+                  starDimension="40px"
+                  starSpacing="15px"
+                  starRatedColor="red"
+                />
+                <h3 className="title is-5">Healthiness</h3>
+                <StarRatings
+                  rating={healthiness}
+                  starDimension="40px"
+                  starSpacing="15px"
+                  starRatedColor="green"
+                />
+              </div>
             </div>
             <div className="column is-half-desktop">
               <h1>Here we will have a map</h1>
