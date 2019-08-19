@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import ImgSlider from '../common/imgSlider'
 
 class DishShow extends React.Component {
 
@@ -22,12 +23,9 @@ class DishShow extends React.Component {
         <div className="container">
           <div className="columns is-multiline">
             <div className="column is-half-desktop">
-              <figure className="image is-square">
-                <img
-                  src={this.state.dish.image}
-                  alt={this.state.dish.name}
-                />
-              </figure>
+
+              <ImgSlider />
+
             </div>
             <div className="column is-half-desktop">
               <div className="columns is-multiline">

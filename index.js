@@ -6,6 +6,7 @@ mongoose.plugin(require('mongoose-unique-validator'), {
 const router = require('./config/routes')
 const { dbURI } = require('./config/environment')
 
+
 const app = express()
 
 mongoose.connect(dbURI, { useNewUrlParser: true })
