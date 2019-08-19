@@ -24,17 +24,11 @@ class Home extends React.Component {
     this.state = {
       userLocation: { lat: 51.5074, lng: 0.1278 },
       dishes: [],
-      showPopup: false
+      selectedDish: null,
+      zoom: [12]
     }
   }
 
-  testGeolocation() {
-    if (navigator.geolocation) {
-      console.log('Geolocation is supported!')
-    } else {
-      console.log('Geolocation is not supported for this Browser/OS.')
-    }
-  }
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -56,8 +50,7 @@ class Home extends React.Component {
   }
 
   render() {
-    { if (this.state.loading) return <p>loading...</p> }
-    const layoutLayer = { 'icon-image': 'FoodTruck' }
+    if (this.state.loading) return <p>loading...</p>
     return (
       <Map
         style="mapbox://styles/mapbox/streets-v8"
@@ -65,31 +58,28 @@ class Home extends React.Component {
           this.state.userLocation.lng, this.state.userLocation.lat
 
         ]}
-        zoom={[12]}
+        zoom={this.state.zoom}
         containerStyle={{
           height: '90vh',
           width: '100vw'
         }}
       >
-        <Layer type="symbol" id="marker" layout={layoutLayer} images={images}
-          onClick={console.log('clicked2')}
-          onMouseEnter={console.log('clicked mouse')}
-        >
-          {this.state.dishes.map((dish, index) => (
+        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'FoodTruck' }} images={images}>
+          {this.state.dishes.map(dish => (
             <Feature
               key={dish._id}
-              onClick={console.log('clicked')}
+              onClick={() => this.setState({ selectedDish: dish, zoom: [18], userLocation: { lat: dish.latitude, lng: dish.longitude } })}
               coordinates={[dish.longitude, dish.latitude]}
             />
           ))}
         </Layer>
-        {this.state.dish && this.state.dishes.map((dish, index) => (
-          <Popup
+        {this.state.dishes.map(dish => (
+          this.state.selectedDish === dish ? (<Popup
             key={dish._id}
             coordinates={[dish.longitude, dish.latitude]}
             closeButton={true}
             closeOnClick={true}
-            onClose={() => this.setState({ showPopup: false })}
+            onClose={() => this.setState({ selectedPopup: null })}
           >
             <StyledPopup>
               <div>
@@ -98,7 +88,7 @@ class Home extends React.Component {
                 <img src={dish.image} width="20px" height="20px" />
               </div>
             </StyledPopup>
-          </Popup>
+          </Popup>) : null
         ))}
         <ScaleControl />
       </Map>
