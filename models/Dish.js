@@ -31,16 +31,17 @@ const ratingSchema = new mongoose.Schema({
 
 
 const dishSchema = new mongoose.Schema({
-  name: { type: String, required: requiredMsg},
-  nativeName: {type: String},
-  price: {type: Number, required: requiredMsg},
-  latitude: { type: Number},
-  longitude: { type: Number},
-  cuisineType: {type: [ String ], required: requiredMsg },
-  image: {type: [ String ] },
-  tags: [ String ],
+  name: { type: String, required: requiredMsg },
+  nativeName: { type: String },
+  price: { type: Number, required: requiredMsg },
+  latitude: { type: Number },
+  longitude: { type: Number },
+  cuisineType: { type: String, required: requiredMsg },
+  image: { type: [String], required: requiredMsg },
+  tags: [String],
   comments: [commentSchema],
-  ratings: [ratingSchema]
+  ratings: [ratingSchema],
+  dietary: { type: [String] }
 })
 
 module.exports = mongoose.model('Dish', dishSchema)
