@@ -55,21 +55,21 @@ function deleteRoute(req, res, next) {
 }
 
 // POST /dishes/:id/comments
-// function commentCreateRoute(req, res, next) {
-//
-//   req.body.user = req.currentUser._id
-//
-//   Dish.findById(req.params.id)
-//     .then(dish => {
-//       if(!dish) return res.sendStatus(404)
-//       dish.comments.push(req.body)
-//       return dish.save()
-//     })
-//     .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
-//     .then(dish => res.json(dish))
-//     .catch(next)
-// }
-//
+function commentCreateRoute(req, res, next) {
+
+  req.body.user = req.currentUser._id
+
+  Dish.findById(req.params.id)
+    .then(dish => {
+      if(!dish) return res.sendStatus(404)
+      dish.comments.push(req.body)
+      return dish.save()
+    })
+    .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
+    .then(dish => res.json(dish))
+    .catch(next)
+}
+
 // // DELETE /dishes/:id/comments/:commentId
 // function commentDeleteRoute(req, res, next) {
 //   Dish.findById(req.params.id)
@@ -95,5 +95,6 @@ module.exports = {
   create: createRoute,
   show: showRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentCreate: commentCreateRoute
 }
