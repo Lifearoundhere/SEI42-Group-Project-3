@@ -1,11 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-import StarRatings from 'react-star-ratings'
-
+import ImgUploader from '../common/imgUploader'
 
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
+import dietary from '../../../db/data/dietaryData'
+import cuisineType from '../../../db/data/cuisineTypeData'
 
 class DishEdit extends React.Component {
 
@@ -14,27 +15,27 @@ class DishEdit extends React.Component {
     super()
     this.state = {
       formData: {
-        ratings: {
-          overall: 1,
-          fullness: 1,
-          healthiness: 1
-        }
+        comments: {
+          ratings: {
+            overall: 1,
+            fullness: 1,
+            healthiness: 1
+          }
+        },
+        imgUploadData: {}
 
       },
+      imagUploadData: {},
       errors: {}
     }
 
+    this.handleUpload = this.handleUpload.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleOverallChange = this.handleOverallChange.bind(this)
-    this.handleFullnessChange = this.handleFullnessChange.bind(this)
-    this.handleHealthinessChange = this.handleHealthinessChange.bind(this)
     this.handleTagChange = this.handleTagChange.bind(this)
-  }
-
-  componentDidMount() {
-    axios.get(`/api/dishes/${this.props.match.params.id}`)
-      .then(res => this.setState({ formData: res.data }))
+    this.handleDietaryChange = this.handleDietaryChange.bind(this)
+    this.handleCuisineChange = this.handleCuisineChange.bind(this)
+    this.handleUpload = this.handleUpload.bind(this)
   }
 
 
@@ -43,25 +44,22 @@ class DishEdit extends React.Component {
     const formData = { ...this.state.formData, tags: (selectedTags || []).map(option => option.value) }
     this.setState({ formData })
   }
+  handleDietaryChange(selectedTags) {
+    const formData = { ...this.state.formData, dietary: (selectedTags || []).map(option => option.value) }
+    this.setState({ formData })
+  }
+  handleCuisineChange(selectedTags) {
+    const formData = { ...this.state.formData, cuisineType: selectedTags.value }
+    this.setState({ formData })
+  }
 
+  handleUpload(imageData) {
+    console.log('image upload suceess...', imageData)
+    const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
+    this.setState({ formData })
+  }
   handleChange(e) {
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
-    this.setState({ formData })
-  }
-
-  handleOverallChange(e) {
-    const ratings = { ...this.state.formData.ratings, overall: e}
-    const formData = { ...this.state.formData, ratings }
-    this.setState({ formData })
-  }
-  handleFullnessChange(e) {
-    const ratings = { ...this.state.formData.ratings, fullness: e}
-    const formData = { ...this.state.formData, ratings }
-    this.setState({ formData })
-  }
-  handleHealthinessChange(e) {
-    const ratings = { ...this.state.formData.ratings, healthiness: e}
-    const formData = { ...this.state.formData, ratings }
     this.setState({ formData })
   }
 
@@ -78,8 +76,13 @@ class DishEdit extends React.Component {
 
   }
 
+  componentDidMount() {
+    axios.get(`/api/dishes/${this.props.match.params.id}`)
+      .then(res => this.setState({ formData: res.data }))
+  }
+
+
   render() {
-    console.log(this.state.formData.ratings.overall)
     return (
       <section className="section">
         <div className="container">
@@ -147,65 +150,57 @@ class DishEdit extends React.Component {
 
             <div className="field">
               <label className="label">Cuisine type</label>
-              <input
-                className="input"
+              <Select
                 name="cuisineType"
-                placeholder="eg: American, Ethiopian etc... If you want to add more than one please seperate them by comma (,)"
-                value={this.state.formData.cuisineType || ''}
-                onChange={this.handleChange}
+                options={cuisineType}
+                placeholder="eg: American, Ethiopian etc..."
+                onChange={this.handleCuisineChange}
+                className="basic-select"
+                classNamePrefix="select"
               />
               {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
             </div>
 
-            <h1>Image uploader</h1>
-
             <div className="field">
-              <label className="label">Overall rating</label>
-
-              <StarRatings
-                rating={this.state.formData.ratings.overall}
-                starRatedColor="blue"
-                changeRating={this.handleOverallChange}
-                numberOfStars={5}
-                name="overall"
+              <label className="label">Select tags</label>
+              <Select
+                isMulti
+                name="tags"
+                options={tags}
+                onChange={this.handleTagChange}
+                className="basic-multi-select"
+                classNamePrefix="select"
               />
-              {this.state.errors.overall && <small className="help is-danger">{this.state.errors.overall}</small>}
-            </div>
-
-            <div className="field">
-              <label className="label">How Fulling did was the dish?</label>
-              <h3 className="title is-5">Fullness</h3>
-              <StarRatings
-                rating={this.state.formData.ratings.fullness}
-                starRatedColor="orange"
-                changeRating={this.handleFullnessChange}
-                numberOfStars={5}
-                name='rating'
-              />
-              {this.state.errors.fullness && <small className="help is-danger">{this.state.errors.fullness}</small>}
+              {this.state.errors.tags && <small className="help is-danger">{this.state.errors.tags}</small>}
             </div>
             <div className="field">
-              <label className="label">How healthy the dish was?</label>
-              <StarRatings
-                rating={this.state.formData.ratings.healthiness}
-                starRatedColor="yellow"
-                changeRating={this.handleHealthinessChange}
-                numberOfStars={5}
-                name='rating'
+              <label className="label">Select dietary</label>
+              <Select
+                isMulti
+                name="dietary"
+                options={dietary}
+                onChange={this.handleDietaryChange}
+                className="basic-multi-select"
+                classNamePrefix="select"
               />
-              {this.state.errors.healthiness && <small className="help is-danger">{this.state.errors.healthiness}</small>}
+              {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
             </div>
-            <button className="button">Add your comments and ratings</button>
+
+
+            <div className="field">
+              <div className="file is-info is-medium">
+                <label className="file-label">
+                  <button className="button is-info is-medium">
+                    <ImgUploader parentCallback={this.handleUpload} />
+                  </button>
+                </label>
+              </div>
+            </div>
+
+
+            <button className="button">Save your changes</button>
           </form>
 
-          <Select
-            isMulti
-            name="cuisine"
-            options={tags}
-            onChange={this.handleTagChange}
-            className="basic-multi-select"
-            classNamePrefix="select"
-          />
         </div>
       </section>
 

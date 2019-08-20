@@ -24,7 +24,7 @@ class DishShow extends React.Component {
   componentDidMount() {
     axios.get(`/api/dishes/${this.props.match.params.id}`)
       .then(res => {
-        this.setState( {dish: res.data } )
+        this.setState({ dish: res.data })
       })
 
   }
@@ -54,9 +54,12 @@ class DishShow extends React.Component {
   // />
   // const {fullness, overall, healthiness} = this.state.ratings
 
+  // overall={this.state.dish.comments[0].ratings[0].overall}
+  // ratings={comment.ratings[0]}
+
   render() {
-    console.log(this.state)
     if(!this.state.dish) return null
+
     return (
       <section className="section ">
         <div className="container">
@@ -74,8 +77,10 @@ class DishShow extends React.Component {
               <div>
                 <p>Ratings</p>
                 <Ratings2
-                  overall={this.state.dish.comments[0].ratings[0].overall} fullness={this.state.dish.comments[0].ratings[0].fullness}
-                  healthiness={this.state.dish.comments[0].ratings[0].healthiness} />
+                  overall={this.state.dish.comments[0].overall}
+                  fullness={this.state.dish.comments[0].fullness}
+                  healthiness={this.state.dish.comments[0].healthiness}
+                />
               </div>
 
 
@@ -93,7 +98,9 @@ class DishShow extends React.Component {
                   key={comment._id}
                   user={comment.user}
                   content={comment.content}
-                  ratings={comment.ratings[0]}
+                  overall={comment.overall}
+                  fullness={comment.fullness}
+                  healthiness={comment.healthiness}
                   createdAt={comment.createdAt}
                   userImage="https://www.placecage.com/c/200/300"
                 />

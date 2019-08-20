@@ -16,10 +16,11 @@ class DishNew extends React.Component {
     super()
     this.state = {
       formData: {
-        ratings: {
+        comments: {
           overall: 1,
           fullness: 1,
           healthiness: 1
+
         },
         imgUploadData: {}
 
@@ -27,6 +28,7 @@ class DishNew extends React.Component {
       imgUploadData: {},
       errors: {}
     }
+
     this.handleUpload = this.handleUpload.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -38,6 +40,7 @@ class DishNew extends React.Component {
     this.handleCuisineChange = this.handleCuisineChange.bind(this)
     this.handleUpload = this.handleUpload.bind(this)
   }
+
 
 
   handleTagChange(selectedTags) {
@@ -63,19 +66,21 @@ class DishNew extends React.Component {
     this.setState({ formData })
   }
 
+
   handleOverallChange(e) {
-    const ratings = { ...this.state.formData.ratings, overall: e }
-    const formData = { ...this.state.formData, ratings }
+
+    const comments = { ...this.state.formData.comments, overall: e   }
+    const formData = { ...this.state.formData, comments  }
     this.setState({ formData })
   }
   handleFullnessChange(e) {
-    const ratings = { ...this.state.formData.ratings, fullness: e }
-    const formData = { ...this.state.formData, ratings }
+    const comments = { ...this.state.formData.comments, fullness: e   }
+    const formData = { ...this.state.formData, comments  }
     this.setState({ formData })
   }
   handleHealthinessChange(e) {
-    const ratings = { ...this.state.formData.ratings, healthiness: e }
-    const formData = { ...this.state.formData, ratings }
+    const comments = { ...this.state.formData.comments, healthiness: e   }
+    const formData = { ...this.state.formData, comments }
     this.setState({ formData })
   }
 
@@ -93,7 +98,7 @@ class DishNew extends React.Component {
   }
 
   render() {
-    console.log(this.state.formData)
+
     return (
       <section className="section">
         <div className="container">
@@ -172,42 +177,6 @@ class DishNew extends React.Component {
               {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
             </div>
 
-            <div className="field">
-              <label className="label">Overall rating</label>
-
-              <StarRatings
-                rating={this.state.formData.ratings.overall}
-                starRatedColor="blue"
-                changeRating={this.handleOverallChange}
-                numberOfStars={5}
-                name="overall"
-              />
-              {this.state.errors.overall && <small className="help is-danger">{this.state.errors.overall}</small>}
-            </div>
-
-            <div className="field">
-              <label className="label">How Fulling did was the dish?</label>
-              <h3 className="title is-5">Fullness</h3>
-              <StarRatings
-                rating={this.state.formData.ratings.fullness}
-                starRatedColor="orange"
-                changeRating={this.handleFullnessChange}
-                numberOfStars={5}
-                name='rating'
-              />
-              {this.state.errors.fullness && <small className="help is-danger">{this.state.errors.fullness}</small>}
-            </div>
-            <div className="field">
-              <label className="label">How healthy the dish was?</label>
-              <StarRatings
-                rating={this.state.formData.ratings.healthiness}
-                starRatedColor="yellow"
-                changeRating={this.handleHealthinessChange}
-                numberOfStars={5}
-                name='rating'
-              />
-              {this.state.errors.healthiness && <small className="help is-danger">{this.state.errors.healthiness}</small>}
-            </div>
 
             <div className="field">
               <label className="label">Select tags</label>
@@ -233,6 +202,8 @@ class DishNew extends React.Component {
               />
               {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
             </div>
+
+
             <div className="field">
               <div className="file is-info is-medium">
                 <label className="file-label">
@@ -242,6 +213,53 @@ class DishNew extends React.Component {
                 </label>
               </div>
             </div>
+
+
+            <div className="field">
+              <label className="label">Overall rating</label>
+
+              <StarRatings
+                rating={this.state.formData.comments.overall}
+                starRatedColor="blue"
+                changeRating={this.handleOverallChange}
+                numberOfStars={5}
+                name="overall"
+              />
+              {this.state.errors.overall && <small className="help is-danger">{this.state.errors.overall}</small>}
+            </div>
+
+
+            <div className="field">
+              <label className="label">How Fulling did was the dish?</label>
+              <StarRatings
+                rating={this.state.formData.comments.fullness}
+                starRatedColor="orange"
+                changeRating={this.handleFullnessChange}
+                numberOfStars={5}
+                name='rating'
+              />
+              {this.state.errors.fullness && <small className="help is-danger">{this.state.errors.fullness}</small>}
+            </div>
+            <div className="field">
+              <label className="label">How healthy the dish was?</label>
+              <StarRatings
+                rating={this.state.formData.comments.healthiness}
+                starRatedColor="yellow"
+                changeRating={this.handleHealthinessChange}
+                numberOfStars={5}
+                name='rating'
+              />
+              {this.state.errors.healthiness && <small className="help is-danger">{this.state.errors.healthiness}</small>}
+            </div>
+
+
+
+
+
+
+
+
+
             <button className="button">Add your dish</button>
           </form>
         </div>
