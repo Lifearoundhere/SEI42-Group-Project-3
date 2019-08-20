@@ -21,15 +21,14 @@ class ImgSlider extends React.Component {
       lazyLoad: true
 
     }
-    console.log(this.props.images)
     return (
       <div>
         <Slider {...settings}>
 
           {this.props.images.map( (image, i) =>
-            <div key = {i} >
+            <figure className="image" key = {i} >
               <img src={image}/>
-            </div>
+            </figure>
           )
           }
 
