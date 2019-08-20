@@ -11,21 +11,18 @@ module.exports = [{
     user: 'test',
     content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
     mostHelpful: 3,
-    ratings: [{
-      overall: 4,
-      fullness: 3,
-      healthiness: 5
-    }]
+    overall: 4,
+    fullness: 3,
+    healthiness: 5
+
   },
   {
     user: 'test2',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     mostHelpful: 3,
-    ratings: [{
-      overall: 1,
-      fullness: 2,
-      healthiness: 4
-    }]
+    overall: 1,
+    fullness: 2,
+    healthiness: 4
   }]
 }, {
   name: 'Falafel',
@@ -40,11 +37,10 @@ module.exports = [{
     user: 'test2',
     content: 'I like falafel, it tastes good.',
     mostHelpful: 3,
-    ratings: [{
-      overall: 3,
-      fullness: 2,
-      healthiness: 5
-    }]
+    overall: 3,
+    fullness: 2,
+    healthiness: 5
+
   }]
 }, {
   name: 'Chicken Katsu wrap',
@@ -59,10 +55,8 @@ module.exports = [{
     user: 'test3',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     mostHelpful: 1,
-    ratings: [{
-      overall: 5,
-      fullness: 5,
-      healthiness: 5
-    }]
+    overall: 5,
+    fullness: 5,
+    healthiness: 5
   }]
 }]

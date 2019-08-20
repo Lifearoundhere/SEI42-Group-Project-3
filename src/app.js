@@ -5,6 +5,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import { ToastContainer } from 'react-toastify'
 
+import DishEdit from './components/dishes/Edit'
 import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
 import UserShow from './components/users/User'
@@ -32,6 +33,8 @@ class App extends React.Component {
         <Switch>
 
           <SecureRoute path='/dishes/:id/comments' component={AddComment} />
+          <Route path="/dishes/:id/edit" component={DishEdit} />
+
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
           <Route path='/users/:id/edit' component={UserEdit} />
