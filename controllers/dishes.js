@@ -3,7 +3,6 @@ const Dish = require('../models/Dish')
 function indexRoute(req, res, next) {
   // get all the dishes from the database: MONGOOSE
   Dish.find(req.query)
-    .select('-comments') // remove the comments from this route ONLY
     .then(dishes => res.json(dishes)) // send them as JSON: EXPRESS
     .catch(next)
 }
@@ -23,8 +22,8 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   // the ID is now on req.params.id
   Dish.findById(req.params.id) // get the dish from the database: MONGOOSE
-    .populate({ path: 'user', select: '-email' }) // replace the user ID with the actual user object, and DON'T send the email address...
-    .populate({ path: 'comments.user', select: '-email' })
+    // .populate({ path: 'User', select: '-email' }) // replace the user ID with the actual user object, and DON'T send the email address...
+    // .populate({ path: 'comments.User', select: '-email' })
     .then(dish => {
       if(!dish) return res.sendStatus(404) // return a 404: EXPRESS
 

@@ -5,15 +5,16 @@ const ImgUploader = ({ parentCallback }) => {
   return (
     <ReactFilestack
       apikey={process.env.FILESTACK_KEY}
-      action='transform'
-      actionOptions={{
-        resize: {
-          width: 500
-        }
-      }}
+      // action='transform'
+      // actionOptions={{
+      //   resize: {
+      //     width: 500
+      //   }
+      // }}
       componentDisplayMode={{
-        type: 'button',
+        type: 'link',
         customText: 'upload an image'
+
       }}
       onSuccess={
         res => parentCallback(res)
