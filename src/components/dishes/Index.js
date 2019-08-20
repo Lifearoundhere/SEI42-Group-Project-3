@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-
+import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
+
+import dietaryData from '../../../db/data/dietaryData'
+import cuisineData from '../../../db/data/cuisineTypeData'
 
 
 
@@ -11,8 +14,24 @@ class Index extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      dishes: []
+      dishes: [],
+      cuisine: '',
+      dietary: '',
+      keyupValue: '',
+      sortTerm: 'price|asc'
+
     }
+    this.handleKeyUpChange = this.handleKeyUpChange.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
+  }
+  handleKeyUpChange(e) {
+    this.setState({ keyupValue: e.target.value })
+    console.log(e.target.value)
+  }
+
+  handleSelectChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+    console.log([e.target.name])
   }
 
   componentDidMount() {
@@ -20,9 +39,19 @@ class Index extends React.Component {
       .then(res => this.setState({ dishes: res.data }))
 
   }
+  filterDishes() {
+    const [field, order] = this.state.sortTerm.split('|')
+    const regex = new RegExp(this.state.keyupValue, 'i')
+    const filtered = _.filter(this.state.dishes, dish => {
+      return regex.test(dish.name) || dish.dietary === this.state.dietary || dish.cuisineType === this.state.cuisine
+    })
+    const sorted = _.orderBy(filtered, [field], [order])
 
+    return sorted
+  }
 
   render() {
+    console.log(this.filterDishes())
     return (
       <section className="section">
         <div className="container">
@@ -34,7 +63,7 @@ class Index extends React.Component {
                   <div className="field">
                     <label className="label">Search</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Ethiopian" />
+                      <input className="input" type="text" placeholder="Ethiopian" onKeyUp={this.handleKeyUpChange} />
                     </div>
                   </div>
                 </div>
@@ -43,14 +72,8 @@ class Index extends React.Component {
                     <label className="label">Dietary</label>
                     <div className="control">
                       <div className="select is-fullwidth">
-                        <select>
-                          <option>None</option>
-                          <option>Gluten/Coeliac</option>
-                          <option>Dairy/lactose</option>
-                          <option>Vegetarian</option>
-                          <option>Vegan</option>
-                          <option>Nut Allergies</option>
-                          <option>Fish and shellfish</option>
+                        <select name="dietary" onChange={this.handleSelectChange}>
+                          {dietaryData.map(({ value, label }, index) => <option key={index} value={value} >{label}</option>)}
                         </select>
                       </div>
                     </div>
@@ -61,28 +84,8 @@ class Index extends React.Component {
                     <label className="label">Cuisine</label>
                     <div className="control">
                       <div className="select is-fullwidth">
-                        <select>
-                          <option>None</option>
-                          <option>American</option>
-                          <option>Cajun</option>
-                          <option>Caribbean</option>
-                          <option>Chinese</option>
-                          <option>French</option>
-                          <option>German</option>
-                          <option>Greek</option>
-                          <option>Indian</option>
-                          <option>Italian</option>
-                          <option>Japanese</option>
-                          <option>Korean</option>
-                          <option>Lebanese</option>
-                          <option>Mediterranean</option>
-                          <option>Mexican</option>
-                          <option>Moroccan</option>
-                          <option>Soul</option>
-                          <option>Spanish</option>
-                          <option>Thai</option>
-                          <option>Turkish</option>
-                          <option>Vietnamese</option>
+                        <select name="cuisine" onChange={this.handleSelectChange}>
+                          {cuisineData.map(({ value, label }, index) => <option key={index} value={value} >{label}</option>)}
                         </select>
                       </div>
                     </div>
@@ -94,10 +97,9 @@ class Index extends React.Component {
                     <label className="label">Sort</label>
                     <div className="control">
                       <div className="select is-fullwidth">
-                        <select>
-                          <option>Price|High-Low</option>
-                          <option>Price|Low-High</option>
-                          <option>Rating|High-Low</option>
+                        <select name="sortTerm" onChange={this.handleSelectChange}>
+                          <option>price|asc</option>
+                          <option>price|desc</option>
                         </select>
                       </div>
                     </div>
@@ -110,7 +112,7 @@ class Index extends React.Component {
 
 
             <div className="column">
-              {this.state.dishes.map(dish =>
+              {this.filterDishes().map(dish =>
                 <div className="columns" key={dish._id}>
                   <Link to={`/dishes/${dish._id}`}>
                     <div className="card">
