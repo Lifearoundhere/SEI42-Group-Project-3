@@ -1,0 +1,22 @@
+module.exports = [
+  { value: 'American', label: 'American' },
+  { value: 'Cajun', label: 'Cajun' },
+  { value: 'Caribbean', label: 'Caribbean' },
+  { value: 'Chinese', label: 'Chinese' },
+  { value: 'French', label: 'French' },
+  { value: 'German', label: 'German' },
+  { value: 'Greek', label: 'Greek' },
+  { value: 'Indian', label: 'Indian' },
+  { value: 'Italian', label: 'Italian' },
+  { value: 'Japanese', label: 'Japanese' },
+  { value: 'Korean', label: 'Korean' },
+  { value: 'Lebanese', label: 'Lebanese' },
+  { value: 'Mediterranean', label: 'Mediterranean' },
+  { value: 'Mexican', label: 'Mexican' },
+  { value: 'Moroccan', label: 'Moroccan' },
+  { value: 'Soul', label: 'Soul' },
+  { value: 'Spanish', label: 'Spanish' },
+  { value: 'Thai', label: 'Thai' },
+  { value: 'Turkish', label: 'Turkish' },
+  { value: 'Vietnamese', label: 'Vietnamese' }
+]

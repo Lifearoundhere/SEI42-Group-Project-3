@@ -2,14 +2,6 @@ const mongoose = require('mongoose')
 const requiredMsg = 'Please provide a {PATH} of your dish.'
 // const requiredMsgVowel = 'Please provide an {PATH} of your dish.'
 
-const commentSchema = new mongoose.Schema({
-  content: {
-    type: String,
-    minlength: 20
-  },
-  mostHelpful: { type: Number }
-})
-
 const ratingSchema = new mongoose.Schema({
   overall: {
     type: Number,
@@ -28,6 +20,19 @@ const ratingSchema = new mongoose.Schema({
     max: 5
   }
 })
+const commentSchema = new mongoose.Schema({
+  user: {type: String},
+  // { type: mongoose.Schema.ObjectId, ref: 'User'}
+  content: {
+    type: String,
+    minlength: 20
+  },
+  ratings: [ratingSchema],
+  mostHelpful: { type: Number }
+},{
+  timestamps: true
+})
+
 
 
 const dishSchema = new mongoose.Schema({
@@ -40,8 +45,7 @@ const dishSchema = new mongoose.Schema({
   image: {type: [ String ] },
   tags: [ String ],
   comments: [commentSchema],
-  ratings: [ratingSchema],
-  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
+  dietary: [ String ]
 })
 
 module.exports = mongoose.model('Dish', dishSchema)

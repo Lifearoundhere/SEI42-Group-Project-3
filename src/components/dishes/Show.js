@@ -4,27 +4,32 @@ import ImgSlider from '../common/imgSlider'
 import { Link } from 'react-router-dom'
 
 
+import Ratings2 from '../common/Ratings2'
+import Comment from '../common/Comment'
 // import StarRatings from 'react-star-ratings'
-
-
 import MapComp from '../common/Map'
-import Ratings from '../common/Ratings'
+
 
 
 class DishShow extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+
+    }
+
   }
 
   componentDidMount() {
     axios.get(`/api/dishes/${this.props.match.params.id}`)
       .then(res => {
-        this.setState( {dish: res.data, ratings: res.data.ratings[0] } )
+        this.setState( {dish: res.data } )
       })
 
   }
+
+
 
   // <h3 className="title is-5">Overall Rating</h3>
   // <StarRatings
@@ -67,10 +72,10 @@ class DishShow extends React.Component {
                 <h2 className="column is-half-desktop title is-2">£ {this.state.dish.price}</h2>
               </div>
               <div>
-
-                <Ratings metaData={this.props}/>
-
-
+                <p>Ratings</p>
+                <Ratings2
+                  overall={this.state.dish.comments[0].ratings[0].overall} fullness={this.state.dish.comments[0].ratings[0].fullness}
+                  healthiness={this.state.dish.comments[0].ratings[0].healthiness} />
               </div>
 
 
@@ -83,7 +88,18 @@ class DishShow extends React.Component {
               <p className="title is-3">Cuisine: {this.state.dish.cuisineType}</p>
             </div>
             <div className="column is-full-desktop">
-              <h1>The comment component</h1>
+              {this.state.dish.comments.map((comment) =>
+                <Comment
+                  key={comment._id}
+                  user={comment.user}
+                  content={comment.content}
+                  ratings={comment.ratings[0]}
+                  createdAt={comment.createdAt}
+                  userImage="https://www.placecage.com/c/200/300"
+                />
+              )}
+
+
             </div>
 
 
