@@ -9,6 +9,7 @@ import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
 import UserShow from './components/users/User'
 import UserEdit from './components/users/Edit'
+import AddComment from './components/dishes/AddComment'
 
 import SecureRoute from './components/common/SecureRoute'
 
@@ -30,6 +31,7 @@ class App extends React.Component {
         <ToastContainer position="bottom-right" hideProgressBar={true} />
         <Switch>
 
+          <SecureRoute path='/dishes/:id/comments' component={AddComment} />
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
           <Route path='/users/:id/edit' component={UserEdit} />

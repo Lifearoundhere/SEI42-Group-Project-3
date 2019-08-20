@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
 import StarRatings from 'react-star-ratings'
-import Select from 'react-select'
+import ImgUploader from '../common/imgUploader'
+
 
 class AddComment extends React.Component {
 
@@ -10,6 +11,9 @@ class AddComment extends React.Component {
   constructor() {
     super()
     this.state = {
+      formData: {
+        comment: {}
+      },
       imgUploadData: {},
       errors: {}
     }
@@ -24,8 +28,8 @@ class AddComment extends React.Component {
 
   handleUpload(imageData) {
     console.log('image upload suceess...', imageData)
-    const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
-    this.setState({ formData })
+    const imgUploadData = { ...this.state.imgUploadData, image: (imageData.filesUploaded || []).map(option => option.url) }
+    this.setState({ imgUploadData })
   }
   handleChange(e) {
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
@@ -33,18 +37,15 @@ class AddComment extends React.Component {
   }
 
   handleOverallChange(e) {
-    const ratings = { ...this.state.formData.ratings, overall: e }
-    const formData = { ...this.state.formData, ratings }
+    const formData = { ...this.state.formData, overall: e }
     this.setState({ formData })
   }
   handleFullnessChange(e) {
-    const ratings = { ...this.state.formData.ratings, fullness: e }
-    const formData = { ...this.state.formData, ratings }
+    const formData = { ...this.state.formData, fullness: e }
     this.setState({ formData })
   }
   handleHealthinessChange(e) {
-    const ratings = { ...this.state.formData.ratings, healthiness: e }
-    const formData = { ...this.state.formData, ratings }
+    const formData = { ...this.state.formData, healthiness: e }
     this.setState({ formData })
   }
 
@@ -53,7 +54,7 @@ class AddComment extends React.Component {
     e.preventDefault()
 
     const token = Auth.getToken()
-    axios.post(('/api/dishes/:id/comments'), this.state.formData, {
+    axios.put((`/api/dishes/${this.props.match.params.id}/comments`), this.state.formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/dishes'))
@@ -67,85 +68,23 @@ class AddComment extends React.Component {
       <section className="section">
         <div className="container">
           <form onSubmit={this.handleSubmit}>
+
             <div className="field">
-              <label className="label">Name</label>
-              <input
-                className="input"
-                name="name"
-                placeholder="eg: Burger"
-                value={this.state.formData.name || ''}
+              <label className="label">Comment</label>
+              <textarea
+                name="content"
+                className="textarea"
+                placeholder="Add a comment..."
                 onChange={this.handleChange}
+                value={this.state.formData.content}
               />
-              {this.state.errors.name && <small className="help is-danger">{this.state.errors.name}</small>}
-            </div>
-
-            <div className="field">
-              <label className="label">Native name</label>
-              <input
-                className="input"
-                name="nativeName"
-                placeholder="eg: Hamburger"
-                value={this.state.formData.nativeName || ''}
-                onChange={this.handleChange}
-              />
-              {this.state.errors.nativeName && <small className="help is-danger">{this.state.errors.nativeName}</small>}
-            </div>
-
-            <div className="field">
-              <label className="label">Price</label>
-              <input
-                className="input"
-                name="price"
-                placeholder="eg: 4"
-                value={this.state.formData.price || ''}
-                onChange={this.handleChange}
-              />
-              {this.state.errors.price && <small className="help is-danger">{this.state.errors.price}</small>}
-            </div>
-
-            <div className="field">
-              <label className="label">Latitude - just for it to work now</label>
-              <input
-                className="input"
-                name="latitude"
-                placeholder="eg: 51.507351"
-                value={this.state.formData.latitude || ''}
-                onChange={this.handleChange}
-              />
-              {this.state.errors.latitude && <small className="help is-danger">{this.state.errors.latitude}</small>}
-            </div>
-
-            <div className="field">
-              <label className="label">Longitude - just for it to work now</label>
-              <input
-                className="input"
-                name="longitude"
-                placeholder="eg: -0.127758"
-                value={this.state.formData.longitude || ''}
-                onChange={this.handleChange}
-              />
-              {this.state.errors.longitude && <small className="help is-danger">{this.state.errors.longitude}</small>}
-            </div>
-
-
-            <div className="field">
-              <label className="label">Cuisine type</label>
-              <Select
-                name="cuisineType"
-                options={cuisineType}
-                placeholder="eg: American, Ethiopian etc..."
-                onChange={this.handleCuisineChange}
-                className="basic-select"
-                classNamePrefix="select"
-              />
-              {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
             </div>
 
             <div className="field">
               <label className="label">Overall rating</label>
 
               <StarRatings
-                rating={this.state.formData.ratings.overall}
+                rating={this.state.formData.overall}
                 starRatedColor="blue"
                 changeRating={this.handleOverallChange}
                 numberOfStars={5}
@@ -158,7 +97,7 @@ class AddComment extends React.Component {
               <label className="label">How Fulling did was the dish?</label>
               <h3 className="title is-5">Fullness</h3>
               <StarRatings
-                rating={this.state.formData.ratings.fullness}
+                rating={this.state.formData.fullness}
                 starRatedColor="orange"
                 changeRating={this.handleFullnessChange}
                 numberOfStars={5}
@@ -169,7 +108,7 @@ class AddComment extends React.Component {
             <div className="field">
               <label className="label">How healthy the dish was?</label>
               <StarRatings
-                rating={this.state.formData.ratings.healthiness}
+                rating={this.state.formData.healthiness}
                 starRatedColor="yellow"
                 changeRating={this.handleHealthinessChange}
                 numberOfStars={5}
@@ -179,30 +118,6 @@ class AddComment extends React.Component {
             </div>
 
             <div className="field">
-              <label className="label">Select tags</label>
-              <Select
-                isMulti
-                name="tags"
-                options={tags}
-                onChange={this.handleTagChange}
-                className="basic-multi-select"
-                classNamePrefix="select"
-              />
-              {this.state.errors.tags && <small className="help is-danger">{this.state.errors.tags}</small>}
-            </div>
-            <div className="field">
-              <label className="label">Select dietary</label>
-              <Select
-                isMulti
-                name="dietary"
-                options={dietary}
-                onChange={this.handleDietaryChange}
-                className="basic-multi-select"
-                classNamePrefix="select"
-              />
-              {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
-            </div>
-            <div className="field">
               <div className="file is-info is-medium">
                 <label className="file-label">
                   <button className="button is-info is-medium">
@@ -211,7 +126,7 @@ class AddComment extends React.Component {
                 </label>
               </div>
             </div>
-            <button className="button">Add your dish</button>
+            <button className="button">Add your comment</button>
           </form>
         </div>
       </section>
