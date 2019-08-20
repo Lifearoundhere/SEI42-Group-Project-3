@@ -1,7 +1,7 @@
 import React from 'react'
 // import Auth from '../../lib/Auth'
 
-const Comment = (({ user, createdAt, content}) => {
+const Comment = (({ user, createdAt, content, ratings, images}) => {
   return (
     <article className="media">
       <div className="media-content">
