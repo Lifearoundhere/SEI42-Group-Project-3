@@ -57,7 +57,7 @@ function deleteRoute(req, res, next) {
 // POST /dishes/:id/comments
 function commentCreateRoute(req, res, next) {
 
-  req.body.user = req.currentUser._id
+  // req.body.user = req.currentUser._id
 
   Dish.findById(req.params.id)
     .then(dish => {
@@ -65,7 +65,7 @@ function commentCreateRoute(req, res, next) {
       dish.comments.push(req.body)
       return dish.save()
     })
-    .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
+    // .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
     .then(dish => res.json(dish))
     .catch(next)
 }

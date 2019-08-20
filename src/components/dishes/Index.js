@@ -136,7 +136,7 @@ class Index extends React.Component {
                         <div className="column title is-quarter">Overall Rating</div>
                         <StarRatings
                           className="column is-quarter"
-                          rating={dish.comments[0].ratings[0].overall}
+                          rating={dish.comments[0].overall}
                           starDimension="40px"
                           starSpacing="15px"
                           starRatedColor="orange"

@@ -1,10 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import ImgSlider from '../common/imgSlider'
+import { Link } from 'react-router-dom'
+
+
 import Ratings2 from '../common/Ratings2'
 import Comment from '../common/Comment'
 // import StarRatings from 'react-star-ratings'
 import MapComp from '../common/Map'
+import Auth from '../../lib/Auth'
 
 
 
@@ -21,7 +25,7 @@ class DishShow extends React.Component {
   componentDidMount() {
     axios.get(`/api/dishes/${this.props.match.params.id}`)
       .then(res => {
-        this.setState( {dish: res.data } )
+        this.setState({ dish: res.data })
       })
 
   }
@@ -51,12 +55,23 @@ class DishShow extends React.Component {
   // />
   // const {fullness, overall, healthiness} = this.state.ratings
 
+  // overall={this.state.dish.comments[0].ratings[0].overall}
+  // ratings={comment.ratings[0]}
+
   render() {
     if(!this.state.dish) return null
+
     return (
       <section className="section ">
         <div className="container">
           <div className="columns is-multiline">
+            <div className="column is-full-desktop">
+              <Link to={`/dishes/${this.props.match.params.id}/comments`} className="button is-primary">
+                <strong>I ate this!</strong>
+              </Link>
+
+            </div>
+
             <div className="column is-half-desktop">
 
               <ImgSlider images={this.state.dish.image} />
@@ -70,12 +85,15 @@ class DishShow extends React.Component {
               <div>
                 <p>Ratings</p>
                 <Ratings2
-                  overall={this.state.dish.comments[0].ratings[0].overall} fullness={this.state.dish.comments[0].ratings[0].fullness}
-                  healthiness={this.state.dish.comments[0].ratings[0].healthiness} />
+                  overall={this.state.dish.comments[0].overall}
+                  fullness={this.state.dish.comments[0].fullness}
+                  healthiness={this.state.dish.comments[0].healthiness}
+                />
               </div>
 
 
             </div>
+
             <div className="column is-half-desktop">
               <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
@@ -89,16 +107,23 @@ class DishShow extends React.Component {
                   key={comment._id}
                   user={comment.user}
                   content={comment.content}
-                  ratings={comment.ratings[0]}
+                  overall={comment.overall}
+                  fullness={comment.fullness}
+                  healthiness={comment.healthiness}
                   createdAt={comment.createdAt}
                   userImage="https://www.placecage.com/c/200/300"
                 />
               )}
-
-
             </div>
+
           </div>
         </div>
+        <footer>
+          <Link
+            className="button"
+            to={`/dishes/${this.state.dish._id}/edit`}
+          >Edit</Link>
+        </footer>
       </section>
     )
   }
