@@ -8,7 +8,6 @@ import Ratings2 from '../common/Ratings2'
 import Comment from '../common/Comment'
 // import StarRatings from 'react-star-ratings'
 import MapComp from '../common/Map'
-import { Link } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
 

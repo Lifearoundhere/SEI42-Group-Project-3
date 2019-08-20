@@ -12,7 +12,11 @@ class AddComment extends React.Component {
     super()
     this.state = {
       formData: {
-        comment: {}
+        content: '',
+        overall: 1,
+        fullness: 1,
+        healthiness: 1
+
       },
       imgUploadData: {},
       errors: {}
@@ -45,7 +49,7 @@ class AddComment extends React.Component {
     this.setState({ formData })
   }
   handleHealthinessChange(e) {
-    const formData = { ...this.state.formData, healthiness: e }
+    const formData = { ...this.state.formData, healthiness: e}
     this.setState({ formData })
   }
 
@@ -57,7 +61,7 @@ class AddComment extends React.Component {
     axios.put((`/api/dishes/${this.props.match.params.id}/comments`), this.state.formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(() => this.props.history.push('/dishes'))
+      .then(() => this.props.history.push(`/dishes/${this.props.match.params.id}`))
       .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
