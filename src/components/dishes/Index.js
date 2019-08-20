@@ -2,11 +2,14 @@ import React from 'react'
 import axios from 'axios'
 
 import { Link } from 'react-router-dom'
+import StarRatings from 'react-star-ratings'
+
+
 
 class Index extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       dishes: []
     }
@@ -15,6 +18,7 @@ class Index extends React.Component {
   componentDidMount() {
     axios.get('/api/dishes')
       .then(res => this.setState({ dishes: res.data }))
+
   }
 
 
@@ -111,7 +115,30 @@ class Index extends React.Component {
                   <Link to={`/dishes/${dish._id}`}>
                     <div className="card">
                       <div className="card-header">
-                        <h2 className="card-header-title">{dish.name}</h2>
+                        <h2 className="column is-half title">{dish.name} </h2>
+
+                        <h2 className="column is-half title" > £{dish.price}</h2>
+                      </div>
+
+                      <div className="card-image">
+                        <figure className="image">
+                          <img src={dish.image} alt={dish.name} />
+                        </figure>
+                      </div>
+                      <div className="columns is-multiline">
+                        <div className="column title is-quarter">{dish.cuisineType} </div>
+
+                        <div className="column title is-quarter">Dietary </div>
+
+
+                        <div className="column title is-quarter">Overall Rating</div>
+                        <StarRatings
+                          className="column is-quarter"
+                          rating={dish.comments[0].ratings[0].overall}
+                          starDimension="40px"
+                          starSpacing="15px"
+                          starRatedColor="orange"
+                        />
                       </div>
                     </div>
                   </Link>

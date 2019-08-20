@@ -9,6 +9,12 @@ import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
 import UserShow from './components/users/User'
 import UserEdit from './components/users/Edit'
+
+import SecureRoute from './components/common/SecureRoute'
+
+
+
+import DishNew from './components/dishes/New'
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 import Home from './components/pages/Home'
@@ -24,6 +30,7 @@ class App extends React.Component {
         <ToastContainer position="bottom-right" hideProgressBar={true} />
         <Switch>
 
+          <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
           <Route path='/users/:id/edit' component={UserEdit} />
           <Route path='/users/:id' component={UserShow} />

@@ -2,6 +2,12 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
+const env = process.env.NODE_ENV === 'production' ? (
+  new webpack.EnvironmentPlugin({ ...process.env })
+) : (
+  new Dotenv()
+)
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -16,10 +22,12 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader',
         options: {
-          outputPath: 'webpack-assets/', // Output location for assets. Final: `app/assets/webpack/webpack-assets/`
-          publicPath: 'webpack-assets/' // Endpoint asset can be found at on Rails server
+          outputPath: 'webpack-assets/', // Output location for assets.
+          publicPath: 'webpack-assets/' // Endpoint asset
         }
-      }
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' }
 
     ]
   },
@@ -40,6 +48,6 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     }),
-    new Dotenv()
+    env
   ]
 }

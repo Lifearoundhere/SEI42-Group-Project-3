@@ -1,3 +1,5 @@
+
+
 #marker {
   a:hover {
     cursor: pointer;
@@ -65,3 +67,6 @@
     background-color: #95CDBA;
   }
 }
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import '~bulma'

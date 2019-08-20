@@ -1,82 +1,54 @@
 import React from 'react'
 import axios from 'axios'
-
 import StarRatings from 'react-star-ratings'
-
-
-
-
-// import Auth from '../../lib/Auth'
-
-
 
 class Ratings extends React.Component {
 
-  constructor(){
-    super()
-    this.state = {
-      dish: {},
-      ratings: {
-        overall: 1,
-        fullness: 1,
-        healthiness: 1
-      }
-    }
+
+  constructor(props) {
+    super(props)
+    this.state = {}
   }
 
   componentDidMount() {
+    axios.get(`/api/dishes/${this.props.metaData.match.params.id}`)
+      .then(res => {
+        this.setState( {dish: res.data, ratings: res.data.ratings[0] } )
+      })
 
-
-    axios.get(`/api/stations/${this.props.match.params.id}`)
-      .then(res => this.setState({ dish: res.data }))
-
-  }
-  //
-  changeRating(e) {
-    this.setState({
-      ratings: {
-        overall: e,
-        fullness: e,
-        healthiness: e
-      }
-    })
   }
 
 
 
-  render (){
-    if(!this.state.dish) return <h1>Loadins...</h1>
+  render() {
+    if(!this.state.dish) return <h1>loading</h1>
+    const {fullness, overall, healthiness} = this.state.ratings
     return (
-      <div className="container">
+      <div>
         <h3 className="title is-5">Overall Rating</h3>
         <StarRatings
-          rating={this.state.overall}
-          starRatedColor="blue"
-          changeRating={this.changeRating}
-          numberOfStars={5}
-          name='rating'
+          rating={overall}
+          starDimension="40px"
+          starSpacing="15px"
+          starRatedColor="orange"
         />
         <h3 className="title is-5">Fullness</h3>
         <StarRatings
-          rating={this.state.fullness}
-          starRatedColor="orange"
-          changeRating={this.changeRating}
-          numberOfStars={5}
-          name='rating'
+          rating={fullness}
+          starDimension="40px"
+          starSpacing="15px"
+          starRatedColor="red"
         />
         <h3 className="title is-5">Healthiness</h3>
         <StarRatings
-          rating={this.state.healthiness}
-          starRatedColor="yellow"
-          changeRating={this.changeRating}
-          numberOfStars={5}
-          name='rating'
+          rating={healthiness}
+          starDimension="40px"
+          starSpacing="15px"
+          starRatedColor="green"
         />
       </div>
-
     )
   }
 }
-
 
 export default Ratings
