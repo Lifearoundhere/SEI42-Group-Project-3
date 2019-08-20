@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import ImgSlider from '../common/imgSlider'
+import { Link } from 'react-router-dom'
+
 
 // import StarRatings from 'react-star-ratings'
 
@@ -83,8 +85,19 @@ class DishShow extends React.Component {
             <div className="column is-full-desktop">
               <h1>The comment component</h1>
             </div>
+
+
+
+
+
           </div>
         </div>
+        <footer>
+          <Link
+            className="button"
+            to={`/dishes/${this.state.dish._id}/edit`}
+          >Edit</Link>
+        </footer>
       </section>
     )
   }

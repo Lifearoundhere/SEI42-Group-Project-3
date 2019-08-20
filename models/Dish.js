@@ -40,7 +40,8 @@ const dishSchema = new mongoose.Schema({
   image: {type: [ String ] },
   tags: [ String ],
   comments: [commentSchema],
-  ratings: [ratingSchema]
+  ratings: [ratingSchema],
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
 })
 
 module.exports = mongoose.model('Dish', dishSchema)

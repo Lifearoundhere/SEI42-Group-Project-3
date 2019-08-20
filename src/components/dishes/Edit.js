@@ -4,11 +4,10 @@ import Auth from '../../lib/Auth'
 import StarRatings from 'react-star-ratings'
 
 
-import ImgUploader from '../common/imgUploader'
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
 
-class DishNew extends React.Component {
+class DishEdit extends React.Component {
 
 
   constructor() {
@@ -22,10 +21,9 @@ class DishNew extends React.Component {
         }
 
       },
-      imgUploadData: {},
       errors: {}
     }
-    this.handleUpload = this.handleUpload.bind(this)
+
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleOverallChange = this.handleOverallChange.bind(this)
@@ -34,10 +32,12 @@ class DishNew extends React.Component {
     this.handleTagChange = this.handleTagChange.bind(this)
   }
 
-  handleUpload(imageData) {
-    console.log('image upload suceess...', imageData)
-    this.setState({ imgUploadData: imageData })
+  componentDidMount() {
+    axios.get(`/api/dishes/${this.props.match.params.id}`)
+      .then(res => this.setState({ formData: res.data }))
   }
+
+
 
   handleTagChange(selectedTags) {
     const formData = { ...this.state.formData, tags: (selectedTags || []).map(option => option.value) }
@@ -70,16 +70,16 @@ class DishNew extends React.Component {
     e.preventDefault()
 
     const token = Auth.getToken()
-    axios.post(('/api/dishes'), this.state.formData, {
+    axios.put((`/api/dishes/${this.props.match.params.id}`), this.state.formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(() => this.props.history.push('/dishes'))
+      .then(() => this.props.history.push(`/dishes/${this.props.match.params.id}`))
       .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
 
   render() {
-    console.log(this.state.formData)
+    console.log(this.state.formData.ratings.overall)
     return (
       <section className="section">
         <div className="container">
@@ -157,7 +157,7 @@ class DishNew extends React.Component {
               {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
             </div>
 
-            <ImgUploader parentCallback={this.handleUpload} />
+            <h1>Image uploader</h1>
 
             <div className="field">
               <label className="label">Overall rating</label>
@@ -195,7 +195,7 @@ class DishNew extends React.Component {
               />
               {this.state.errors.healthiness && <small className="help is-danger">{this.state.errors.healthiness}</small>}
             </div>
-            <button className="button">Add your dish</button>
+            <button className="button">Add your comments and ratings</button>
           </form>
 
           <Select
@@ -214,4 +214,4 @@ class DishNew extends React.Component {
 
 }
 
-export default DishNew
+export default DishEdit

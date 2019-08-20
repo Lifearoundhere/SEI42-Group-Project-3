@@ -6,6 +6,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import SecureRoute from './components/common/SecureRoute'
 
+import DishEdit from './components/dishes/Edit'
 import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
 import DishNew from './components/dishes/New'
@@ -22,6 +23,8 @@ class App extends React.Component {
       <HashRouter>
         <Navbar />
         <Switch>
+
+          <Route path="/dishes/:id/edit" component={DishEdit} />
 
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
