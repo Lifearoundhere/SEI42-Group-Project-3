@@ -26,10 +26,11 @@ class ImgSlider extends React.Component {
         <Slider {...settings}>
 
           {this.props.images.map( (image, i) =>
-            <div key = {i} >
+            <div className="image" key = {i} >
               <img src={image}/>
             </div>
           )}
+
 
         </Slider>
       </div>
