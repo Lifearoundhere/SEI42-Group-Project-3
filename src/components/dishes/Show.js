@@ -48,6 +48,7 @@ class DishShow extends React.Component {
   // const {fullness, overall, healthiness} = this.state.ratings
 
   render() {
+    console.log(this.state)
     if(!this.state.dish) return null
     return (
       <section className="section ">
