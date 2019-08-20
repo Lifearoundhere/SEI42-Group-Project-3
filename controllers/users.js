@@ -19,9 +19,21 @@ function showRoute(req, res, next) {
     .catch(next)
 }
 
+function updateRoute(req, res, next) {
+  User.findById(req.params.id) // get the user from the database: MONGOOSE
+    .then(user => {
+      if(!user) return res.sendStatus(404) // return a 404: EXPRESS
+      return user.set(req.body) // update the user with the request data
+    })
+    .then(user => user.save()) // save the user: MONGOOSE
+    .then(user => res.json(user)) // send the updated user: EXPRESS
+    .catch(next)
+}
+
 
 
 module.exports = {
   index: indexRoute,
-  show: showRoute
+  show: showRoute,
+  update: updateRoute
 }

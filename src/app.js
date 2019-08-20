@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom'
 import Navbar from './components/common/Navbar'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
-
-import SecureRoute from './components/common/SecureRoute'
+import { ToastContainer } from 'react-toastify'
 
 import DishEdit from './components/dishes/Edit'
 import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
+import UserShow from './components/users/User'
+import UserEdit from './components/users/Edit'
+
+import SecureRoute from './components/common/SecureRoute'
+
+
+
 import DishNew from './components/dishes/New'
 import Register from './components/auth/register'
 import Login from './components/auth/login'
@@ -22,12 +28,15 @@ class App extends React.Component {
     return (
       <HashRouter>
         <Navbar />
+        <ToastContainer position="bottom-right" hideProgressBar={true} />
         <Switch>
 
           <Route path="/dishes/:id/edit" component={DishEdit} />
 
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
+          <Route path='/users/:id/edit' component={UserEdit} />
+          <Route path='/users/:id' component={UserShow} />
           <Route path='/dishes' component={DishesIndex} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />

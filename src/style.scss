@@ -5,6 +5,68 @@
     cursor: pointer;
   }
 }
+.tag {
+  &.is-burger {
+    color: white;
+    background-color: #B36305
+  }
+
+  &.is-beer {
+    color: white;
+    background-color: #E32017;
+  }
+
+  &.is-steak {
+    background-color: #FFD300;
+  }
+
+  &.is-pizza {
+    color: white;
+    background-color: #00782A;
+  }
+
+  &.is-icecreams {
+    color: white;
+    background-color: #00A4A7;
+  }
+
+  &.is-desserts {
+    background-color: #F3A9BB;
+  }
+
+  &.is-noodles {
+    background-color: #A0A5A9;
+  }
+
+  &.is-wine {
+    color: white;
+    background-color: #9B0056;
+  }
+
+  &.is-gin {
+    color: white;
+    background-color: #000;
+  }
+
+  &.is-sushi {
+    color: white;
+    background-color: #EE7C0E;
+  }
+
+  &.is-smoothie {
+    color: white;
+    background-color: #003688;
+  }
+
+  &.is-juice {
+    color: white;
+    background-color: #0098D4;
+  }
+
+  &.is-chocolate {
+    background-color: #95CDBA;
+  }
+}
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 @import '~bulma'

@@ -13,7 +13,6 @@ class Navbar extends React.Component {
   }
   logout() {
     Auth.removeToken()
-    console.log(this.props)
     this.props.history.push('/')
   }
 
@@ -44,8 +43,8 @@ class Navbar extends React.Component {
           </div>
         </div>
         <div className="navbar-end">
+          {Auth.isAuthenticated() && <p className="navbar-item"> <Link to={`/users/${Auth.getPayload().sub}`}> Profile <img src="#"/> </Link></p> }
           {Auth.isAuthenticated() && <a onClick={this.logout} className="navbar-item">Logout</a>}
-          {Auth.isAuthenticated() && <p className="navbar-item">{Auth.getUserInfo()}</p>}
           <div className="navbar-item">
             <div className="buttons">
               {!Auth.isAuthenticated() && <Link to="/register" className="button is-primary">
