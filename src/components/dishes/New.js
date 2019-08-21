@@ -107,7 +107,6 @@ class DishNew extends React.Component {
   }
 
   render() {
-    console.dir(this.state.errors)
     const { name, price, nativeName, cuisineType } = this.state.errors
     return (
       <section className="section">
@@ -122,7 +121,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.name || ''}
                 onChange={this.handleChange}
               />
-              {name && <small className="help is-danger">{name.message}</small>}
+              {name && <small className="help is-danger">{name}</small>}
             </div>
 
             <div className="field">
@@ -134,7 +133,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.nativeName || ''}
                 onChange={this.handleChange}
               />
-              {nativeName && <small className="help is-danger">{nativeName.message}</small>}
+              {nativeName && <small className="help is-danger">{nativeName}</small>}
             </div>
 
             <div className="field">
@@ -146,7 +145,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.price || ''}
                 onChange={this.handleChange}
               />
-              {price && <small className="help is-danger">{price.message}</small>}
+              {price && <small className="help is-danger">{price}</small>}
             </div>
 
             <div className="field">
@@ -167,7 +166,7 @@ class DishNew extends React.Component {
                 className="basic-select"
                 classNamePrefix="select"
               />
-              {cuisineType && <small className="help is-danger">{price.cuisineType}</small>}
+              {cuisineType && <small className="help is-danger">{cuisineType}</small>}
             </div>
 
 
