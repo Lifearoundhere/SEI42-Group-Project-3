@@ -15,17 +15,17 @@ import Ratings2 from './Ratings2'
 // fullness={fullness}
 // healthiness={healthiness}
 
-const Comment = (({ user, createdAt, content, overall, fullness, healthiness, userImage }) => {
+const Comment = (({ user, createdAt, content, overall, fullness, healthiness }) => {
 
   return (
     <article className="media">
       <div className="media-left is-48x48">
-        <img src={userImage} />
+        {user && <img src={user.img} />}
       </div>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{user}</strong>
+            {user && <strong>{user.username}</strong>}
             {' '}
             <small>{(new Date(createdAt)).toLocaleString()}</small>
             <br />

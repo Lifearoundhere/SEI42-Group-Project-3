@@ -48,7 +48,8 @@ describe('GET /dishes/:id', () => {
           'cuisineType',
           'tags',
           'image',
-          'ratings',
+          'comments',
+          'dietary',
           '__v'
         ])
         done()
@@ -64,10 +65,13 @@ describe('GET /dishes/:id', () => {
         expect(res.body.price).to.be.an('number')
         expect(res.body.latitude).to.be.a('number')
         expect(res.body.longitude).to.be.a('number')
-        expect(res.body.cuisineType).to.be.a('array')
-        expect(res.body.tags).to.be.a('array')
-        expect(res.body.comments).to.be.a('array')
-        expect(res.body.ratings).to.be.a('array')
+        expect(res.body.cuisineType).to.be.an('array')
+        expect(res.body.tags).to.be.an('array')
+        expect(res.body.comments).to.be.an('array')
+        expect(res.body.image).to.be.an('array')
+        expect(res.body.dietary).to.be.an('array')
+
+
         done()
       })
   })

@@ -22,8 +22,8 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   // the ID is now on req.params.id
   Dish.findById(req.params.id) // get the dish from the database: MONGOOSE
-    // .populate({ path: 'User', select: '-email' }) // replace the user ID with the actual user object, and DON'T send the email address...
-    // .populate({ path: 'comments.User', select: '-email' })
+    .populate({ path: 'user', select: '-email' }) // replace the user ID with the actual user object, and DON'T send the email address...
+    .populate({ path: 'comments.user', select: '-email' })
     .then(dish => {
       if(!dish) return res.sendStatus(404) // return a 404: EXPRESS
 
@@ -57,7 +57,7 @@ function deleteRoute(req, res, next) {
 // POST /dishes/:id/comments
 function commentCreateRoute(req, res, next) {
 
-  // req.body.user = req.currentUser._id
+  req.body.user = req.currentUser._id
 
   Dish.findById(req.params.id)
     .then(dish => {
@@ -65,7 +65,7 @@ function commentCreateRoute(req, res, next) {
       dish.comments.push(req.body)
       return dish.save()
     })
-    // .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
+    .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!
     .then(dish => res.json(dish))
     .catch(next)
 }
