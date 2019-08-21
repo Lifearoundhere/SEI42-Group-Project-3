@@ -49,6 +49,10 @@ class DishShow extends React.Component {
               <Link to={`/dishes/${this.props.match.params.id}/comments`} className="button is-primary">
                 <strong>I ate this!</strong>
               </Link>
+              {Auth.isAuthenticated() && <Link
+                className="button is-primary"
+                to={`/dishes/${this.state.dish._id}/edit`}
+              >Edit</Link>}
 
             </div>
 
@@ -98,16 +102,7 @@ class DishShow extends React.Component {
 
           </div>
         </div>
-        <footer>
-          {Auth.isAuthenticated() && <Link
-            className="button"
-            to={`/dishes/${this.state.dish._id}/comments`}
-          >I have also eaten it!</Link>}
-          {Auth.isAuthenticated() && <Link
-            className="button"
-            to={`/dishes/${this.state.dish._id}/edit`}
-          >Edit</Link>}
-        </footer>
+
       </section>
     )
   }
