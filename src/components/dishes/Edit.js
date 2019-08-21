@@ -1,15 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-import StarRatings from 'react-star-ratings'
 import ImgUploader from '../common/imgUploader'
-import Map from '../common/MapBox'
+
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
 import dietary from '../../../db/data/dietaryData'
 import cuisineType from '../../../db/data/cuisineTypeData'
 
-class DishNew extends React.Component {
+class DishEdit extends React.Component {
 
 
   constructor() {
@@ -17,32 +16,26 @@ class DishNew extends React.Component {
     this.state = {
       formData: {
         comments: {
-          overall: 1,
-          fullness: 1,
-          healthiness: 1
+          ratings: {
+            overall: 1,
+            fullness: 1,
+            healthiness: 1
+          }
         },
         imgUploadData: {}
 
       },
-      imgUploadData: {},
-      errors: {},
-      tempLocation: {
-        longitude: 0.0722,
-        latitude: 51.5153
-      }
+      imagUploadData: {},
+      errors: {}
     }
 
     this.handleUpload = this.handleUpload.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleOverallChange = this.handleOverallChange.bind(this)
-    this.handleFullnessChange = this.handleFullnessChange.bind(this)
-    this.handleHealthinessChange = this.handleHealthinessChange.bind(this)
     this.handleTagChange = this.handleTagChange.bind(this)
     this.handleDietaryChange = this.handleDietaryChange.bind(this)
     this.handleCuisineChange = this.handleCuisineChange.bind(this)
     this.handleUpload = this.handleUpload.bind(this)
-    this.handleMapDrag = this.handleMapDrag.bind(this)
   }
 
 
@@ -61,53 +54,37 @@ class DishNew extends React.Component {
   }
 
   handleUpload(imageData) {
-    console.log('image upload suceess...', imageData)
+    // console.log('image upload suceess...', imageData)
+    console.log(this.state.errors.comments)
     const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
     this.setState({ formData })
   }
   handleChange(e) {
+
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
     this.setState({ formData })
   }
 
 
-  handleOverallChange(e) {
-
-    const comments = { ...this.state.formData.comments, overall: e }
-    const formData = { ...this.state.formData, comments }
-    this.setState({ formData })
-  }
-  handleFullnessChange(e) {
-    const comments = { ...this.state.formData.comments, fullness: e }
-    const formData = { ...this.state.formData, comments }
-    this.setState({ formData })
-  }
-  handleHealthinessChange(e) {
-    const comments = { ...this.state.formData.comments, healthiness: e }
-    const formData = { ...this.state.formData, comments }
-    this.setState({ formData })
-  }
-  handleMapDrag(val) {
-    let formData = { ...this.state.formData, latitude: val.latitude }
-    this.setState({ formData })
-    formData = { ...this.state.formData, longitude: val.longitude }
-    this.setState({ formData })
-  }
-
   handleSubmit(e) {
     e.preventDefault()
 
     const token = Auth.getToken()
-    axios.post(('/api/dishes'), this.state.formData, {
+    axios.put((`/api/dishes/${this.props.match.params.id}`), this.state.formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(() => this.props.history.push('/dishes'))
+      .then(() => this.props.history.push(`/dishes/${this.props.match.params.id}`))
       .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
 
+  componentDidMount() {
+    axios.get(`/api/dishes/${this.props.match.params.id}`)
+      .then(res => this.setState({ formData: res.data }))
+  }
+
+
   render() {
-    const { name, price, nativeName, cuisineType } = this.state.errors
     return (
       <section className="section">
         <div className="container">
@@ -121,11 +98,11 @@ class DishNew extends React.Component {
                 value={this.state.formData.name || ''}
                 onChange={this.handleChange}
               />
-              {name && <small className="help is-danger">{name}</small>}
+              {this.state.errors.comments.content && <small className="help is-danger">{this.state.errors.comments.content.message}</small>}
             </div>
 
             <div className="field">
-              <label className="label">Native name</label>
+              <label className="label">Natvie name</label>
               <input
                 className="input"
                 name="nativeName"
@@ -133,7 +110,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.nativeName || ''}
                 onChange={this.handleChange}
               />
-              {nativeName && <small className="help is-danger">{nativeName}</small>}
+              {this.state.errors.nativeName && <small className="help is-danger">{this.state.errors.nativeName}</small>}
             </div>
 
             <div className="field">
@@ -145,16 +122,33 @@ class DishNew extends React.Component {
                 value={this.state.formData.price || ''}
                 onChange={this.handleChange}
               />
-              {price && <small className="help is-danger">{price}</small>}
+              {this.state.errors.price && <small className="help is-danger">{this.state.errors.price}</small>}
             </div>
 
             <div className="field">
-              <label className="label">Location</label>
-
-              <Map location={this.state.tempLocation} onDragged={this.handleMapDrag} />
-
-
+              <label className="label">Latitude - just for it to work now</label>
+              <input
+                className="input"
+                name="latitude"
+                placeholder="eg: 51.507351"
+                value={this.state.formData.latitude || ''}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.latitude && <small className="help is-danger">{this.state.errors.latitude}</small>}
             </div>
+
+            <div className="field">
+              <label className="label">Longitude - just for it to work now</label>
+              <input
+                className="input"
+                name="longitude"
+                placeholder="eg: -0.127758"
+                value={this.state.formData.longitude || ''}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.longitude && <small className="help is-danger">{this.state.errors.longitude}</small>}
+            </div>
+
 
             <div className="field">
               <label className="label">Cuisine type</label>
@@ -166,9 +160,8 @@ class DishNew extends React.Component {
                 className="basic-select"
                 classNamePrefix="select"
               />
-              {cuisineType && <small className="help is-danger">{cuisineType}</small>}
+              {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
             </div>
-
 
             <div className="field">
               <label className="label">Select tags</label>
@@ -180,7 +173,7 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-
+              {this.state.errors.tags && <small className="help is-danger">{this.state.errors.tags}</small>}
             </div>
             <div className="field">
               <label className="label">Select dietary</label>
@@ -192,7 +185,7 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-
+              {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
             </div>
 
 
@@ -207,45 +200,9 @@ class DishNew extends React.Component {
             </div>
 
 
-            <div className="field">
-              <label className="label">Overall rating</label>
-
-              <StarRatings
-                rating={this.state.formData.comments.overall}
-                starRatedColor="blue"
-                changeRating={this.handleOverallChange}
-                numberOfStars={5}
-                name="overall"
-              />
-
-            </div>
-
-
-            <div className="field">
-              <label className="label">How Fulling did was the dish?</label>
-              <StarRatings
-                rating={this.state.formData.comments.fullness}
-                starRatedColor="orange"
-                changeRating={this.handleFullnessChange}
-                numberOfStars={5}
-                name='rating'
-              />
-
-            </div>
-            <div className="field">
-              <label className="label">How healthy the dish was?</label>
-              <StarRatings
-                rating={this.state.formData.comments.healthiness}
-                starRatedColor="yellow"
-                changeRating={this.handleHealthinessChange}
-                numberOfStars={5}
-                name='rating'
-              />
-
-            </div>
-
-            <button className="button">Add your dish</button>
+            <button className="button">Save your changes</button>
           </form>
+
         </div>
       </section>
 
@@ -254,4 +211,4 @@ class DishNew extends React.Component {
 
 }
 
-export default DishNew
+export default DishEdit

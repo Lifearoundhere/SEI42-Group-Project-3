@@ -8,8 +8,14 @@ const { dbURI } = require('../config/environment')
 
 mongoose.connect(dbURI, { useNewUrlParser: true })
   .then(() => mongoose.connection.db.dropDatabase())
-  .then(() => Dish.create(dishData))
   .then(() => User.create(userData))
+  .then(userData => {
+    const dishDataWithUser = dishData.map(data => {
+      data.user = userData[0]
+      return data
+    })
+    return Dish.create(dishDataWithUser)
+  })
   .then(() => console.log('The seeds are here!'))
   .catch((err) => console.log(err))
   .finally(() => mongoose.connection.close())

@@ -2,16 +2,32 @@ import React from 'react'
 import Ratings2 from './Ratings2'
 // import Auth from '../../lib/Auth'
 
-const Comment = (({ user, createdAt, content, ratings, userImage }) => {
+// <div className="media-right">
+//   <Ratings2
+//     overall={ratings.overall}
+//     fullness={ratings.fullness}
+//     healthiness={ratings.healthiness} />
+// </div>
+
+// ratings,
+
+
+// fullness={fullness}
+// healthiness={healthiness}
+
+const Comment = (({ user, createdAt, content, overall, fullness, healthiness }) => {
+
   return (
     <article className="media">
-      <div className="media-left is-48x48">
-        <img src={userImage} />
+      <div className="media-left">
+        <figure className="image is-128x128">
+          {user && <img src={user.img} />}
+        </figure>
       </div>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{user}</strong>
+            {user && <strong>{user.username}</strong>}
             {' '}
             <small>{(new Date(createdAt)).toLocaleString()}</small>
             <br />
@@ -19,12 +35,17 @@ const Comment = (({ user, createdAt, content, ratings, userImage }) => {
           </p>
         </div>
       </div>
+
       <div className="media-right">
         <Ratings2
-          overall={ratings.overall}
-          fullness={ratings.fullness}
-          healthiness={ratings.healthiness} />
+          overall={overall}
+          fullness={fullness}
+          healthiness={healthiness}
+        />
       </div>
+
+
+
     </article>
   )
 })

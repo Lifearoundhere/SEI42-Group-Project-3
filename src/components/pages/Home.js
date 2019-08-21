@@ -51,7 +51,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(process.env)
     if (this.state.loading) return <p>loading...</p>
     return (
       <Map

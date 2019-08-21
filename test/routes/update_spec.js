@@ -1,9 +1,10 @@
-/* global api, describe, it, expect, afterEach, beforeEach */
+/* global api, describe, it, expect, beforeEach, afterEach */
 const Dish = require('../../models/Dish')
 const User = require('../../models/User')
+const dishData = require('../../db/data/dishData')
+const testUser = require('../../db/data/userData')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../../config/environment')
-const testUser = require('../../db/data/userData')
 const testData = {
   name: 'Burger with fries',
   nativeName: 'המבורגר',
@@ -12,32 +13,20 @@ const testData = {
   longitude: -0.073482,
   cuisineType: ['American'],
   tags: ['Deliciuse', 'Great extras'],
-  image: ['https://i.imgur.com/mr1pbCi.jpg', 'https://i.imgur.com/OK1u0FO.jpg'],
-  comments: [{
-    user: 'test',
-    content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
-    mostHelpful: 3,
-    overall: 4,
-    fullness: 3,
-    healthiness: 5
-  },
-  {
-    user: 'test2',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    mostHelpful: 3,
-    overall: 1,
-    fullness: 2,
-    healthiness: 4
-  }],
   dietary: ['Non-Vegan', 'Very meaty']
 }
 
-describe('POST /dishes', () => {
+describe('PUT /dishes/:id', () => {
 
+  let dish = null
   let token = null
 
   beforeEach(done => {
-    User.create(testUser)
+    Dish.create(dishData)
+      .then(dishes => {
+        dish = dishes[0]
+        return User.create(testUser)
+      })
       .then(user => {
         token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
         done()
@@ -51,7 +40,7 @@ describe('POST /dishes', () => {
   })
 
   it('should return a 401 response without a token', done => {
-    api.post('/api/dishes')
+    api.put(`/api/dishes/${dish._id}`)
       .send(testData)
       .end((err, res) => {
         expect(res.status).to.eq(401)
@@ -59,18 +48,18 @@ describe('POST /dishes', () => {
       })
   })
 
-  it('should return a 201 response with a token', done => {
-    api.post('/api/dishes')
+  it('should return a 200 response with a token', done => {
+    api.put(`/api/dishes/${dish._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send(testData)
       .end((err, res) => {
-        expect(res.status).to.eq(201)
+        expect(res.status).to.eq(200)
         done()
       })
   })
 
   it('should return an object', done => {
-    api.post('/api/dishes')
+    api.put(`/api/dishes/${dish._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send(testData)
       .end((err, res) => {
@@ -80,7 +69,7 @@ describe('POST /dishes', () => {
   })
 
   it('should return the correct fields', done => {
-    api.post('/api/dishes')
+    api.put(`/api/dishes/${dish._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send(testData)
       .end((err, res) => {
@@ -93,8 +82,6 @@ describe('POST /dishes', () => {
           'longitude',
           'cuisineType',
           'tags',
-          'image',
-          'comments',
           'dietary',
           '__v'
         ])
@@ -103,7 +90,7 @@ describe('POST /dishes', () => {
   })
 
   it('should return the correct data', done => {
-    api.post('/api/dishes')
+    api.put(`/api/dishes/${dish._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send(testData)
       .end((err, res) => {
@@ -114,9 +101,7 @@ describe('POST /dishes', () => {
         expect(res.body.longitude).to.eq(testData.longitude)
         expect(res.body.cuisineType).to.deep.eq(testData.cuisineType)
         expect(res.body.tags).to.deep.eq(testData.tags)
-        expect(res.body.image).to.deep.eq(testData.image)
         expect(res.body.dietary).to.deep.eq(testData.dietary)
-
         done()
       })
   })

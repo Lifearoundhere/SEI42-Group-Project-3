@@ -31,6 +31,9 @@ router.route('/users/:id')
   .put(secureRoute, usersController.update)
   .delete(secureRoute, dishesController.delete)
 
+router.route('/dishes/:id/comments')
+  .put(secureRoute, dishesController.commentCreate)
+
 // We need to add comments and secureRoute inside comments
 
 

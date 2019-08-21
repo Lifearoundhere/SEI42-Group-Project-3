@@ -5,6 +5,7 @@ mongoose.plugin(require('mongoose-unique-validator'), {
 })
 const router = require('./config/routes')
 const { port, dbURI } = require('./config/environment')
+const errorHandler = require('./lib/errorHandler')
 
 
 const app = express()
@@ -19,7 +20,7 @@ app.use(express.static(`${__dirname}/dist`))
 
 app.use('/api', router)
 
-
+app.use(errorHandler)
 app.listen(port, () => console.log('Mind the food-baby on port 4000'))
 
 module.exports = app

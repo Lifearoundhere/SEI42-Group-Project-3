@@ -1,5 +1,5 @@
 module.exports = [
-  { value: 'None', label: 'None' },
+  { value: '', label: 'None' },
   { value: 'Gluten/Coeliac', label: 'Gluten/Coeliac' },
   { value: 'Dairy/lactose', label: 'Dairy/lactose' },
   { value: 'Vegetarian', label: 'Vegetarian' },
