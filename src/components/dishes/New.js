@@ -107,7 +107,8 @@ class DishNew extends React.Component {
   }
 
   render() {
-    console.log(this.state.tempLocation)
+    console.dir(this.state.errors)
+    const { name, price, nativeName, cuisineType } = this.state.errors
     return (
       <section className="section">
         <div className="container">
@@ -121,7 +122,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.name || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.name && <small className="help is-danger">{this.state.errors.name}</small>}
+              {name && <small className="help is-danger">{name.message}</small>}
             </div>
 
             <div className="field">
@@ -133,7 +134,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.nativeName || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.nativeName && <small className="help is-danger">{this.state.errors.nativeName}</small>}
+              {nativeName && <small className="help is-danger">{nativeName.message}</small>}
             </div>
 
             <div className="field">
@@ -145,7 +146,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.price || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.price && <small className="help is-danger">{this.state.errors.price}</small>}
+              {price && <small className="help is-danger">{price.message}</small>}
             </div>
 
             <div className="field">
@@ -153,8 +154,7 @@ class DishNew extends React.Component {
 
               <Map location={this.state.tempLocation} onDragged={this.handleMapDrag} />
 
-              {this.state.errors.latitude && <small className="help is-danger">{this.state.errors.latitude}</small>}
-              {this.state.errors.longitude && <small className="help is-danger">{this.state.errors.longitude}</small>}
+
             </div>
 
             <div className="field">
@@ -167,7 +167,7 @@ class DishNew extends React.Component {
                 className="basic-select"
                 classNamePrefix="select"
               />
-              {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
+              {cuisineType && <small className="help is-danger">{price.cuisineType}</small>}
             </div>
 
 
@@ -181,7 +181,7 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-              {this.state.errors.tags && <small className="help is-danger">{this.state.errors.tags}</small>}
+
             </div>
             <div className="field">
               <label className="label">Select dietary</label>
@@ -193,7 +193,7 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-              {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
+
             </div>
 
 
@@ -218,7 +218,7 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name="overall"
               />
-              {this.state.errors.overall && <small className="help is-danger">{this.state.errors.overall}</small>}
+
             </div>
 
 
@@ -231,7 +231,7 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name='rating'
               />
-              {this.state.errors.fullness && <small className="help is-danger">{this.state.errors.fullness}</small>}
+
             </div>
             <div className="field">
               <label className="label">How healthy the dish was?</label>
@@ -242,7 +242,7 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name='rating'
               />
-              {this.state.errors.healthiness && <small className="help is-danger">{this.state.errors.healthiness}</small>}
+
             </div>
 
             <button className="button">Add your dish</button>
