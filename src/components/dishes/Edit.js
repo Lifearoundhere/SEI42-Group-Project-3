@@ -54,11 +54,13 @@ class DishEdit extends React.Component {
   }
 
   handleUpload(imageData) {
-    console.log('image upload suceess...', imageData)
+    // console.log('image upload suceess...', imageData)
+    console.log(this.state.errors.comments)
     const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
     this.setState({ formData })
   }
   handleChange(e) {
+
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
     this.setState({ formData })
   }
@@ -96,7 +98,7 @@ class DishEdit extends React.Component {
                 value={this.state.formData.name || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.name && <small className="help is-danger">{this.state.errors.name}</small>}
+              {this.state.errors.comments.content && <small className="help is-danger">{this.state.errors.comments.content.message}</small>}
             </div>
 
             <div className="field">
