@@ -6,25 +6,25 @@ import StarRatings from 'react-star-ratings'
 const Ratings2 = ({overall, fullness, healthiness}) => {
   return (
     <div>
-      <h3 className="title is-5">Overall Rating</h3>
+      <body>Overall Rating</body>
       <StarRatings
         rating={overall}
-        starDimension="40px"
-        starSpacing="15px"
+        starDimension="20px"
+        starSpacing="5px"
         starRatedColor="orange"
       />
-      <h3 className="title is-5">Fullness</h3>
+      <body>Fullness</body>
       <StarRatings
         rating={fullness}
-        starDimension="40px"
-        starSpacing="15px"
+        starDimension="20px"
+        starSpacing="5px"
         starRatedColor="red"
       />
-      <h3 className="title is-5">Healthiness</h3>
+      <body>Healthiness</body>
       <StarRatings
         rating={healthiness}
-        starDimension="40px"
-        starSpacing="15px"
+        starDimension="20px"
+        starSpacing="5px"
         starRatedColor="green"
       />
     </div>

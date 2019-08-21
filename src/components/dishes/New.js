@@ -3,7 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 import StarRatings from 'react-star-ratings'
 import ImgUploader from '../common/imgUploader'
-import Map from '../common/GoogleMaps'
+import Map from '../common/MapBox'
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
 import dietary from '../../../db/data/dietaryData'
@@ -20,13 +20,16 @@ class DishNew extends React.Component {
           overall: 1,
           fullness: 1,
           healthiness: 1
-
         },
         imgUploadData: {}
 
       },
       imgUploadData: {},
-      errors: {}
+      errors: {},
+      tempLocation: {
+        longitude: 0.0722,
+        latitude: 51.5153
+      }
     }
 
     this.handleUpload = this.handleUpload.bind(this)
@@ -39,6 +42,7 @@ class DishNew extends React.Component {
     this.handleDietaryChange = this.handleDietaryChange.bind(this)
     this.handleCuisineChange = this.handleCuisineChange.bind(this)
     this.handleUpload = this.handleUpload.bind(this)
+    this.handleMapDrag = this.handleMapDrag.bind(this)
   }
 
 
@@ -69,21 +73,26 @@ class DishNew extends React.Component {
 
   handleOverallChange(e) {
 
-    const comments = { ...this.state.formData.comments, overall: e   }
-    const formData = { ...this.state.formData, comments  }
-    this.setState({ formData })
-  }
-  handleFullnessChange(e) {
-    const comments = { ...this.state.formData.comments, fullness: e   }
-    const formData = { ...this.state.formData, comments  }
-    this.setState({ formData })
-  }
-  handleHealthinessChange(e) {
-    const comments = { ...this.state.formData.comments, healthiness: e   }
+    const comments = { ...this.state.formData.comments, overall: e }
     const formData = { ...this.state.formData, comments }
     this.setState({ formData })
   }
-
+  handleFullnessChange(e) {
+    const comments = { ...this.state.formData.comments, fullness: e }
+    const formData = { ...this.state.formData, comments }
+    this.setState({ formData })
+  }
+  handleHealthinessChange(e) {
+    const comments = { ...this.state.formData.comments, healthiness: e }
+    const formData = { ...this.state.formData, comments }
+    this.setState({ formData })
+  }
+  handleMapDrag(val) {
+    let formData = { ...this.state.formData, latitude: val.latitude }
+    this.setState({ formData })
+    formData = { ...this.state.formData, longitude: val.longitude }
+    this.setState({ formData })
+  }
 
   handleSubmit(e) {
     e.preventDefault()
@@ -98,7 +107,7 @@ class DishNew extends React.Component {
   }
 
   render() {
-
+    const { name, price, nativeName, cuisineType } = this.state.errors
     return (
       <section className="section">
         <div className="container">
@@ -112,7 +121,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.name || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.name && <small className="help is-danger">{this.state.errors.name}</small>}
+              {name && <small className="help is-danger">{name}</small>}
             </div>
 
             <div className="field">
@@ -124,7 +133,7 @@ class DishNew extends React.Component {
                 value={this.state.formData.nativeName || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.nativeName && <small className="help is-danger">{this.state.errors.nativeName}</small>}
+              {nativeName && <small className="help is-danger">{nativeName}</small>}
             </div>
 
             <div className="field">
@@ -136,33 +145,16 @@ class DishNew extends React.Component {
                 value={this.state.formData.price || ''}
                 onChange={this.handleChange}
               />
-              {this.state.errors.price && <small className="help is-danger">{this.state.errors.price}</small>}
+              {price && <small className="help is-danger">{price}</small>}
             </div>
 
             <div className="field">
-              <label className="label">Latitude - just for it to work now</label>
-              <input
-                className="input"
-                name="latitude"
-                placeholder="eg: 51.507351"
-                value={this.state.formData.latitude || ''}
-                onChange={this.handleChange}
-              />
-              {this.state.errors.latitude && <small className="help is-danger">{this.state.errors.latitude}</small>}
-            </div>
+              <label className="label">Location</label>
 
-            <div className="field">
-              <label className="label">Longitude - just for it to work now</label>
-              <input
-                className="input"
-                name="longitude"
-                placeholder="eg: -0.127758"
-                value={this.state.formData.longitude || ''}
-                onChange={this.handleChange}
-              />
-              {this.state.errors.longitude && <small className="help is-danger">{this.state.errors.longitude}</small>}
-            </div>
+              <Map location={this.state.tempLocation} onDragged={this.handleMapDrag} />
 
+
+            </div>
 
             <div className="field">
               <label className="label">Cuisine type</label>
@@ -174,7 +166,7 @@ class DishNew extends React.Component {
                 className="basic-select"
                 classNamePrefix="select"
               />
-              {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
+              {cuisineType && <small className="help is-danger">{cuisineType}</small>}
             </div>
 
 
@@ -188,7 +180,7 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-              {this.state.errors.tags && <small className="help is-danger">{this.state.errors.tags}</small>}
+
             </div>
             <div className="field">
               <label className="label">Select dietary</label>
@@ -200,7 +192,7 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-              {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
+
             </div>
 
 
@@ -225,7 +217,7 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name="overall"
               />
-              {this.state.errors.overall && <small className="help is-danger">{this.state.errors.overall}</small>}
+
             </div>
 
 
@@ -238,7 +230,7 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name='rating'
               />
-              {this.state.errors.fullness && <small className="help is-danger">{this.state.errors.fullness}</small>}
+
             </div>
             <div className="field">
               <label className="label">How healthy the dish was?</label>
@@ -249,16 +241,8 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name='rating'
               />
-              {this.state.errors.healthiness && <small className="help is-danger">{this.state.errors.healthiness}</small>}
+
             </div>
-
-
-
-
-
-
-
-
 
             <button className="button">Add your dish</button>
           </form>

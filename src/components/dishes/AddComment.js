@@ -67,7 +67,8 @@ class AddComment extends React.Component {
   }
 
   render() {
-    console.log(this.state.formData)
+    const [ key ] = Object.keys(this.state.errors)
+    console.log(key)
     return (
       <section className="section">
         <div className="container">
@@ -82,6 +83,7 @@ class AddComment extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.formData.content}
               />
+              {this.state.errors[key] && <small className="help is-danger">{this.state.errors[key]}</small>}
             </div>
 
             <div className="field">

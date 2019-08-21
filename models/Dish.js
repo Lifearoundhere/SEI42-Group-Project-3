@@ -4,7 +4,7 @@ const requiredMsg = 'Please provide a {PATH} of your dish.'
 
 const commentSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User'},
-  content: { type: String, minlength: 20 },
+  content: { type: String, minlength: [20, 'Please enter more than 20 characters!'] },
   overall: { type: Number, min: 1, max: 5},
   fullness: { type: Number, min: 1, max: 5},
   healthiness: { type: Number, min: 1, max: 5},
@@ -17,7 +17,7 @@ const commentSchema = new mongoose.Schema({
 
 
 const dishSchema = new mongoose.Schema({
-  name: { type: String, required: requiredMsg},
+  name: { type: String, required: [true, requiredMsg]},
   nativeName: {type: String},
   price: {type: Number, required: requiredMsg},
   latitude: { type: Number},
