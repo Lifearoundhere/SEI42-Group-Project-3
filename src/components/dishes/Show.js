@@ -111,7 +111,6 @@ class DishShow extends React.Component {
                   fullness={comment.fullness}
                   healthiness={comment.healthiness}
                   createdAt={comment.createdAt}
-                  userImage="https://www.placecage.com/c/200/300"
                 />
               )}
             </div>

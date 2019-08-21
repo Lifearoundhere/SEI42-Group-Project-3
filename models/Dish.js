@@ -3,8 +3,7 @@ const requiredMsg = 'Please provide a {PATH} of your dish.'
 // const requiredMsgVowel = 'Please provide an {PATH} of your dish.'
 
 const commentSchema = new mongoose.Schema({
-  user: {type: String},
-  // { type: mongoose.Schema.ObjectId, ref: 'User'}
+  user: { type: mongoose.Schema.ObjectId, ref: 'User'},
   content: { type: String, minlength: 20 },
   overall: { type: Number, min: 1, max: 5},
   fullness: { type: Number, min: 1, max: 5},
