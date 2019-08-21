@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = [{
   username: 'JohnDoe',
   email: 'JohnDoe@gmail.com',
   password: '1234',
@@ -12,4 +12,4 @@ module.exports = {
   img: 'https://i.imgur.com/dWDGFQU.png',
   bio: 'Love food as much as I love my work in Aldgate East',
   favfood: ['Salad', 'Fried Chicken']
-}
+}]

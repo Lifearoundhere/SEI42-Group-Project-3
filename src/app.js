@@ -33,7 +33,7 @@ class App extends React.Component {
         <Switch>
 
           <SecureRoute path='/dishes/:id/comments' component={AddComment} />
-          <Route path="/dishes/:id/edit" component={DishEdit} />
+          <SecureRoute path="/dishes/:id/edit" component={DishEdit} />
 
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />

@@ -51,7 +51,6 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log(this.filterDishes())
     return (
       <section className="section">
         <div className="container">
@@ -136,7 +135,7 @@ class Index extends React.Component {
                         <div className="column title is-quarter">Overall Rating</div>
                         <StarRatings
                           className="column is-quarter"
-                          rating={dish.comments.map(a => a.overall).reduce((a,b) => (a + b)/ dish.comments.map(a => a.overall).length)}
+                          rating={dish.comments.map(a => a.overall).reduce((a,b) => a + b)/ dish.comments.length}
                           starDimension="40px"
                           starSpacing="15px"
                           starRatedColor="orange"
