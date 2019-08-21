@@ -4,7 +4,7 @@ module.exports = [{
   price: 5,
   latitude: 51.515794,
   longitude: -0.073482,
-  cuisineType: 'American',
+  cuisineType: ['American'],
   tags: ['Deliciuse', 'Great extras'],
   image: ['https://i.imgur.com/mr1pbCi.jpg', 'https://i.imgur.com/OK1u0FO.jpg'],
   comments: [{
@@ -21,31 +21,32 @@ module.exports = [{
     overall: 1,
     fullness: 2,
     healthiness: 4
-  }]
+  }],
+  dietary: ['Non-Vegan', 'Very meaty']
 }, {
   name: 'Falafel',
   nativeName: 'פלאפל',
   price: 3.50,
   latitude: 51.515442,
   longitude: -0.073185,
-  cuisineType: 'Egypt',
+  cuisineType: ['Egypt'],
   tags: ['Cheap', 'Great value for money'],
-  image: 'https://i.imgur.com/0VgsdXi.jpg',
+  image: ['https://i.imgur.com/0VgsdXi.jpg'],
   comments: [{
     content: 'I like falafel, it tastes good.',
     mostHelpful: 3,
     overall: 3,
     fullness: 2,
     healthiness: 5
-
-  }]
+  }],
+  dietary: ['Fatty', 'Full of gluten']
 }, {
   name: 'Chicken Katsu wrap',
   nativeName: 'チキンカツ',
   price: 4.50,
   latitude: 51.515825,
   longitude: -0.073649,
-  cuisineType: 'Japan',
+  cuisineType: ['Japan'],
   tags: ['Tasty', 'Just like a Shnizchel'],
   image: 'https://i.imgur.com/y72gx4T.jpg',
   comments: [{
@@ -54,5 +55,6 @@ module.exports = [{
     overall: 5,
     fullness: 5,
     healthiness: 5
-  }]
+  }],
+  dietray: ['Healthy']
 }]
