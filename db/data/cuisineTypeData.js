@@ -1,4 +1,5 @@
 module.exports = [
+  { value: '', label: 'None' },
   { value: 'American', label: 'American' },
   { value: 'Cajun', label: 'Cajun' },
   { value: 'Caribbean', label: 'Caribbean' },

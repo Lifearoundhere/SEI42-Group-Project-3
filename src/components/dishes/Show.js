@@ -45,6 +45,13 @@ class DishShow extends React.Component {
       <section className="section ">
         <div className="container">
           <div className="columns is-multiline">
+            <div className="column is-full-desktop">
+              <Link to={`/dishes/${this.props.match.params.id}/comments`} className="button is-primary">
+                <strong>I ate this!</strong>
+              </Link>
+
+            </div>
+
             <div className="column is-half-desktop">
 
               <ImgSlider images={this.state.dish.image} />
@@ -66,6 +73,7 @@ class DishShow extends React.Component {
 
 
             </div>
+
             <div className="column is-half-desktop">
               <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
@@ -86,13 +94,7 @@ class DishShow extends React.Component {
                   userImage="https://www.placecage.com/c/200/300"
                 />
               )}
-
-
             </div>
-
-
-
-
 
           </div>
         </div>

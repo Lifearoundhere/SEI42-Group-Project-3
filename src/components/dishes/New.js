@@ -3,7 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 import StarRatings from 'react-star-ratings'
 import ImgUploader from '../common/imgUploader'
-
+import Map from '../common/GoogleMaps'
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
 import dietary from '../../../db/data/dietaryData'
