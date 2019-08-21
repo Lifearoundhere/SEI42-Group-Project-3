@@ -2,17 +2,32 @@ import React from 'react'
 import axios from 'axios'
 
 import Auth from '../../lib/Auth'
+import Select from 'react-select'
 import ReactFilestack from 'filestack-react'
 
-const choices = {
+const tools = {
   accept: 'image/*',
   transformations: {
     rotate: true,
     crop: true,
-    circle: false
+    circle: true
   }
 }
-
+const favfoods = [
+  { value: 'Burger', label: 'Burger' },
+  { value: 'Beer', label: 'Beer' },
+  { value: 'Steak', label: 'Steak' },
+  { value: 'Pizza', label: 'Pizza' },
+  { value: 'Icecream', label: 'Icecream' },
+  { value: 'Desserts', label: 'Desserts' },
+  { value: 'Noodles', label: 'Noodles' },
+  { value: 'Wine', label: 'Wine' },
+  { value: 'Gin', label: 'Gin' },
+  { value: 'Sushi', label: 'Sushi' },
+  { value: 'chocolate', label: 'chocolate' },
+  { value: 'Juice', label: 'Juice' },
+  { value: 'Smoothie', label: 'Smoothie' }
+]
 class UserEdit extends React.Component {
 
 
@@ -21,17 +36,22 @@ class UserEdit extends React.Component {
 
     this.state = {
       data: {},
-      errors: {},
-      file: null
+      errors: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleArrayChange = this.handleArrayChange.bind(this)
+    this.handleFavFoodChange = this.handleFavFoodChange.bind(this)
     this.handleUploadedImages = this.handleUploadedImages.bind(this)
   }
 
 
 
+  componentDidMount() {
+    axios.get(`api/users/${this.props.match.params.id}`)
+      .then(res => this.setState({ data: res.data }))
+  }
 
   handleSubmit(e) {
     e.preventDefault()
@@ -48,12 +68,16 @@ class UserEdit extends React.Component {
     this.setState({ data })
   }
 
-  componentDidMount() {
-    axios.get(`api/users/${this.props.match.params.id}`)
-      .then(res => this.setState({ data: res.data }))
-
-    console.log(this.state.data)
+  handleArrayChange(e) {
+    const data = { ...this.state.data, [e.target.name]: e.target.value.split(',') }
+    this.setState({ data })
   }
+
+  handleFavFoodChange(selectedFavFoods, fooddata) {
+    const data = { ...this.state.data, [fooddata.name]: selectedFavFoods.map(option => option.value) }
+    this.setState({ data })
+  }
+
 
   handleUploadedImages(result) {
     console.log(this.state.data)
@@ -62,7 +86,7 @@ class UserEdit extends React.Component {
   }
 
   render() {
-    console.log(this.state.data, 'this.state.data')
+    const selectedFavFood = (this.state.data.favfood || []).map(food => ({label: food, value: food}))
     return (
       <section className="section">
         <div className="container">
@@ -75,18 +99,22 @@ class UserEdit extends React.Component {
             <div className="field">
 
               <label className="label">Profile Photo</label>
-              <figure className="image is-128x128">
+              <figure className="image">
                 <ReactFilestack
-                  className="image is-128x128"
+                  className="user-image"
                   apikey="A8sWHIqsSAqLSlJAAfZLgz"
-                  buttonText="Upload your Photo"
-                  buttonClass="button"
-                  options={choices}
-                  preload={true}
+                  componentDisplayMode={
+                    {
+                      type: 'button',
+                      customText: 'Update your Photo',
+                      customClass: 'some-custom-class'
+                    }
+                  }
+                  actionOptions={tools}
                   onSuccess={this.handleUploadedImages}
                 />
 
-                {this.state.data.img && <img src={this.state.data.img} />}
+                {this.state.data.img && <img className="image is-128x128" src={this.state.data.img} />}
               </figure>
             </div>
 
@@ -103,9 +131,78 @@ class UserEdit extends React.Component {
               />
               {this.state.errors.name && <small className="help is-danger">{this.state.errors.name}</small>}
             </div>
-
             <div className="field">
-              <label className="label">Biography</label>
+              <label className="label">Name</label>
+              <input
+                className="input"
+                type="text"
+                name="name"
+                value={this.state.data.name || ''}
+                placeholder="eg. Paul..."
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              <label className="label">Last Name</label>
+              <input
+                className="input"
+                type="text"
+                name="lastname"
+                value={this.state.data.lastname || ''}
+                placeholder="eg. Smith..."
+                onChange={this.handleChange}
+              />
+            </div>
+            <hr/>
+            <label className="label">Main information</label>
+            <div className="field">
+              <label className="label">Country</label>
+              <input
+                className="input"
+                type="text"
+                name="country"
+                value={this.state.data.country || ''}
+                placeholder="eg. France"
+                onChange={this.handleChange}
+              />
+              <label className="label">City</label>
+              <input
+                className="input"
+                type="text"
+                name="city"
+                value={this.state.data.city || ''}
+                placeholder="eg. Paris"
+                onChange={this.handleChange}
+              />
+
+            </div>
+            <hr/>
+            <label className="label">Contacts</label>
+            <div className="field">
+              <label className="label">email</label>
+              <input
+                className="input"
+                type="text"
+                name="email"
+                value={this.state.data.email || ''}
+                placeholder="eg. abc@example.com"
+                onChange={this.handleChange}
+              />
+              <label className="label">Mobile</label>
+              <input
+                className="input"
+                type="text"
+                name="mobile"
+                value={this.state.data.mobile || ''}
+                placeholder="eg. +449993333222"
+                onChange={this.handleChange}
+              />
+
+            </div>
+            <hr/>
+            <label className="label">Biography</label>
+            <div className="field">
+              <label className="label">About you</label>
               <div className="control">
                 <input
                   className="input"
@@ -118,16 +215,16 @@ class UserEdit extends React.Component {
               </div>
 
               <div className="field">
-                <label className="label">Favfood</label>
-                <input
-                  className="input"
-                  type="text"
+
+                <label className="label">FavFood</label>
+                <Select
                   name="favfood"
-                  value={this.state.data.favfood || ''}
-                  placeholder="eg. superman..."
-                  onChange={this.handleChange}
+                  options={favfoods}
+                  value={selectedFavFood}
+                  isMulti
+                  onChange={this.handleFavFoodChange}
                 />
-                {this.state.errors.name && <small className="help is-danger">{this.state.errors.name}</small>}
+                {this.state.errors.favfood && <small className="help is-danger">{this.state.errors.favfood}</small>}
               </div>
             </div>
             <br/>

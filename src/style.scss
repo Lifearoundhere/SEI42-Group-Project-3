@@ -5,10 +5,11 @@
     cursor: pointer;
   }
 }
+
 .tag {
   &.is-burger {
     color: white;
-    background-color: #B36305
+    background-color: #B36305;
   }
 
   &.is-beer {
@@ -25,7 +26,7 @@
     background-color: #00782A;
   }
 
-  &.is-icecreams {
+  &.is-icecream {
     color: white;
     background-color: #00A4A7;
   }
