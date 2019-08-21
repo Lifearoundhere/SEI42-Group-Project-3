@@ -50,5 +50,3 @@ class Ratings extends React.Component {
     )
   }
 }
-
-export default Ratings

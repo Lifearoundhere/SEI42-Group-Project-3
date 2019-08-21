@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import ImgSlider from '../common/imgSlider'
 import { Link } from 'react-router-dom'
+import Auth from '../../lib/Auth'
+
 
 
 import Ratings2 from '../common/Ratings2'
@@ -31,34 +33,13 @@ class DishShow extends React.Component {
 
 
 
-  // <h3 className="title is-5">Overall Rating</h3>
-  // <StarRatings
-  // rating={overall}
-  // starDimension="40px"
-  // starSpacing="15px"
-  // starRatedColor="orange"
-  // />
-  // <h3 className="title is-5">Fullness</h3>
-  // <StarRatings
-  // rating={fullness}
-  // starDimension="40px"
-  // starSpacing="15px"
-  // starRatedColor="red"
-  // />
-  // <h3 className="title is-5">Healthiness</h3>
-  // <StarRatings
-  // rating={healthiness}
-  // starDimension="40px"
-  // starSpacing="15px"
-  // starRatedColor="green"
-  // />
-  // const {fullness, overall, healthiness} = this.state.ratings
-
-  // overall={this.state.dish.comments[0].ratings[0].overall}
-  // ratings={comment.ratings[0]}
 
   render() {
+
     if(!this.state.dish) return null
+    console.log(this.state.dish.comments.map(a => a.fullness).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.fullness).length))
+
+
 
     return (
       <section className="section ">
@@ -77,9 +58,9 @@ class DishShow extends React.Component {
               <div>
                 <p>Ratings</p>
                 <Ratings2
-                  overall={this.state.dish.comments[0].overall}
-                  fullness={this.state.dish.comments[0].fullness}
-                  healthiness={this.state.dish.comments[0].healthiness}
+                  overall={this.state.dish.comments.map(a => a.overall).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.overall).length)}
+                  fullness={this.state.dish.comments.map(a => a.fullness).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.fullness).length)}
+                  healthiness={this.state.dish.comments.map(a => a.healthiness).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.healthiness).length)}
                 />
               </div>
 
@@ -116,10 +97,14 @@ class DishShow extends React.Component {
           </div>
         </div>
         <footer>
-          <Link
+          {Auth.isAuthenticated() && <Link
+            className="button"
+            to={`/dishes/${this.state.dish._id}/comments`}
+          >I have also eaten it!</Link>}
+          {Auth.isAuthenticated() && <Link
             className="button"
             to={`/dishes/${this.state.dish._id}/edit`}
-          >Edit</Link>
+          >Edit</Link>}
         </footer>
       </section>
     )
