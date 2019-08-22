@@ -4,7 +4,6 @@ import Linkedin from '../../assets/LI-In-Bug.png'
 
 const Footer = () => {
   return (
-
     <footer className="footer">
       <div className="content">
         <h2>The Creators</h2>
@@ -76,7 +75,6 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-
   )
 }
 

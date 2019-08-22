@@ -29,10 +29,8 @@ class App extends React.Component {
         <Navbar />
 
         <Switch>
-
           <SecureRoute path='/dishes/:id/comments' component={AddComment} />
           <SecureRoute path="/dishes/:id/edit" component={DishEdit} />
-
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
           <Route path='/users/:id/edit' component={UserEdit} />
@@ -41,7 +39,6 @@ class App extends React.Component {
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/' component={Home} />
-
         </Switch>
         <Footer />
       </HashRouter>

@@ -26,12 +26,10 @@ class Index extends React.Component {
   }
   handleKeyUpChange(e) {
     this.setState({ keyupValue: e.target.value })
-    console.log(e.target.value)
   }
 
   handleSelectChange(e) {
     this.setState({ [e.target.name]: e.target.value })
-    console.log([e.target.name])
   }
 
   componentDidMount() {
@@ -50,7 +48,6 @@ class Index extends React.Component {
       return dish.dietary.includes(this.state.dietary)
     })
     const filteredCuisineType = _.filter(filteredDietary, dish => {
-      console.log(dish.name, dish.cuisineType, dish.cuisineType.includes(this.state.cuisine))
       if (this.state.cuisine === '') return filteredDietary
       return dish.cuisineType.includes(this.state.cuisine)
     })
@@ -99,7 +96,6 @@ class Index extends React.Component {
                     </div>
                   </div>
                 </div>
-
                 <div className="column">
                   <div className="field">
                     <label className="label">Sort</label>
@@ -116,11 +112,6 @@ class Index extends React.Component {
               </div>
             </div>
           </div>
-
-
-
-
-
           {this.filterDishes().map(dish =>
             <div className="column is-fullwidth" key={dish._id}>
               <Link to={`/dishes/${dish._id}`}>
@@ -128,10 +119,8 @@ class Index extends React.Component {
                   <div className="media">
                     <div className="media-left">
                       <figure className="image is-128x128" style={{backgroundImage: `url(${dish.image}`}} alt={dish.name}>
-
                       </figure>
                     </div>
-
                     <div className="media-content">
                       <div className="columns is-multiline">
                         <div className="column is-half-desktop">
@@ -148,8 +137,6 @@ class Index extends React.Component {
                         </div>
                       </div>
                     </div>
-
-
                     <div className="media-right">
                       <StarRatings
                         rating={dish.comments.map(a => a.overall).reduce((a, b) => a + b) / dish.comments.length}
@@ -157,23 +144,13 @@ class Index extends React.Component {
                         starSpacing="5px"
                         starRatedColor="orange"
                       />
-
                     </div>
                   </div>
                 </div>
-
               </Link>
             </div>
-
-
-
-
           )}
-
         </div>
-
-
-
       </section>
     )
   }

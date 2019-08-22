@@ -54,7 +54,6 @@ class Home extends React.Component {
       .catch(err => console.dir(err))
   }
   toggleModal() {
-    console.log('clicked')
     this.setState({ modalState: false })
   }
 
@@ -104,7 +103,6 @@ class Home extends React.Component {
               <StyledPopup>
                 <div>
                   <div>{dish.name} | £{dish.price}</div>
-
                   <img src={dish.image} width="100px" height="20px" className="center" />
                 </div>
               </StyledPopup>
@@ -114,9 +112,7 @@ class Home extends React.Component {
           <ZoomControl />
           <ScaleControl />
         </Map>
-
       </div>
-
     )
   }
 }

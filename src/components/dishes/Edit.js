@@ -54,13 +54,10 @@ class DishEdit extends React.Component {
   }
 
   handleUpload(imageData) {
-    // console.log('image upload suceess...', imageData)
-    console.log(this.state.errors.comments)
     const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
     this.setState({ formData })
   }
   handleChange(e) {
-
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
     this.setState({ formData })
   }
@@ -136,7 +133,6 @@ class DishEdit extends React.Component {
               />
               {this.state.errors.latitude && <small className="help is-danger">{this.state.errors.latitude}</small>}
             </div>
-
             <div className="field">
               <label className="label">Longitude - just for it to work now</label>
               <input
@@ -148,8 +144,6 @@ class DishEdit extends React.Component {
               />
               {this.state.errors.longitude && <small className="help is-danger">{this.state.errors.longitude}</small>}
             </div>
-
-
             <div className="field">
               <label className="label">Cuisine type</label>
               <Select
@@ -162,7 +156,6 @@ class DishEdit extends React.Component {
               />
               {this.state.errors.cuisineType && <small className="help is-danger">{this.state.errors.cuisineType}</small>}
             </div>
-
             <div className="field">
               <label className="label">Select tags</label>
               <Select
@@ -187,8 +180,6 @@ class DishEdit extends React.Component {
               />
               {this.state.errors.dietary && <small className="help is-danger">{this.state.errors.dietary}</small>}
             </div>
-
-
             <div className="field">
               <div className="file is-info is-medium">
                 <label className="file-label">
@@ -198,17 +189,12 @@ class DishEdit extends React.Component {
                 </label>
               </div>
             </div>
-
-
             <button className="button">Save your changes</button>
           </form>
-
         </div>
       </section>
-
     )
   }
-
 }
 
 export default DishEdit

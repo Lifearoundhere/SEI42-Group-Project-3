@@ -80,7 +80,6 @@ class UserEdit extends React.Component {
 
 
   handleUploadedImages(result) {
-    console.log(this.state.data)
     const data = { ...this.state.data, img: result.filesUploaded[0].url }
     this.setState({ data })
   }
@@ -91,13 +90,8 @@ class UserEdit extends React.Component {
       <section className="section">
         <div className="container">
           <form onSubmit={this.handleSubmit}>
-
-
-
             <label className="label">Editing my account</label>
-
             <div className="field">
-
               <label className="label">Profile Photo</label>
               <figure className="image">
                 <ReactFilestack
@@ -113,12 +107,9 @@ class UserEdit extends React.Component {
                   actionOptions={tools}
                   onSuccess={this.handleUploadedImages}
                 />
-
                 {this.state.data.img && <img className="image is-128x128" src={this.state.data.img} />}
               </figure>
             </div>
-
-
             <div className="field">
               <label className="label">Username</label>
               <input
@@ -197,7 +188,6 @@ class UserEdit extends React.Component {
                 placeholder="eg. +449993333222"
                 onChange={this.handleChange}
               />
-
             </div>
             <hr/>
             <label className="label">Biography</label>
@@ -213,9 +203,7 @@ class UserEdit extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-
               <div className="field">
-
                 <label className="label">FavFood</label>
                 <Select
                   name="favfood"
@@ -228,26 +216,16 @@ class UserEdit extends React.Component {
               </div>
             </div>
             <br/>
-
             <div className="level-item">
               <button className="button is-info submit-edit-button">Submit Changes</button>
             </div>
-
-
-
-
-
           </form>
-
         </div>
-
-
-
       </section>
     )
   }
 }
-//
+
 
 
 export default UserEdit

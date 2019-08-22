@@ -61,7 +61,6 @@ class DishNew extends React.Component {
   }
 
   handleUpload(imageData) {
-    console.log('image upload suceess...', imageData)
     const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
     this.setState({ formData })
     this.setState({ imageMessage: 'image upload suceess...' })
@@ -73,21 +72,23 @@ class DishNew extends React.Component {
 
 
   handleOverallChange(e) {
-
     const comments = { ...this.state.formData.comments, overall: e }
     const formData = { ...this.state.formData, comments }
     this.setState({ formData })
   }
+
   handleFullnessChange(e) {
     const comments = { ...this.state.formData.comments, fullness: e }
     const formData = { ...this.state.formData, comments }
     this.setState({ formData })
   }
+
   handleHealthinessChange(e) {
     const comments = { ...this.state.formData.comments, healthiness: e }
     const formData = { ...this.state.formData, comments }
     this.setState({ formData })
   }
+
   handleMapDrag(val) {
     let formData = { ...this.state.formData, latitude: val.latitude }
     this.setState({ formData })
@@ -136,7 +137,6 @@ class DishNew extends React.Component {
               />
               {nativeName && <small className="help is-danger">{nativeName}</small>}
             </div>
-
             <div className="field">
               <label className="label">Price</label>
               <input
@@ -148,15 +148,10 @@ class DishNew extends React.Component {
               />
               {price && <small className="help is-danger">{price}</small>}
             </div>
-
             <div className="field">
               <label className="label">Location</label>
-
               <Map location={this.state.tempLocation} onDragged={this.handleMapDrag} />
-
-
             </div>
-
             <div className="field">
               <label className="label">Cuisine type</label>
               <Select
@@ -169,8 +164,6 @@ class DishNew extends React.Component {
               />
               {cuisineType && <small className="help is-danger">{cuisineType}</small>}
             </div>
-
-
             <div className="field">
               <label className="label">Select tags</label>
               <Select
@@ -181,7 +174,6 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-
             </div>
             <div className="field">
               <label className="label">Select dietary</label>
@@ -193,21 +185,15 @@ class DishNew extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-
             </div>
-
-
             <div className="field">
               <div className="file is-info is-medium">
                 <ImgUploader parentCallback={this.handleUpload} />
                 {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}
               </div>
             </div>
-
-
             <div className="field">
               <label className="label">Overall rating</label>
-
               <StarRatings
                 rating={this.state.formData.comments.overall}
                 starRatedColor="blue"
@@ -215,10 +201,7 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name="overall"
               />
-
             </div>
-
-
             <div className="field">
               <label className="label">How Fulling did was the dish?</label>
               <StarRatings
@@ -228,7 +211,6 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name='rating'
               />
-
             </div>
             <div className="field">
               <label className="label">How healthy the dish was?</label>
@@ -239,17 +221,13 @@ class DishNew extends React.Component {
                 numberOfStars={5}
                 name='rating'
               />
-
             </div>
-
             <button className="button">Add your dish</button>
           </form>
         </div>
       </section>
-
     )
   }
-
 }
 
 export default DishNew
