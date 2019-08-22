@@ -7,6 +7,11 @@ $background: #ede9d9;
   .box {
     background: #fafafa;
   }
+  figure {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 .is-vertical-center {
   display: flex;
