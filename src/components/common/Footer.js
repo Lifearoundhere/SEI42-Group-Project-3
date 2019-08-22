@@ -32,7 +32,7 @@ const Footer = () => {
                 <span className="icon">
                   <img src={Linkedin} name="Icon" />
                 </span>
-                <a href='www.linkedin.com/in/daniel-hof-cohen-143aa1185'> Linkedin</a>
+                <a href='http://www.linkedin.com/in/daniel-hof-cohen-143aa1185'> Linkedin</a>
               </p>
               <p className="subtitle is-vertical-center">
                 <span className="icon">

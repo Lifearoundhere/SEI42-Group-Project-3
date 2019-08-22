@@ -7,7 +7,7 @@ import Map from '../common/MapBox'
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
 import dietary from '../../../db/data/dietaryData'
-import cuisineType from '../../../db/data/cuisineTypeData'
+import cuisineTypes from '../../../db/data/cuisineTypeData'
 
 class DishNew extends React.Component {
 
@@ -161,7 +161,7 @@ class DishNew extends React.Component {
               <label className="label">Cuisine type</label>
               <Select
                 name="cuisineType"
-                options={cuisineType}
+                options={cuisineTypes}
                 placeholder="eg: American, Ethiopian etc..."
                 onChange={this.handleCuisineChange}
                 className="basic-select"
