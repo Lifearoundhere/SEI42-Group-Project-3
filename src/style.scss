@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap');
 $font-family: 'Lato', 'Roboto', sans-serif;
 $primary: #88bdd7;
+$success: #cbd581;
 $background: #ede9d9;
 .index {
   background: #ede9d9;
@@ -31,6 +32,12 @@ $background: #ede9d9;
 }
 .strip {
   background-color: #000;
+}
+.is-center-text {
+  text-align: center;
+}
+.is-center-object {
+  margin: 0 auto;
 }
 .tag {
   &.is-burger {

@@ -1,19 +1,6 @@
 import React from 'react'
 import Ratings2 from './Ratings2'
-// import Auth from '../../lib/Auth'
 
-// <div className="media-right">
-//   <Ratings2
-//     overall={ratings.overall}
-//     fullness={ratings.fullness}
-//     healthiness={ratings.healthiness} />
-// </div>
-
-// ratings,
-
-
-// fullness={fullness}
-// healthiness={healthiness}
 
 const Comment = (({ user, createdAt, content, overall, fullness, healthiness }) => {
 

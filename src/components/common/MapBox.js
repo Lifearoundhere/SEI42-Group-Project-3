@@ -38,8 +38,6 @@ export class MapContainer extends React.Component {
   }
 
   onDragEnd(e) {
-    console.log('onDragEnd')
-    console.group(e)
     this.props.onDragged({ latitude: e.lngLat.lat, longitude: e.lngLat.lng })
     this.setState({
       userLocation: { lat: e.lngLat.lat, lng: e.lngLat.lng }
@@ -47,9 +45,7 @@ export class MapContainer extends React.Component {
   }
 
   render() {
-
     const { lng, lat } = this.state.userLocation
-    console.log(lng, lat)
     return (
       <Map
         style="mapbox://styles/mapbox/streets-v9"
@@ -64,8 +60,6 @@ export class MapContainer extends React.Component {
           <Feature coordinates={[lng, lat]}
             draggable={true}
             onDragEnd={this.onDragEnd}
-            onDragStart={() => console.log('onDragStart')}
-            onDrag={() => console.log('onDrag')}
           />
         </Layer>
         <RotationControl />

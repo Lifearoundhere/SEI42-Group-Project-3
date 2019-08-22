@@ -4,11 +4,8 @@ import ImgSlider from '../common/imgSlider'
 import { Link } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
-
-
 import Ratings2 from '../common/Ratings2'
 import Comment from '../common/Comment'
-// import StarRatings from 'react-star-ratings'
 import MapComp from '../common/Map'
 
 
@@ -54,12 +51,9 @@ class DishShow extends React.Component {
                 className="button is-primary"
                 to={`/dishes/${this.state.dish._id}/edit`}
               >Edit</Link>}
-
             </div>
-
             <div className="column is-half-desktop">
-              <div className="container">
-
+              <div className="container" >
                 <ImgSlider images={this.state.dish.image} />
               </div>
             </div>
@@ -77,10 +71,7 @@ class DishShow extends React.Component {
                   healthiness={this.state.dish.comments.map(a => a.healthiness).reduce((a, b) => a + b) / this.state.dish.comments.length}
                 />
               </div>
-
-
             </div>
-
             <div className="column is-half-desktop">
               <MapComp latitude={this.state.dish.latitude} longitude={this.state.dish.longitude} />
             </div>
@@ -101,10 +92,8 @@ class DishShow extends React.Component {
                 />
               )}
             </div>
-
           </div>
         </div>
-
       </section>
     )
   }
