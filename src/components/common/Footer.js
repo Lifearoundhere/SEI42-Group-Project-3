@@ -59,8 +59,18 @@ const Footer = () => {
           </div>
           <div className="tile is-parent">
             <article className="tile is-child box">
-              <p className="title">Four</p>
-              <p className="subtitle">Subtitle</p>
+              <p className="title">Dmitrii Solomatin</p>
+              <p className="subtitle is-vertical-center">
+                <span className="icon">
+                  <img src={Linkedin} name="Icon" />
+                </span>
+                <a href='#'> Linkedin</a>
+              </p>
+              <p className="subtitle is-vertical-center">
+                <span className="icon">
+                  <img src={GitHub} name="Icon" />
+                </span>
+                <a href='https://github.com/DmitriiUK'>   GitHub</a></p>
             </article>
           </div>
         </div>
