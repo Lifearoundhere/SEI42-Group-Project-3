@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 import Navbar from './components/common/Navbar'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
-import { ToastContainer } from 'react-toastify'
-
 import DishEdit from './components/dishes/Edit'
 import DishesIndex from './components/dishes/Index'
 import DishShow from './components/dishes/Show'
@@ -29,7 +27,7 @@ class App extends React.Component {
     return (
       <HashRouter>
         <Navbar />
-        <ToastContainer position="bottom-right" hideProgressBar={true} />
+
         <Switch>
 
           <SecureRoute path='/dishes/:id/comments' component={AddComment} />

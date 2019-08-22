@@ -3,6 +3,8 @@ import axios from 'axios'
 import styled from 'styled-components'
 import ReactMapboxGL, { Popup, Feature, Layer, ScaleControl } from 'react-mapbox-gl'
 import icon from '../../assets/icons8cutlery64.png'
+import Model from '../common/Model'
+import Auth from '../../lib/Auth'
 
 
 
@@ -26,8 +28,10 @@ class Home extends React.Component {
       userLocation: { lat: 51.5074, lng: 0.1278 },
       dishes: [],
       selectedDish: null,
-      zoom: [12]
+      zoom: [12],
+      modalState: true
     }
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
   componentDidMount() {
@@ -49,50 +53,67 @@ class Home extends React.Component {
       .then(res => this.setState({ dishes: res.data }))
       .catch(err => console.dir(err))
   }
+  toggleModal() {
+    console.log('clicked')
+    this.setState({ modalState: false })
+  }
 
   render() {
     if (this.state.loading) return <p>loading...</p>
     return (
-      <Map
-        style="mapbox://styles/mapbox/streets-v8"
-        center={[
-          this.state.userLocation.lng, this.state.userLocation.lat
-
-        ]}
-        zoom={this.state.zoom}
-        containerStyle={{
-          height: '90vh',
-          width: '100vw'
-        }}
-      >
-        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'FoodTruck' }} images={images}>
-          {this.state.dishes.map(dish => (
-            <Feature
-              key={dish._id}
-              onClick={() => this.setState({ selectedDish: dish, zoom: [18], userLocation: { lat: dish.latitude, lng: dish.longitude } })}
-              coordinates={[dish.longitude, dish.latitude]}
-            />
-          ))}
-        </Layer>
-        {this.state.dishes.map(dish => (
-          this.state.selectedDish === dish ? (<Popup
-            key={dish._id}
-            coordinates={[dish.longitude, dish.latitude]}
-            closeButton={true}
-            closeOnClick={true}
-            onClose={() => this.setState({ selectedPopup: null })}
+      <div>
+        {!Auth.isAuthenticated() && this.state.modalState &&
+          <Model
+            closeModal={this.toggleModal}
+            modalState={this.state.modalState}
+            title={'Welcome to Food Fidelity'}
           >
-            <StyledPopup>
-              <div>
-                <div>{dish.name} | £{dish.price}</div>
+            <p>We are here to help you find the best street food in your local area.</p>
+            <p>We welcome all foodies, please leave a review and share your thoughts.</p>
+          </Model>}
 
-                <img src={dish.image} width="20px" height="20px" />
-              </div>
-            </StyledPopup>
-          </Popup>) : null
-        ))}
-        <ScaleControl />
-      </Map>
+        <Map
+          style="mapbox://styles/mapbox/streets-v8"
+          center={[
+            this.state.userLocation.lng, this.state.userLocation.lat
+
+          ]}
+          zoom={this.state.zoom}
+          containerStyle={{
+            height: '90vh',
+            width: '100vw'
+          }}
+        >
+          <Layer type="symbol" id="marker" layout={{ 'icon-image': 'FoodTruck' }} images={images}>
+            {this.state.dishes.map(dish => (
+              <Feature
+                key={dish._id}
+                onClick={() => this.setState({ selectedDish: dish, zoom: [18], userLocation: { lat: dish.latitude, lng: dish.longitude } })}
+                coordinates={[dish.longitude, dish.latitude]}
+              />
+            ))}
+          </Layer>
+          {this.state.dishes.map(dish => (
+            this.state.selectedDish === dish ? (<Popup
+              key={dish._id}
+              coordinates={[dish.longitude, dish.latitude]}
+              closeButton={true}
+              closeOnClick={true}
+              onClose={() => this.setState({ selectedPopup: null })}
+            >
+              <StyledPopup>
+                <div>
+                  <div>{dish.name} | £{dish.price}</div>
+
+                  <img src={dish.image} width="20px" height="20px" />
+                </div>
+              </StyledPopup>
+            </Popup>) : null
+          ))}
+          <ScaleControl />
+        </Map>
+
+      </div>
 
     )
   }
