@@ -22,8 +22,6 @@ class UserShow extends React.Component {
 
   }
 
-
-
   render() {
     if (!this.state.user) return null
     return (
@@ -177,7 +175,6 @@ class UserShow extends React.Component {
             </div>
           </div>
         </div>
-
         <div className="container">
           <div className="columns">
 
@@ -217,8 +214,6 @@ class UserShow extends React.Component {
 
         </div>
       </section>
-
-
     )
   }
 }

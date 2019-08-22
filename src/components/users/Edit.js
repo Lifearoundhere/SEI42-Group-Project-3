@@ -80,7 +80,6 @@ class UserEdit extends React.Component {
 
 
   handleUploadedImages(result) {
-    console.log(this.state.data)
     const data = { ...this.state.data, img: result.filesUploaded[0].url }
     this.setState({ data })
   }
@@ -286,7 +285,7 @@ class UserEdit extends React.Component {
     )
   }
 }
-//
+
 
 
 export default UserEdit

@@ -68,7 +68,6 @@ class AddComment extends React.Component {
 
   render() {
     const [key] = Object.keys(this.state.errors)
-    console.log(this.state)
     return (
       <section className="section">
         <div className="container">
@@ -132,10 +131,8 @@ class AddComment extends React.Component {
           </form>
         </div>
       </section>
-
     )
   }
-
 }
 
 export default AddComment
