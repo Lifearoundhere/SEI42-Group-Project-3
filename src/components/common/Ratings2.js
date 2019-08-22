@@ -3,27 +3,27 @@ import StarRatings from 'react-star-ratings'
 
 
 
-const Ratings2 = ({overall, fullness, healthiness}) => {
+const Ratings2 = ({ size, overall, fullness, healthiness }) => {
   return (
     <div>
-      <body>Overall Rating</body>
+      <h4 className="title is-4">Overall Rating</h4>
       <StarRatings
         rating={overall}
-        starDimension="20px"
+        starDimension={size || '20px'}
         starSpacing="5px"
         starRatedColor="orange"
       />
-      <body>Fullness</body>
+      <h4 className="title is-4">Fullness</h4>
       <StarRatings
         rating={fullness}
-        starDimension="20px"
+        starDimension={size || '20px'}
         starSpacing="5px"
         starRatedColor="red"
       />
-      <body>Healthiness</body>
+      <h4 className="title is-4">Healthiness</h4>
       <StarRatings
         rating={healthiness}
-        starDimension="20px"
+        starDimension={size || '20px'}
         starSpacing="5px"
         starRatedColor="green"
       />

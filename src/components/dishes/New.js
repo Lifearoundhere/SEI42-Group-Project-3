@@ -7,7 +7,7 @@ import Map from '../common/MapBox'
 import Select from 'react-select'
 import tags from '../../../db/data/TagData'
 import dietary from '../../../db/data/dietaryData'
-import cuisineType from '../../../db/data/cuisineTypeData'
+import cuisineTypes from '../../../db/data/cuisineTypeData'
 
 class DishNew extends React.Component {
 
@@ -161,7 +161,7 @@ class DishNew extends React.Component {
               <label className="label">Cuisine type</label>
               <Select
                 name="cuisineType"
-                options={cuisineType}
+                options={cuisineTypes}
                 placeholder="eg: American, Ethiopian etc..."
                 onChange={this.handleCuisineChange}
                 className="basic-select"
@@ -210,7 +210,7 @@ class DishNew extends React.Component {
 
               <StarRatings
                 rating={this.state.formData.comments.overall}
-                starRatedColor="blue"
+                starRatedColor="#6258ff"
                 changeRating={this.handleOverallChange}
                 numberOfStars={5}
                 name="overall"
@@ -223,7 +223,7 @@ class DishNew extends React.Component {
               <label className="label">How Fulling did was the dish?</label>
               <StarRatings
                 rating={this.state.formData.comments.fullness}
-                starRatedColor="orange"
+                starRatedColor="#feba74"
                 changeRating={this.handleFullnessChange}
                 numberOfStars={5}
                 name='rating'
@@ -234,7 +234,7 @@ class DishNew extends React.Component {
               <label className="label">How healthy the dish was?</label>
               <StarRatings
                 rating={this.state.formData.comments.healthiness}
-                starRatedColor="yellow"
+                starRatedColor="#4f994f"
                 changeRating={this.handleHealthinessChange}
                 numberOfStars={5}
                 name='rating'

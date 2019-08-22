@@ -18,7 +18,7 @@ import Ratings2 from './Ratings2'
 const Comment = (({ user, createdAt, content, overall, fullness, healthiness }) => {
 
   return (
-    <article className="media">
+    <article className="media .comments">
       <div className="media-left">
         <figure className="image is-128x128">
           {user && <img src={user.img} />}
