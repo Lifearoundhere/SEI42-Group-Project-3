@@ -5,6 +5,11 @@ $background: #cbd581;
   .box {
     background: #fff6e9;
   }
+  figure {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .tag {

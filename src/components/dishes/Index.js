@@ -127,8 +127,8 @@ class Index extends React.Component {
                 <div className="box">
                   <div className="media">
                     <div className="media-left">
-                      <figure className="image is-128x128">
-                        <img src={dish.image} alt={dish.name} />
+                      <figure className="image is-128x128" style={{backgroundImage: `url(${dish.image}`}} alt={dish.name}>
+
                       </figure>
                     </div>
 
