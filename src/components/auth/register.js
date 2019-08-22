@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import ImgUploader from '../common/imgUploader'
 
 class Register extends React.Component {
 
@@ -10,8 +11,16 @@ class Register extends React.Component {
       errors: {}
     }
 
+    this.handleUpload = this.handleUpload.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleUpload(imageData) {
+    const uploadedImage = (imageData.filesUploaded[0].url)
+    const formData = {...this.state.formData, img: uploadedImage}
+    this.setState({ formData })
+    this.setState({ imageMessage: 'image upload sucsessful...' })
   }
 
   handleChange(e) {
@@ -31,6 +40,7 @@ class Register extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <section className="section">
         <div className="container">
@@ -86,6 +96,9 @@ class Register extends React.Component {
               </div>
               {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
             </div>
+
+            <ImgUploader parentCallback={this.handleUpload} />
+            {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}
 
             <button className="button">Submit</button>
           </form>
