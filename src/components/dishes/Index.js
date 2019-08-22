@@ -107,49 +107,65 @@ class Index extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
 
 
 
 
-            <div className="column">
-              {this.filterDishes().map(dish =>
-                <div className="columns" key={dish._id}>
-                  <Link to={`/dishes/${dish._id}`}>
-                    <div className="card">
-                      <div className="card-header">
-                        <h2 className="column is-half title">{dish.name} </h2>
 
-                        <h2 className="column is-half title" > £{dish.price}</h2>
-                      </div>
+          {this.filterDishes().map(dish =>
+            <div className="column is-fullwidth" key={dish._id}>
+              <Link to={`/dishes/${dish._id}`}>
+                <div className= "box">
+                  <div className= "media">
+                    <div className= "media-left">
+                      <figure className= "image is-128x128">
+                        <img src={dish.image} alt={dish.name}/>
+                      </figure>
+                    </div>
 
-                      <div className="card-image">
-                        <figure className="image">
-                          <img src={dish.image} alt={dish.name} />
-                        </figure>
-                      </div>
+                    <div className="media-content">
                       <div className="columns is-multiline">
-                        <div className="column title is-quarter">{dish.cuisineType} </div>
-
-                        <div className="column title is-quarter">Dietary </div>
-
-
-                        <div className="column title is-quarter">Overall Rating</div>
-                        <StarRatings
-                          className="column is-quarter"
-                          rating={dish.comments.map(a => a.overall).reduce((a,b) => (a + b)/ dish.comments.map(a => a.overall).length)}
-                          starDimension="40px"
-                          starSpacing="15px"
-                          starRatedColor="orange"
-                        />
+                        <div className="column is-half-desktop">
+                          <strong className="column is-half-desktop">{dish.name} </strong>
+                        </div>
+                        <div className="column is-half-desktop">
+                          <strong className="column is-half-desktop "> £{dish.price}</strong>
+                        </div>
+                        <div className="column is-half-desktop">
+                          <strong className="column is-quarter">{dish.cuisineType}</strong>
+                        </div>
+                        <div className="column is-half-desktop">
+                          <strong className="column is-quarter">{dish.dietary}</strong>
+                        </div>
                       </div>
                     </div>
-                  </Link>
-                </div>
-              )}
 
+
+                    <div className="media-right">
+                      <StarRatings
+
+                        rating={dish.comments.map(a => a.overall).reduce((a,b) => (a + b)/ dish.comments.map(a => a.overall).length)}
+                        starDimension="20px"
+                        starSpacing="5px"
+                        starRatedColor="orange"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </Link>
             </div>
-          </div>
+
+
+
+
+          )}
+
         </div>
+
+
+
       </section>
     )
   }
