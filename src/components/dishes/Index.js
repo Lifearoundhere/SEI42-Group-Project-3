@@ -42,10 +42,19 @@ class Index extends React.Component {
   filterDishes() {
     const [field, order] = this.state.sortTerm.split('|')
     const regex = new RegExp(this.state.keyupValue, 'i')
-    const filtered = _.filter(this.state.dishes, dish => {
-      return regex.test(dish.name) || dish.dietary === this.state.dietary || dish.cuisineType === this.state.cuisine
+    const filteredSearch = _.filter(this.state.dishes, dish => {
+      return regex.test(dish.name) || dish.dietary.includes(this.state.dietary) || dish.cuisineType[0] === this.state.cuisine
     })
-    const sorted = _.orderBy(filtered, [field], [order])
+    const filteredDietary = _.filter(filteredSearch, dish => {
+      if (this.state.dietary === '') return filteredSearch
+      return dish.dietary.includes(this.state.dietary)
+    })
+    const filteredCuisineType = _.filter(filteredDietary, dish => {
+      console.log(dish.name, dish.cuisineType, dish.cuisineType.includes(this.state.cuisine))
+      if (this.state.cuisine === '') return filteredDietary
+      return dish.cuisineType.includes(this.state.cuisine)
+    })
+    const sorted = _.orderBy(filteredCuisineType, [field], [order])
 
     return sorted
   }
