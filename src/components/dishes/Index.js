@@ -42,17 +42,26 @@ class Index extends React.Component {
   filterDishes() {
     const [field, order] = this.state.sortTerm.split('|')
     const regex = new RegExp(this.state.keyupValue, 'i')
-    const filtered = _.filter(this.state.dishes, dish => {
-      return regex.test(dish.name) || dish.dietary === this.state.dietary || dish.cuisineType === this.state.cuisine
+    const filteredSearch = _.filter(this.state.dishes, dish => {
+      return regex.test(dish.name) || dish.dietary.includes(this.state.dietary) || dish.cuisineType[0] === this.state.cuisine
     })
-    const sorted = _.orderBy(filtered, [field], [order])
+    const filteredDietary = _.filter(filteredSearch, dish => {
+      if (this.state.dietary === '') return filteredSearch
+      return dish.dietary.includes(this.state.dietary)
+    })
+    const filteredCuisineType = _.filter(filteredDietary, dish => {
+      console.log(dish.name, dish.cuisineType, dish.cuisineType.includes(this.state.cuisine))
+      if (this.state.cuisine === '') return filteredDietary
+      return dish.cuisineType.includes(this.state.cuisine)
+    })
+    const sorted = _.orderBy(filteredCuisineType, [field], [order])
 
     return sorted
   }
 
   render() {
     return (
-      <section className="section">
+      <section className="section index">
         <div className="container">
           <div className="columns is-multiline is-full-desktop">
             {!this.state.dishes && < h2 className="title is-2"> Loading...</h2>}
@@ -115,11 +124,11 @@ class Index extends React.Component {
           {this.filterDishes().map(dish =>
             <div className="column is-fullwidth" key={dish._id}>
               <Link to={`/dishes/${dish._id}`}>
-                <div className= "box">
-                  <div className= "media">
-                    <div className= "media-left">
-                      <figure className= "image is-128x128">
-                        <img src={dish.image} alt={dish.name}/>
+                <div className="box">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-128x128">
+                        <img src={dish.image} alt={dish.name} />
                       </figure>
                     </div>
 
@@ -143,7 +152,7 @@ class Index extends React.Component {
 
                     <div className="media-right">
                       <StarRatings
-                        rating={dish.comments.map(a => a.overall).reduce((a,b) => a + b)/ dish.comments.length}
+                        rating={dish.comments.map(a => a.overall).reduce((a, b) => a + b) / dish.comments.length}
                         starDimension="20px"
                         starSpacing="5px"
                         starRatedColor="orange"

@@ -1,5 +1,11 @@
-
-
+$primary: #88bdd7;
+$background: #cbd581;
+.index {
+  background: #e9f4fa;
+  .box {
+    background: #fff6e9;
+  }
+}
 #marker {
   a:hover {
     cursor: pointer;
@@ -9,39 +15,39 @@
 .tag {
   &.is-burger {
     color: white;
-    background-color: #B36305;
+    background-color: #b36305;
   }
 
   &.is-beer {
     color: white;
-    background-color: #E32017;
+    background-color: #e32017;
   }
 
   &.is-steak {
-    background-color: #FFD300;
+    background-color: #ffd300;
   }
 
   &.is-pizza {
     color: white;
-    background-color: #00782A;
+    background-color: #00782a;
   }
 
   &.is-icecream {
     color: white;
-    background-color: #00A4A7;
+    background-color: #00a4a7;
   }
 
   &.is-desserts {
-    background-color: #F3A9BB;
+    background-color: #f3a9bb;
   }
 
   &.is-noodles {
-    background-color: #A0A5A9;
+    background-color: #a0a5a9;
   }
 
   &.is-wine {
     color: white;
-    background-color: #9B0056;
+    background-color: #9b0056;
   }
 
   &.is-gin {
@@ -51,7 +57,7 @@
 
   &.is-sushi {
     color: white;
-    background-color: #EE7C0E;
+    background-color: #ee7c0e;
   }
 
   &.is-smoothie {
@@ -61,13 +67,13 @@
 
   &.is-juice {
     color: white;
-    background-color: #0098D4;
+    background-color: #0098d4;
   }
 
   &.is-chocolate {
-    background-color: #95CDBA;
+    background-color: #95cdba;
   }
 }
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
-@import '~bulma'
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+@import '~bulma';
