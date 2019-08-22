@@ -19,5 +19,6 @@ module.exports = [
   { value: 'Spanish', label: 'Spanish' },
   { value: 'Thai', label: 'Thai' },
   { value: 'Turkish', label: 'Turkish' },
-  { value: 'Vietnamese', label: 'Vietnamese' }
+  { value: 'Vietnamese', label: 'Vietnamese' },
+  { value: 'Ethiopian', label: 'Ethiopian' }
 ]

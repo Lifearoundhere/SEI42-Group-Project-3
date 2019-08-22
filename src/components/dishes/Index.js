@@ -97,8 +97,8 @@ class Index extends React.Component {
                     <div className="control">
                       <div className="select is-fullwidth">
                         <select name="sortTerm" onChange={this.handleSelectChange}>
-                          <option value="price|asc">price Lo-Hi</option>
-                          <option value="price|desc">price Hi-Lo</option>
+                          <option value="price|asc">Price Lo-Hi</option>
+                          <option value="price|desc">Price Hi-Lo</option>
                         </select>
                       </div>
                     </div>
