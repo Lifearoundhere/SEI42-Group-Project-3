@@ -21,7 +21,7 @@ module.exports = [{
     fullness: 2,
     healthiness: 4
   }],
-  dietary: ['Non-Vegan', 'Very meaty']
+  dietary: ['Fish and shellfish']
 }, {
   name: 'Falafel',
   nativeName: 'פלאפל',
