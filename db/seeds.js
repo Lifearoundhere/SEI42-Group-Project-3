@@ -12,6 +12,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true })
   .then(userData => {
     const dishDataWithUser = dishData.map(data => {
       data.user = userData[0]
+      data.comments.map(comment => {
+        comment.user = userData[0]
+      })
       return data
     })
     return Dish.create(dishDataWithUser)

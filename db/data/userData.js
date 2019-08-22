@@ -4,12 +4,14 @@ module.exports = [{
   password: '1234',
   img: 'https://i.imgur.com/LCaWfk6.png',
   bio: 'A foodlover that was born to love food!',
-  favfood: ['Pizza', 'Icecreams']
+  favfood: ['Pizza', 'Icecreams'],
+  mobile: '0771234568'
 }, {
   username: 'JeanDoe',
   email: 'JeannDoe@gmail.com',
   password: '1234',
   img: 'https://i.imgur.com/dWDGFQU.png',
   bio: 'Love food as much as I love my work in Aldgate East',
-  favfood: ['Salad', 'Fried Chicken']
+  favfood: ['Salad', 'Fried Chicken'],
+  mobile: '07412345678'
 }]

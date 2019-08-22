@@ -56,8 +56,7 @@ describe('GET /dishes', () => {
             'tags',
             'image',
             'comments',
-            'dietary',
-            '__v'
+            'dietary'
           ])
         })
         done()

@@ -6,15 +6,14 @@ const { secret } = require('../../config/environment')
 const testUser = require('../../db/data/userData')
 const testData = {
   name: 'Burger with fries',
-  nativeName: 'המבורגר',
+  nativeName: 'Hamburger',
   price: 5,
   latitude: 51.515794,
   longitude: -0.073482,
   cuisineType: ['American'],
-  tags: ['Deliciuse', 'Great extras'],
+  tags: ['Burger', 'Beef'],
   image: ['https://i.imgur.com/mr1pbCi.jpg', 'https://i.imgur.com/OK1u0FO.jpg'],
   comments: [{
-    user: 'test',
     content: 'This is a great Burger with some extras as egg or bacon. I enjoy it.',
     mostHelpful: 3,
     overall: 4,
@@ -22,14 +21,13 @@ const testData = {
     healthiness: 5
   },
   {
-    user: 'test2',
     content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     mostHelpful: 3,
     overall: 1,
     fullness: 2,
     healthiness: 4
   }],
-  dietary: ['Non-Vegan', 'Very meaty']
+  dietary: ['Fish and shellfish']
 }
 
 describe('POST /dishes', () => {
@@ -37,7 +35,7 @@ describe('POST /dishes', () => {
   let token = null
 
   beforeEach(done => {
-    User.create(testUser)
+    User.create(testUser[0])
       .then(user => {
         token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
         done()
@@ -96,8 +94,7 @@ describe('POST /dishes', () => {
           'tags',
           'image',
           'comments',
-          'dietary',
-          '__v'
+          'dietary'
         ])
         done()
       })

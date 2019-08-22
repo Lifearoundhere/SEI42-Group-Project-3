@@ -27,8 +27,18 @@ const Footer = () => {
           </div>
           <div className="tile is-parent">
             <article className="tile is-child box">
-              <p className="title">Two</p>
-              <p className="subtitle">Subtitle</p>
+              <p className="title">Daniel H Cohen</p>
+              <p className="subtitle is-vertical-center">
+                <span className="icon">
+                  <img src={Linkedin} name="Icon" />
+                </span>
+                <a href='www.linkedin.com/in/daniel-hof-cohen-143aa1185'> Linkedin</a>
+              </p>
+              <p className="subtitle is-vertical-center">
+                <span className="icon">
+                  <img src={GitHub} name="Icon" />
+                </span>
+                <a href='https://github.com/Mathsteacher7'>   GitHub</a></p>
             </article>
           </div>
           <div className="tile is-parent">

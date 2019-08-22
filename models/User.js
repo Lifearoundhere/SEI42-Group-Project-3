@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 
 
 }, {
-  toJson: {
+  toJSON: {
     transform(doc, json) {
       //removing the password when converting the user to json
       delete json.password

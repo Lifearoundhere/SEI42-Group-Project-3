@@ -15,7 +15,7 @@ describe('DELETE /dishes/:id', () => {
     Dish.create(dishData)
       .then(dishes => {
         dish = dishes[0]
-        return User.create(testUser)
+        return User.create(testUser[0])
       })
       .then(user => {
         token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
