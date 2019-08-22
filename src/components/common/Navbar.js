@@ -28,7 +28,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav className="navbar" role="navigation" id="footer" aria-label="main navigation">
         <div className="navbar-menu">
           <div className="navbar-start">
             <Link to="/" className="navbar-item">
@@ -43,7 +43,7 @@ class Navbar extends React.Component {
           </div>
         </div>
         <div className="navbar-end">
-          {Auth.isAuthenticated() && <p className="navbar-item"> <Link to={`/users/${Auth.getPayload().sub}`}> Profile</Link></p> }
+          {Auth.isAuthenticated() && <p className="navbar-item"> <Link to={`/users/${Auth.getPayload().sub}`}> Profile</Link></p>}
           {Auth.isAuthenticated() && <a onClick={this.logout} className="navbar-item">Logout</a>}
           <div className="navbar-item">
             <div className="buttons">

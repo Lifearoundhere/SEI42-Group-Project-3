@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap');
+$font-family: 'Lato', 'Roboto', sans-serif;
 $primary: #88bdd7;
-$background: #cbd581;
+$success: #cbd581;
+$background: #ede9d9;
 .index {
-  background: #e9f4fa;
+  background: #ede9d9;
   .box {
-    background: #fff6e9;
+    background: #fafafa;
   }
   figure {
     background-size: contain;
@@ -11,7 +14,27 @@ $background: #cbd581;
     background-position: center;
   }
 }
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+}
+#footer {
+  background-color: #edd5d5;
+}
 
+.comments {
+  background-color: rgb(226, 240, 240);
+  outline: solid 0.25rem hsla(210, 100%, 100%, 0.5);
+  margin-bottom: 10px;
+}
+.strip {
+  background-color: #000;
+.is-center-text {
+  text-align: center;
+}
+.is-center-object {
+  margin: 0 auto;
+}
 .tag {
   &.is-burger {
     color: white;

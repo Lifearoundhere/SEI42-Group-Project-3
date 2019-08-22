@@ -38,7 +38,7 @@ class DishShow extends React.Component {
 
   render() {
 
-    if(!this.state.dish) return null
+    if (!this.state.dish) return null
     return (
       <section className="section ">
         <div className="container">
@@ -63,11 +63,12 @@ class DishShow extends React.Component {
                 <h2 className="column is-half-desktop title is-2">£ {this.state.dish.price}</h2>
               </div>
               <div>
-                <p>Ratings</p>
+                <h4 className="title is-3">Ratings</h4>
                 <Ratings2
-                  overall={this.state.dish.comments.map(a => a.overall).reduce((a,b) => a + b)/ this.state.dish.comments.length}
-                  fullness={this.state.dish.comments.map(a => a.fullness).reduce((a,b) => a + b)/ this.state.dish.comments.length}
-                  healthiness={this.state.dish.comments.map(a => a.healthiness).reduce((a,b) => a + b)/ this.state.dish.comments.length}
+                  size={'50px'}
+                  overall={this.state.dish.comments.map(a => a.overall).reduce((a, b) => a + b) / this.state.dish.comments.length}
+                  fullness={this.state.dish.comments.map(a => a.fullness).reduce((a, b) => a + b) / this.state.dish.comments.length}
+                  healthiness={this.state.dish.comments.map(a => a.healthiness).reduce((a, b) => a + b) / this.state.dish.comments.length}
                 />
               </div>
             </div>

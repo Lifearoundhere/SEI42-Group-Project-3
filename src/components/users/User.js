@@ -27,7 +27,6 @@ class UserShow extends React.Component {
     return (
       <section className="section">
         <div className="container">
-          <header><hr /></header>
           <div className="columns">
             <div className="column is-4">
               <div className="columns is-mobile">
@@ -46,7 +45,7 @@ class UserShow extends React.Component {
                   </div>
                   <h1 className="has-text-centered">{Auth.isAuthenticated() &&
                     <Link
-                      className="button is-primary"
+                      className="button is-success"
                       to={`/users/${this.state.user._id}/edit`}
                     >
                       Edit Profile
@@ -85,7 +84,6 @@ class UserShow extends React.Component {
                   <h2>{this.state.user.mobile}</h2>
                 </div>
               </div>
-              <hr />
               <div className="columns is-mobile">
                 <div className="column is-one-quarter">
                   <h1><strong>Main Information:</strong></h1><br />
@@ -98,7 +96,6 @@ class UserShow extends React.Component {
                   <h2>{this.state.user.city}</h2>
                 </div>
               </div>
-              <hr />
             </div>
           </div>
         </div>

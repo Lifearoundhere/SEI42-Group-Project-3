@@ -4,7 +4,8 @@ import Linkedin from '../../assets/LI-In-Bug.png'
 
 const Footer = () => {
   return (
-    <footer className="footer">
+
+    <footer className="footer" id="footer">
       <div className="content">
         <h2>The Creators</h2>
         <div className="tile is-ancestor">

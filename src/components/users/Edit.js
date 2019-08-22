@@ -144,7 +144,6 @@ class UserEdit extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <hr/>
             <label className="label">Main information</label>
             <div className="field">
               <label className="label">Country</label>
@@ -165,9 +164,7 @@ class UserEdit extends React.Component {
                 placeholder="eg. Paris"
                 onChange={this.handleChange}
               />
-
             </div>
-            <hr/>
             <label className="label">Contacts</label>
             <div className="field">
               <label className="label">email</label>
@@ -189,7 +186,6 @@ class UserEdit extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <hr/>
             <label className="label">Biography</label>
             <div className="field">
               <label className="label">About you</label>
@@ -215,7 +211,6 @@ class UserEdit extends React.Component {
                 {this.state.errors.favfood && <small className="help is-danger">{this.state.errors.favfood}</small>}
               </div>
             </div>
-            <br/>
             <div className="level-item">
               <button className="button is-info submit-edit-button">Submit Changes</button>
             </div>
