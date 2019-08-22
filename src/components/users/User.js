@@ -31,73 +31,149 @@ class UserShow extends React.Component {
         <div className="container">
           <div className="columns">
             <div className="column is-4">
-              <div className="columns is-mobile">
+              <div className="columns">
                 <div className="column">
-                  <div className="box">
-                    <div className="columns is-mobile">
-                      <div className="column">
-                        <figure className="image is-128x128 user-image">
+
+
+
+
+
+
+
+
+                  <div className="columns">
+                    <div className="column">
+                      <div className="box">
+                        <figure className="image is-center-object is-128x128 user-image">
                           <img className="is-rounded" src={this.state.user.img} alt="user-img" />
                         </figure>
                       </div>
-                      <div className="column">
-                        <h1>{this.state.user.username}</h1>
+
+                    </div>
+
+
+
+
+
+
+                  </div>
+                  <div className="columns">
+                    <div className="column">
+                      <div className="box is-center-text">
+                        <span ><strong>{this.state.user.username}</strong></span>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div className="columns">
+                    <div className="column is-center-text is-multiline">
+                      <div className="is-12">
+                        {Auth.isAuthenticated() &&
+                          <Link
+                            className="button is-success is-fullwidth"
+                            to={`/users/${this.state.user._id}/edit`}
+                          >
+                            Edit Profile
+                          </Link>
+                        }
+                      </div>
+                      <div className="is-12">
+
+                        {Auth.isAuthenticated() &&
+                          <Link
+                            className="button is-danger is-fullwidth"
+                            to={`/users/${this.state.user._id}/edit`}
+                          >
+                            Delete Profile
+                          </Link>
+                        }
+
                       </div>
                     </div>
                   </div>
-                  <h1 className="has-text-centered">{Auth.isAuthenticated() &&
-                    <Link
-                      className="button is-success"
-                      to={`/users/${this.state.user._id}/edit`}
-                    >
-                      Edit Profile
-                    </Link>
-                  }</h1>
-                  <div className="column">
-                    <div className="box">
-                      {this.state.user.favfood.map(food =>
-                        <span key={food}
-                          className={`tag is-${food.split(' ')[0].toLowerCase()}`}
-                        >{food}</span>
-                      )}
+
+
+                  <div className="columns">
+                    <div className="column">
+                      <div className="box">
+                        {this.state.user.favfood.map(food =>
+                          <span key={food}
+                            className={`tag is-${food.split(' ')[0].toLowerCase()}`}
+                          >{food}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
+
+
+
+
+
                 </div>
               </div>
             </div>
             <div className="column">
-              <div className="columns is-mobile">
-                <div className="column is-1">
-                  <h1><strong>{this.state.user.name}</strong></h1>
-                </div>
-                <div className="column">
-                  <h1><strong>{this.state.user.lastname}</strong></h1>
-                </div>
-              </div>
-              <div className="columns is-mobile">
-                <div className="column is-one-quarter">
-                  <h1><strong>Contacts:</strong></h1><br />
-                  <h2>Email:</h2>
-                  <h2>Mobile:</h2>
-                </div>
-                <div className="column">
-                  <br /><br />
-                  <h2>{this.state.user.email}</h2>
-                  <h2>{this.state.user.mobile}</h2>
+              <div className="box">
+                <div className="columns">
+                  <div className="column is-1">
+                    <h1><strong>{this.state.user.name}</strong></h1>
+                  </div>
+                  <div className="column">
+                    <h1><strong>{this.state.user.lastname}</strong></h1>
+                  </div>
                 </div>
               </div>
-              <div className="columns is-mobile">
-                <div className="column is-one-quarter">
-                  <h1><strong>Main Information:</strong></h1><br />
-                  <h2>Country:</h2>
-                  <h2>City:</h2>
-                </div>
-                <div className="column">
-                  <br /><br />
-                  <h2>{this.state.user.country}</h2>
-                  <h2>{this.state.user.city}</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div className="box">
+                <div className="columns">
+                  <div className="column is-one-quarter">
+                    <h1><strong>Contacts:</strong></h1><br />
+                    <h2>Email:</h2>
+                    <h2>Mobile:</h2>
+                  </div>
+                  <div className="column">
+                    <br /><br />
+                    <h2>{this.state.user.email}</h2>
+                    <h2>{this.state.user.mobile}</h2>
+                  </div>
                 </div>
               </div>
+
+
+
+
+              <div className="box">
+                <div className="columns">
+                  <div className="column is-one-quarter">
+                    <h1><strong>Main Information:</strong></h1><br />
+                    <h2>Country:</h2>
+                    <h2>City:</h2>
+                  </div>
+                  <div className="column">
+                    <br /><br />
+                    <h2>{this.state.user.country}</h2>
+                    <h2>{this.state.user.city}</h2>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -105,7 +181,7 @@ class UserShow extends React.Component {
         <div className="container">
           <div className="columns">
 
-            <div className="column is-4 has-text-centered ">
+            <div className="column is-4 is-center-text ">
 
               <div className="box">
                 <h1><strong>Achievements:</strong></h1><br />
@@ -117,12 +193,28 @@ class UserShow extends React.Component {
                 </div>
               </div>
             </div>
+
+
+
+
+
+
+
+
+
             <div className="column">
-              <h1><strong>Biography:</strong></h1><br />
-              <h2>About me:</h2>
-              <h2>{this.state.user.bio}</h2>
+              <div className="box">
+                <h1><strong>Biography:</strong></h1><br />
+                <h2>About me:</h2>
+                <h2>{this.state.user.bio}</h2>
+              </div>
             </div>
+
           </div>
+
+
+          <hr className="user-name-lastname"/>
+
         </div>
       </section>
 

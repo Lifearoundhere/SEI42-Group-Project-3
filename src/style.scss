@@ -18,6 +18,7 @@ $background: #ede9d9;
   display: flex;
   align-items: center;
 }
+
 #footer {
   background-color: #edd5d5;
 }
@@ -29,12 +30,26 @@ $background: #ede9d9;
 }
 .strip {
   background-color: #000;
+}
 .is-center-text {
   text-align: center;
 }
 .is-center-object {
   margin: 0 auto;
 }
+.user-name-lastname{
+
+  margin-top: 0;
+}
+
+.is-btn {
+  margin-left: 20px;
+}
+
+.is-user-image {
+  margin-bottom: 20px;
+}
+
 .tag {
   &.is-burger {
     color: white;
