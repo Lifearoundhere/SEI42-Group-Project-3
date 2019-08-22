@@ -27,7 +27,7 @@ class UserShow extends React.Component {
   render() {
     if(!this.state.user) return null
     return (
-      <section className="section ">
+      <section className="section">
         <div className="container">
           <header><hr/></header>
           <div className="columns">

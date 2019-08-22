@@ -15,10 +15,10 @@ class AddComment extends React.Component {
         content: '',
         overall: 1,
         fullness: 1,
-        healthiness: 1
+        healthiness: 1,
+        image: ''
 
       },
-      imgUploadData: {},
       errors: {}
     }
 
@@ -31,9 +31,10 @@ class AddComment extends React.Component {
   }
 
   handleUpload(imageData) {
-    console.log('image upload suceess...', imageData)
-    const imgUploadData = { ...this.state.imgUploadData, image: (imageData.filesUploaded || []).map(option => option.url) }
-    this.setState({ imgUploadData })
+    const uploadedImage = (imageData.filesUploaded[0].url)
+    const formData = {...this.state.formData, image: uploadedImage}
+    this.setState({ formData })
+    this.setState({ imageMessage: 'image upload suceess...' })
   }
   handleChange(e) {
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
@@ -63,12 +64,11 @@ class AddComment extends React.Component {
     })
       .then(() => this.props.history.push(`/dishes/${this.props.match.params.id}`))
       .catch(err => this.setState({ errors: err.response.data.errors }))
-
   }
 
   render() {
     const [ key ] = Object.keys(this.state.errors)
-    console.log(key)
+    console.log(this.state)
     return (
       <section className="section">
         <div className="container">
@@ -125,11 +125,9 @@ class AddComment extends React.Component {
 
             <div className="field">
               <div className="file is-info is-medium">
-                <label className="file-label">
-                  <button className="button is-info is-medium">
-                    <ImgUploader parentCallback={this.handleUpload} />
-                  </button>
-                </label>
+
+                <ImgUploader parentCallback={this.handleUpload} />
+                {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}
               </div>
             </div>
             <button className="button">Add your comment</button>
