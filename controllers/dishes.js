@@ -43,6 +43,7 @@ function updateRoute(req, res, next) {
     .catch(next)
 }
 
+
 function deleteRoute(req, res, next) {
   Dish.findById(req.params.id) // get the dish from the database: MONGOOSE
     .then(dish => {
@@ -63,6 +64,7 @@ function commentCreateRoute(req, res, next) {
     .then(dish => {
       if(!dish) return res.sendStatus(404)
       dish.comments.push(req.body)
+      dish.image.push(req.body.image)
       return dish.save()
     })
     .then(dish => Dish.populate(dish, 'user comments.user')) // populate the dish AFTER save!

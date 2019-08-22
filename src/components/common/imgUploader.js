@@ -12,7 +12,7 @@ const ImgUploader = ({ parentCallback }) => {
       //   }
       // }}
       componentDisplayMode={{
-        type: 'link',
+        type: 'button',
         customText: 'upload an image'
 
       }}

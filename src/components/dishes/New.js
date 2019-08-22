@@ -199,11 +199,7 @@ class DishNew extends React.Component {
 
             <div className="field">
               <div className="file is-info is-medium">
-                <label className="file-label">
-                  <button className="button is-info is-medium">
-                    <ImgUploader parentCallback={this.handleUpload} />
-                  </button>
-                </label>
+                <ImgUploader parentCallback={this.handleUpload} />
                 {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}
               </div>
             </div>
