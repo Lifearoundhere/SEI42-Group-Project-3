@@ -52,7 +52,7 @@ class Index extends React.Component {
 
   render() {
     return (
-      <section className="section">
+      <section className="section index">
         <div className="container">
           <div className="columns is-multiline is-full-desktop">
             {!this.state.dishes && < h2 className="title is-2"> Loading...</h2>}
@@ -115,27 +115,27 @@ class Index extends React.Component {
           {this.filterDishes().map(dish =>
             <div className="column is-fullwidth" key={dish._id}>
               <Link to={`/dishes/${dish._id}`}>
-                <div className= "box">
-                  <div className= "media">
-                    <div className= "media-left">
-                      <figure className= "image is-128x128">
-                        <img src={dish.image} alt={dish.name}/>
+                <div className="box">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-128x128">
+                        <img src={dish.image} alt={dish.name} />
                       </figure>
                     </div>
 
                     <div className="media-content">
                       <div className="columns is-multiline">
                         <div className="column is-half-desktop">
-                          <strong className="column is-half-desktop">{dish.name} </strong>
+                          <strong>{dish.name} </strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong className="column is-half-desktop "> £{dish.price}</strong>
+                          <strong> £{dish.price}</strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong className="column is-quarter">{dish.cuisineType}</strong>
+                          <strong>{dish.cuisineType}</strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong className="column is-quarter">{dish.dietary}</strong>
+                          <strong>{dish.dietary}</strong>
                         </div>
                       </div>
                     </div>
@@ -143,12 +143,12 @@ class Index extends React.Component {
 
                     <div className="media-right">
                       <StarRatings
-                        rating={dish.comments.map(a => a.overall).reduce((a,b) => a + b)/ dish.comments.length}
+                        rating={dish.comments.map(a => a.overall).reduce((a, b) => a + b) / dish.comments.length}
                         starDimension="20px"
                         starSpacing="5px"
                         starRatedColor="orange"
                       />
-                    
+
                     </div>
                   </div>
                 </div>
