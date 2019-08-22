@@ -5,5 +5,5 @@ module.exports = [
   { value: 'Vegetarian', label: 'Vegetarian' },
   { value: 'Vegan', label: 'Vegan' },
   { value: 'Nut Allergies', label: 'Nut Allergies' },
-  { value: 'Fish and shellfish', label: 'Fish and shellfish free' }
+  { value: 'Fish and shellfish', label: 'Fish and shellfish free'}
 ]
