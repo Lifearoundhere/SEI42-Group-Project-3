@@ -66,7 +66,7 @@ class UserShow extends React.Component {
                   </div>
                   <div className="columns">
                     <div className="column is-center-text is-multiline">
-                      <div className="is-12">
+                      <div>
                         {Auth.isAuthenticated() &&
                           <Link
                             className="button is-success is-fullwidth"
@@ -76,7 +76,7 @@ class UserShow extends React.Component {
                           </Link>
                         }
                       </div>
-                      <div className="is-12">
+                      <div>
 
                         {Auth.isAuthenticated() &&
                           <Link
@@ -114,10 +114,10 @@ class UserShow extends React.Component {
             <div className="column">
               <div className="box">
                 <div className="columns">
-                  <div className="column is-1">
+                  <div className="is-user-info-name">
                     <h1><strong>{this.state.user.name}</strong></h1>
                   </div>
-                  <div className="column">
+                  <div className="is-user-info-lastname">
                     <h1><strong>{this.state.user.lastname}</strong></h1>
                   </div>
                 </div>
@@ -139,14 +139,14 @@ class UserShow extends React.Component {
 
 
               <div className="box">
+                <h1><strong>Contacts:</strong></h1>
                 <div className="columns">
-                  <div className="column is-one-quarter">
-                    <h1><strong>Contacts:</strong></h1><br />
+
+                  <div className="is-user-info">
                     <h2>Email:</h2>
                     <h2>Mobile:</h2>
                   </div>
-                  <div className="column">
-                    <br /><br />
+                  <div className="is-user-info">
                     <h2>{this.state.user.email}</h2>
                     <h2>{this.state.user.mobile}</h2>
                   </div>
@@ -157,14 +157,13 @@ class UserShow extends React.Component {
 
 
               <div className="box">
+                <h1><strong>Main Information:</strong></h1>
                 <div className="columns">
-                  <div className="column is-one-quarter">
-                    <h1><strong>Main Information:</strong></h1><br />
+                  <div className="is-user-info">
                     <h2>Country:</h2>
                     <h2>City:</h2>
                   </div>
-                  <div className="column">
-                    <br /><br />
+                  <div className="is-user-info">
                     <h2>{this.state.user.country}</h2>
                     <h2>{this.state.user.city}</h2>
                   </div>
@@ -203,6 +202,7 @@ class UserShow extends React.Component {
               <div className="box">
                 <h1><strong>Biography:</strong></h1><br />
                 <h2>About me:</h2>
+                <br/>
                 <h2>{this.state.user.bio}</h2>
               </div>
             </div>

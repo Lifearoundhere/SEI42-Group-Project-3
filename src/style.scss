@@ -52,6 +52,24 @@ $background: #ede9d9;
 .is-user-image {
   margin-bottom: 20px;
 }
+.is-user-info {
+  display: inline-block;
+  width: 41.66667%;
+  padding: 0.75rem;
+}
+.is-user-info-name {
+  display: inline-block;
+  width: 20%;
+  padding: 0.75rem;
+  margin: 5px;
+}
+.is-user-info-lastname {
+  display: inline-block;
+  width: 40%;
+  padding: 0.75rem;
+  margin: 5px;
+}
+
 
 .tag {
   &.is-burger {
