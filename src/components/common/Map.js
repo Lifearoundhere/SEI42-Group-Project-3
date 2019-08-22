@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactMapboxGL, { Marker } from 'react-mapbox-gl'
+import ReactMapboxGL, { Marker, RotationControl, ZoomControl } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGL({ accessToken: process.env.MAPBOX_TOKEN })
 
@@ -22,6 +22,8 @@ function MapComp(props) {
           width='50'
         />
       </Marker>
+      <RotationControl />
+      <ZoomControl />
     </Map>
   )
 }

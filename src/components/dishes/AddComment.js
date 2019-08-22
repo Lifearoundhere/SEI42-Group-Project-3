@@ -32,7 +32,7 @@ class AddComment extends React.Component {
 
   handleUpload(imageData) {
     const uploadedImage = (imageData.filesUploaded[0].url)
-    const formData = {...this.state.formData, image: uploadedImage}
+    const formData = { ...this.state.formData, image: uploadedImage }
     this.setState({ formData })
     this.setState({ imageMessage: 'image upload suceess...' })
   }
@@ -50,7 +50,7 @@ class AddComment extends React.Component {
     this.setState({ formData })
   }
   handleHealthinessChange(e) {
-    const formData = { ...this.state.formData, healthiness: e}
+    const formData = { ...this.state.formData, healthiness: e }
     this.setState({ formData })
   }
 
@@ -67,7 +67,7 @@ class AddComment extends React.Component {
   }
 
   render() {
-    const [ key ] = Object.keys(this.state.errors)
+    const [key] = Object.keys(this.state.errors)
     console.log(this.state)
     return (
       <section className="section">
@@ -88,7 +88,6 @@ class AddComment extends React.Component {
 
             <div className="field">
               <label className="label">Overall rating</label>
-
               <StarRatings
                 rating={this.state.formData.overall}
                 starRatedColor="blue"
@@ -100,8 +99,7 @@ class AddComment extends React.Component {
             </div>
 
             <div className="field">
-              <label className="label">How Fulling did was the dish?</label>
-              <h3 className="title is-5">Fullness</h3>
+              <label className="label">How filling was the dish?</label>
               <StarRatings
                 rating={this.state.formData.fullness}
                 starRatedColor="orange"
@@ -112,7 +110,7 @@ class AddComment extends React.Component {
               {this.state.errors.fullness && <small className="help is-danger">{this.state.errors.fullness}</small>}
             </div>
             <div className="field">
-              <label className="label">How healthy the dish was?</label>
+              <label className="label">How healthy is the dish?</label>
               <StarRatings
                 rating={this.state.formData.healthiness}
                 starRatedColor="yellow"

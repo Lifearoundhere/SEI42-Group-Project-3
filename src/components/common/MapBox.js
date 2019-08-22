@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactMapboxGL, { Feature, Layer } from 'react-mapbox-gl'
+import ReactMapboxGL, { Feature, Layer, RotationControl, ZoomControl, ScaleControl } from 'react-mapbox-gl'
 const Map = ReactMapboxGL({ accessToken: process.env.MAPBOX_TOKEN })
 
 
@@ -9,7 +9,7 @@ const POSITION_CIRCLE_PAINT = {
   'circle-radius': 10,
   'circle-blur': 0.15,
   'circle-color': '#3770C6',
-  'circle-stroke-color': 'white'
+  'circle-stroke-color': 'black'
 }
 
 export class MapContainer extends React.Component {
@@ -68,6 +68,9 @@ export class MapContainer extends React.Component {
             onDrag={() => console.log('onDrag')}
           />
         </Layer>
+        <RotationControl />
+        <ZoomControl />
+        <ScaleControl />
       </ Map >
     )
   }
