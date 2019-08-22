@@ -58,9 +58,10 @@ class DishShow extends React.Component {
             </div>
 
             <div className="column is-half-desktop">
+              <div className="container">
 
-              <ImgSlider images={this.state.dish.image} />
-
+                <ImgSlider images={this.state.dish.image} />
+              </div>
             </div>
             <div className="column is-half-desktop">
               <div className="columns is-multiline">

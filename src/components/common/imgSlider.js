@@ -18,16 +18,20 @@ class ImgSlider extends React.Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      lazyLoad: true
+      lazyLoad: true,
+      adaptiveHeight: true,
+      autoplay: true,
+      className: 'maxHeight',
+      fade: true
 
     }
     return (
       <div>
         <Slider {...settings}>
 
-          {this.props.images.map( (image, i) =>
-            <div className="image" key = {i} >
-              <img src={image}/>
+          {this.props.images.map((image, i) =>
+            <div className="image" key={i} >
+              <img src={image} />
             </div>
           )}
 
