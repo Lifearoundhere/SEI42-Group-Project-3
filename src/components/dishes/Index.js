@@ -51,7 +51,6 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log(this.filterDishes())
     return (
       <section className="section">
         <div className="container">
@@ -98,8 +97,8 @@ class Index extends React.Component {
                     <div className="control">
                       <div className="select is-fullwidth">
                         <select name="sortTerm" onChange={this.handleSelectChange}>
-                          <option>price|asc</option>
-                          <option>price|desc</option>
+                          <option value="price|asc">Price Lo-Hi</option>
+                          <option value="price|desc">Price Hi-Lo</option>
                         </select>
                       </div>
                     </div>
@@ -144,12 +143,12 @@ class Index extends React.Component {
 
                     <div className="media-right">
                       <StarRatings
-
-                        rating={dish.comments.map(a => a.overall).reduce((a,b) => (a + b)/ dish.comments.map(a => a.overall).length)}
+                        rating={dish.comments.map(a => a.overall).reduce((a,b) => a + b)/ dish.comments.length}
                         starDimension="20px"
                         starSpacing="5px"
                         starRatedColor="orange"
                       />
+                    
                     </div>
                   </div>
                 </div>

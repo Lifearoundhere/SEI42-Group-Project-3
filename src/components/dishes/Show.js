@@ -33,23 +33,24 @@ class DishShow extends React.Component {
 
 
 
+  canModify() {
+    // if the user is logged in AND the user's id matches the characters' user's id return true
+    return Auth.isAuthenticated() && Auth.getPayload().sub === this.state.dish.user._id
+  }
+
 
   render() {
 
     if(!this.state.dish) return null
-    console.log(this.state.dish.comments.map(a => a.fullness).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.fullness).length))
-
-
-
     return (
       <section className="section ">
         <div className="container">
           <div className="columns is-multiline">
             <div className="column is-full-desktop">
-              <Link to={`/dishes/${this.props.match.params.id}/comments`} className="button is-primary">
+              {Auth.isAuthenticated() && <Link to={`/dishes/${this.props.match.params.id}/comments`} className="button is-primary">
                 <strong>I ate this!</strong>
-              </Link>
-              {Auth.isAuthenticated() && <Link
+              </Link>}
+              {this.canModify() && <Link
                 className="button is-primary"
                 to={`/dishes/${this.state.dish._id}/edit`}
               >Edit</Link>}
@@ -69,9 +70,9 @@ class DishShow extends React.Component {
               <div>
                 <p>Ratings</p>
                 <Ratings2
-                  overall={this.state.dish.comments.map(a => a.overall).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.overall).length)}
-                  fullness={this.state.dish.comments.map(a => a.fullness).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.fullness).length)}
-                  healthiness={this.state.dish.comments.map(a => a.healthiness).reduce((a,b) => (a + b)/ this.state.dish.comments.map(a => a.healthiness).length)}
+                  overall={this.state.dish.comments.map(a => a.overall).reduce((a,b) => a + b)/ this.state.dish.comments.length}
+                  fullness={this.state.dish.comments.map(a => a.fullness).reduce((a,b) => a + b)/ this.state.dish.comments.length}
+                  healthiness={this.state.dish.comments.map(a => a.healthiness).reduce((a,b) => a + b)/ this.state.dish.comments.length}
                 />
               </div>
 

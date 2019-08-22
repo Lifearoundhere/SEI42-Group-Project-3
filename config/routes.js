@@ -29,6 +29,7 @@ router.route('/users')
 router.route('/users/:id')
   .get(usersController.show)
   .put(secureRoute, usersController.update)
+  .delete(secureRoute, dishesController.delete)
 
 router.route('/dishes/:id/comments')
   .put(secureRoute, dishesController.commentCreate)

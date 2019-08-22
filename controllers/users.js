@@ -30,10 +30,22 @@ function updateRoute(req, res, next) {
     .catch(next)
 }
 
+function deleteRoute(req, res, next) {
+  User.findById(req.params.id) // get the user from the database: MONGOOSE
+    .then(user => {
+      if(!user) return res.sendStatus(404) // return a 404: EXPRESS
+
+      return user.remove() // remove the user: MONGOOSE
+        .then(() => res.sendStatus(204)) // return a 204: EXPRESS
+    })
+    .catch(next)
+}
+
 
 
 module.exports = {
   index: indexRoute,
   show: showRoute,
-  update: updateRoute
+  update: updateRoute,
+  delete: deleteRoute
 }

@@ -64,6 +64,7 @@ class DishNew extends React.Component {
     console.log('image upload suceess...', imageData)
     const formData = { ...this.state.formData, image: (imageData.filesUploaded || []).map(option => option.url) }
     this.setState({ formData })
+    this.setState({ imageMessage: 'image upload suceess...' })
   }
   handleChange(e) {
     const formData = { ...this.state.formData, [e.target.name]: e.target.value }
@@ -203,6 +204,7 @@ class DishNew extends React.Component {
                     <ImgUploader parentCallback={this.handleUpload} />
                   </button>
                 </label>
+                {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}
               </div>
             </div>
 

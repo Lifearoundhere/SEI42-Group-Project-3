@@ -20,7 +20,7 @@ import DishNew from './components/dishes/New'
 import Register from './components/auth/register'
 import Login from './components/auth/login'
 import Home from './components/pages/Home'
-
+import Footer from '../src/components/common/Footer'
 import 'bulma'
 import './style.scss'
 
@@ -33,7 +33,7 @@ class App extends React.Component {
         <Switch>
 
           <SecureRoute path='/dishes/:id/comments' component={AddComment} />
-          <Route path="/dishes/:id/edit" component={DishEdit} />
+          <SecureRoute path="/dishes/:id/edit" component={DishEdit} />
 
           <SecureRoute path='/dishes/new' component={DishNew} />
           <Route path='/dishes/:id' component={DishShow} />
@@ -45,6 +45,7 @@ class App extends React.Component {
           <Route path='/' component={Home} />
 
         </Switch>
+        <Footer />
       </HashRouter>
 
     )
