@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 import dietaryData from '../../../db/data/dietaryData'
+import cardIcons from '../../../db/data/icons'
 import cuisineData from '../../../db/data/cuisineTypeData'
 
 
@@ -144,7 +145,14 @@ class Index extends React.Component {
                           <strong>{dish.cuisineType}</strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong>{dish.dietary}</strong>
+                          {dish.dietary.map(icon =>
+                            <i
+                              key={icon}
+                              className={`${cardIcons.icons[icon]}`}
+                              alt={icon}
+                            ></i>
+                          )
+                          }
                         </div>
                       </div>
                     </div>
