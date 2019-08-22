@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 import Auth from '../../lib/Auth'
 
@@ -28,7 +27,6 @@ class Login extends React.Component {
     axios.post('/api/login', this.state.formData)
       .then(res => {
         Auth.setToken(res.data.token, res.data.message) // store the token in localStorage
-        toast.success(res.data.message)
         this.props.history.push(`/users/${Auth.getPayload().sub}`) // redirect to the user SHOW page
       })
       .catch(() => {

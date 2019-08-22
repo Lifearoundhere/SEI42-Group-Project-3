@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 class Register extends React.Component {
 
@@ -25,8 +24,7 @@ class Register extends React.Component {
     e.preventDefault()
 
     axios.post('/api/register', this.state.formData)
-      .then(res => {
-        toast.success(res.data.message)
+      .then(() => {
         this.props.history.push('/login')
       })
       .catch(err => this.setState({ errors: err.response.data.errors }))
