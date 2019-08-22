@@ -126,16 +126,16 @@ class Index extends React.Component {
                     <div className="media-content">
                       <div className="columns is-multiline">
                         <div className="column is-half-desktop">
-                          <strong className="column is-half-desktop">{dish.name} </strong>
+                          <strong>{dish.name} </strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong className="column is-half-desktop "> £{dish.price}</strong>
+                          <strong> £{dish.price}</strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong className="column is-quarter">{dish.cuisineType}</strong>
+                          <strong>{dish.cuisineType}</strong>
                         </div>
                         <div className="column is-half-desktop">
-                          <strong className="column is-quarter">{dish.dietary}</strong>
+                          <strong>{dish.dietary}</strong>
                         </div>
                       </div>
                     </div>
@@ -148,7 +148,7 @@ class Index extends React.Component {
                         starSpacing="5px"
                         starRatedColor="orange"
                       />
-                    
+
                     </div>
                   </div>
                 </div>
