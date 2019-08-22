@@ -44,64 +44,68 @@ class Register extends React.Component {
     return (
       <section className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <label className="label">Username</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="username"
-                  placeholder="eg: leela3000"
-                  onChange={this.handleChange}
-                />
-              </div>
-              {this.state.errors.username && <small className="help is-danger">{this.state.errors.username}</small>}
+          <div className="column is-center-object is-6-desktop is-9-tablet is-11-mobile">
+            <div className="box">
+              <form onSubmit={this.handleSubmit}>
+                <div className="field">
+                  <label className="label">Username</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="username"
+                      placeholder="eg: leela3000"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.username && <small className="help is-danger">{this.state.errors.username}</small>}
+                </div>
+                <div className="field">
+                  <label className="label">Email</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="email"
+                      name="email"
+                      placeholder="eg: leela3000@planetexpress.co.nny"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.email && <small className="help is-danger">{this.state.errors.email}</small>}
+                </div>
+                <div className="field">
+                  <label className="label">Password</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="password"
+                      name="password"
+                      placeholder="eg: ••••••••"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.password && <small className="help is-danger">{this.state.errors.password}</small>}
+                </div>
+                <div className="field">
+                  <label className="label">Password Confirmation</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="password"
+                      name="passwordConfirmation"
+                      placeholder="eg: ••••••••"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
+                </div>
+                <div className="column is-center-text"><ImgUploader className="button is-success" parentCallback={this.handleUpload} />
+                  {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}</div>
+                <div className="column is-center-text">
+                  <button className="button is-primary">Submit</button>
+                </div>
+              </form>
             </div>
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="email"
-                  name="email"
-                  placeholder="eg: leela3000@planetexpress.co.nny"
-                  onChange={this.handleChange}
-                />
-              </div>
-              {this.state.errors.email && <small className="help is-danger">{this.state.errors.email}</small>}
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="password"
-                  name="password"
-                  placeholder="eg: ••••••••"
-                  onChange={this.handleChange}
-                />
-              </div>
-              {this.state.errors.password && <small className="help is-danger">{this.state.errors.password}</small>}
-            </div>
-            <div className="field">
-              <label className="label">Password Confirmation</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="password"
-                  name="passwordConfirmation"
-                  placeholder="eg: ••••••••"
-                  onChange={this.handleChange}
-                />
-              </div>
-              {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
-            </div>
-
-            <ImgUploader parentCallback={this.handleUpload} />
-            {this.state.imageMessage && <div className="help is-info is-medium">{this.state.imageMessage}</div>}
-
-            <button className="button">Submit</button>
-          </form>
+          </div>
         </div>
       </section>
     )

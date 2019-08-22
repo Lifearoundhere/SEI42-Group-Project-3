@@ -1,5 +1,6 @@
 $primary: #88bdd7;
 $background: #cbd581;
+$success: #cbd581;
 .index {
   background: #e9f4fa;
   .box {
@@ -7,6 +8,12 @@ $background: #cbd581;
   }
 }
 
+.is-center-text {
+  text-align: center;
+}
+.is-center-object {
+  margin: 0 auto;
+}
 .tag {
   &.is-burger {
     color: white;

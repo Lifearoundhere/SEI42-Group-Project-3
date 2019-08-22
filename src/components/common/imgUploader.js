@@ -13,7 +13,8 @@ const ImgUploader = ({ parentCallback }) => {
       // }}
       componentDisplayMode={{
         type: 'button',
-        customText: 'upload an image'
+        customText: 'upload an image',
+        customClass: 'button is-success'
 
       }}
       onSuccess={
