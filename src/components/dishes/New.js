@@ -210,7 +210,7 @@ class DishNew extends React.Component {
 
               <StarRatings
                 rating={this.state.formData.comments.overall}
-                starRatedColor="blue"
+                starRatedColor="#6258ff"
                 changeRating={this.handleOverallChange}
                 numberOfStars={5}
                 name="overall"
@@ -223,7 +223,7 @@ class DishNew extends React.Component {
               <label className="label">How Fulling did was the dish?</label>
               <StarRatings
                 rating={this.state.formData.comments.fullness}
-                starRatedColor="orange"
+                starRatedColor="#feba74"
                 changeRating={this.handleFullnessChange}
                 numberOfStars={5}
                 name='rating'
@@ -234,7 +234,7 @@ class DishNew extends React.Component {
               <label className="label">How healthy the dish was?</label>
               <StarRatings
                 rating={this.state.formData.comments.healthiness}
-                starRatedColor="yellow"
+                starRatedColor="#4f994f"
                 changeRating={this.handleHealthinessChange}
                 numberOfStars={5}
                 name='rating'
