@@ -70,6 +70,19 @@ $background: #ede9d9;
   margin: 5px;
 }
 
+.is-tag {
+  margin-right: 5px;
+}
+
+.need-space {
+  margin-bottom: 10px;
+}
+
+.need-small-space {
+  margin-bottom: 5px;
+  width: 90px;
+  border-bottom: 1px solid grey;
+}
 
 .tag {
   &.is-burger {
