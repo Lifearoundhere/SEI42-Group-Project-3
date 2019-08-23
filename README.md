@@ -54,10 +54,10 @@ Technologies used:
 
 The goal of this project was to develop a full stack web app using the skills we have developed at General Assembly (GA) using React.js, NODE, and a noSQL database. GA is surrounded by many food markets frequented by students of the school, and a hot topic of conversation is always what stalls and dishes are the best, and how much they cost.
 
-This webapp is designed to be a user driven database of food avaliable at markets near the user and beyond. Users are capable of uploading photos and details of what they have eaten at a market (including location), rating them, and also rating other dishes inputted by other users on the database.
+This webapp is designed to be a user driven database of food available at markets near the user and beyond. Users are capable of uploading photos and details of what they have eaten at a market (including location), rating them, and also rating other dishes inputted by other users on the database.
 
 # **Image Handling**
-Image uploads and displaying were handled with 2 different packages in this project. Uploads were handled using Filestack, a 3rd party service designed to return a URL and apply transformations when an image is uploaded. This is acheived easily in react using the package "react-filestack".
+Image uploads and displaying were handled with 2 different packages in this project. Uploads were handled using Filestack, a 3rd party service designed to return a URL and apply transformations when an image is uploaded. This is achieved easily in react using the package "react-filestack".
 
 Image displays are handled using Slick, specifically using the package "react-slick", which is an image carousel package designed to easily let you display images in a carousel.
 
@@ -65,16 +65,19 @@ Image displays are handled using Slick, specifically using the package "react-sl
 
 We all collaborated from the same repo, this required us to work in close coordination making sure that we followed proper git version control.  We started off with a Kanban Trello board following the [MoSCoW method](https://agilekrc.com/resource/115/streetwise-moscow-ultimate-how-guide-moscow-prioritisation).
 
-We then deployed our finish product from our development branch to master and the Heroku cloud platform.
+Deployment of our finished product was served via the Heroku cloud platform.
 
 ## **Challenges**
  For creating the rating system we added the StarRating package. The main challenge was to pull the rating data from the api, since it was nested inside the comments array. To be able to send changes to the database, we needed cache user changes in the UI and then amalgamate the varying input sources together for submission to the server.    
 ## **Wins**
 
+Developing this app produced a wide variety of challenges, not only coding challenges, but personal challenges working as part of a larger group for the first time. Proper collaborative version control was at the crux of our collaboration and correct planning, producing a limited amount of personal and coding conflicts over the course of the week.
+
+The project was broken down into components designed to be testable independently of the main codebase, resulting in easy merging and few blockers to the development process as components can be developed independently provided the data schemes were robust enough. 
 ## **Future features**
 
-We would want to round out the app more by expaning on the user pages to all for achievement collection and for users to be able to follow each other.
+We would want to round out the app more by expanding on the user pages to all for achievement collection and for users to be able to follow each other.
 
-The UI could use a revamp to make it more consistant and up to date with current UI trends.
+The UI could use a revamp to make it more consistent and up to date with current UI trends.
 
 Lastly it would be good to build automated tests for the frontend like we did for the backend API.
