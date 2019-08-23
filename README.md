@@ -35,7 +35,7 @@ Clone or download the repo
 ## **Process**
 
 ## **Challenges**
-
+  For creating the rating system we added the StarRating package. The main challenge was to pull the rating data from the api, since it was nested inside the comments array. To be able to send changes to the database, we needed cache user changes in the UI and then amalgamate the varying input sources together for submission to the server.    
 ## **Wins**
 
 ## **Future features**
