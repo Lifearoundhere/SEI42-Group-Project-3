@@ -18,6 +18,7 @@ $background: #ede9d9;
   display: flex;
   align-items: center;
 }
+
 #footer {
   background-color: #edd5d5;
 }
@@ -39,6 +40,50 @@ $background: #ede9d9;
 .is-center-object {
   margin: 0 auto;
 }
+.user-name-lastname{
+
+  margin-top: 0;
+}
+
+.is-btn {
+  margin-left: 20px;
+}
+
+.is-user-image {
+  margin-bottom: 20px;
+}
+.is-user-info {
+  display: inline-block;
+  width: 41.66667%;
+  padding: 0.75rem;
+}
+.is-user-info-name {
+  display: inline-block;
+  width: 20%;
+  padding: 0.75rem;
+  margin: 5px;
+}
+.is-user-info-lastname {
+  display: inline-block;
+  width: 40%;
+  padding: 0.75rem;
+  margin: 5px;
+}
+
+.is-tag {
+  margin-right: 5px;
+}
+
+.need-space {
+  margin-bottom: 10px;
+}
+
+.need-small-space {
+  margin-bottom: 5px;
+  width: 90px;
+  border-bottom: 1px solid grey;
+}
+
 .tag {
   &.is-burger {
     color: white;
