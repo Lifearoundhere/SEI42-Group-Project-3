@@ -11,6 +11,7 @@ function createRoute(req, res, next) {
   // Add the current user to the req.body so that it will
   // be automatically added to the new dish
   req.body.user = req.currentUser._id
+  // TODO: add rating to main dish for creator...
   req.body.comments.user = req.currentUser._id
 
   const dish = new Dish(req.body) // create a new dish: MONGOOSE
