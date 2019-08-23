@@ -21,6 +21,8 @@ class DishNew extends React.Component {
           fullness: 1,
           healthiness: 1
         },
+        longitude: 0.0722,
+        latitude: 51.5153,
         imgUploadData: {}
 
       },
@@ -89,12 +91,16 @@ class DishNew extends React.Component {
     this.setState({ formData })
   }
 
+
+
+
   handleMapDrag(val) {
     let formData = { ...this.state.formData, latitude: val.latitude }
     this.setState({ formData })
     formData = { ...this.state.formData, longitude: val.longitude }
     this.setState({ formData })
   }
+
 
   handleSubmit(e) {
     e.preventDefault()
@@ -105,10 +111,11 @@ class DishNew extends React.Component {
     })
       .then(() => this.props.history.push('/dishes'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
-
   }
 
+
   render() {
+    console.log(this.state.formData)
     const { name, price, nativeName, cuisineType } = this.state.errors
     return (
       <section className="section">

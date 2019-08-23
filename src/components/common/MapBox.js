@@ -57,7 +57,7 @@ export class MapContainer extends React.Component {
         center={[lng, lat]}
       >
         <Layer type="circle" id="position-marker" paint={POSITION_CIRCLE_PAINT} >
-          <Feature coordinates={[lng, lat]}
+          <Feature coordinates={[lng || 0.0722, lat || 51.5153]}
             draggable={true}
             onDragEnd={this.onDragEnd}
           />
