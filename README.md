@@ -2,7 +2,7 @@
 
 React App
 
-[Link to App](.....)
+[Link to App](https://food-fidelity.herokuapp.com/#/)
 
 ## Collaborators
 
